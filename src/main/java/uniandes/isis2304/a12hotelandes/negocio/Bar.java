@@ -13,7 +13,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 
-package uniandes.isis2304.parranderos.negocio;
+package uniandes.isis2304.a12hotelandes.negocio;
 
 /**
  * Clase para modelar el concepto BAR del negocio de los Parranderos

@@ -13,7 +13,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 
-package uniandes.isis2304.parranderos.negocio;
+package uniandes.isis2304.a12hotelandes.negocio;
 
 /**
  * Interfaz para los métodos get de BAR.
