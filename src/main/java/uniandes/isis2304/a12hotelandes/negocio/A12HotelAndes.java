@@ -776,11 +776,11 @@ public class A12HotelAndes
 	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
 	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
 	 */
-	public long [] limpiarParranderos ()
+	public long [] limpiarA12HotelAndes ()
 	{
-        log.info ("Limpiando la BD de Parranderos");
-        long [] borrrados = pp.limpiarParranderos();	
-        log.info ("Limpiando la BD de Parranderos: Listo!");
+        log.info ("Limpiando la BD de A12HotelAndes");
+        long [] borrrados = pp.limpiarA12HotelAndes();	
+        log.info ("Limpiando la BD de A12HotelAndes: Listo!");
         return borrrados;
 	}
 }

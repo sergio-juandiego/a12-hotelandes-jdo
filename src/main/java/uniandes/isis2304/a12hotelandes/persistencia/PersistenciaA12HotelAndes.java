@@ -134,14 +134,9 @@ public class PersistenciaA12HotelAndes
 		
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
-		tablas.add ("Parranderos_sequence");
-		tablas.add ("TIPOBEBIDA");
-		tablas.add ("BEBIDA");
-		tablas.add ("BAR");
-		tablas.add ("BEBEDOR");
-		tablas.add ("GUSTAN");
-		tablas.add ("SIRVEN");
-		tablas.add ("VISITAN");
+		tablas.add ("hotelandesa12");
+		tablas.add ("HTA_HOTEL");
+		//TODO agregar tablas
 }
 
 	/**
@@ -232,7 +227,7 @@ public class PersistenciaA12HotelAndes
 	/**
 	 * @return La cadena de caracteres con el nombre del secuenciador de parranderos
 	 */
-	public String darSeqParranderos ()
+	public String darSeqA12HotelAndes ()
 	{
 		return tablas.get (0);
 	}
@@ -244,54 +239,8 @@ public class PersistenciaA12HotelAndes
 	{
 		return tablas.get (1);
 	}
+	//TODO cambiar
 
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bebida de parranderos
-	 */
-	public String darTablaBebida ()
-	{
-		return tablas.get (2);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bar de parranderos
-	 */
-	public String darTablaBar ()
-	{
-		return tablas.get (3);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Bebedor de parranderos
-	 */
-	public String darTablaBebedor ()
-	{
-		return tablas.get (4);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Gustan de parranderos
-	 */
-	public String darTablaGustan ()
-	{
-		return tablas.get (5);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Sirven de parranderos
-	 */
-	public String darTablaSirven ()
-	{
-		return tablas.get (6);
-	}
-
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de Visitan de parranderos
-	 */
-	public String darTablaVisitan ()
-	{
-		return tablas.get (7);
-	}
 	
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
@@ -1494,14 +1443,14 @@ public class PersistenciaA12HotelAndes
 	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
 	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
 	 */
-	public long [] limpiarParranderos ()
+	public long [] limpiarA12HotelAndes ()
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
             tx.begin();
-            long [] resp = sqlUtil.limpiarParranderos (pm);
+            long [] resp = sqlUtil.limpiarA12HotelAndes (pm);
             tx.commit ();
             log.info ("Borrada la base de datos");
             return resp;

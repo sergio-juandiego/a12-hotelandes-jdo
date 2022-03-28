@@ -497,7 +497,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 	}
 	
 	/**
-     * Muestra la información acerca del desarrollo de esta apicación
+     * Muestra la información acerca del desarrollo de esta aplicación
      */
     public void acercaDe ()
     {
@@ -509,11 +509,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 		resultado += " * Curso: isis2304 - Sistemas Transaccionales\n";
 		resultado += " * Proyecto: Parranderos Uniandes\n";
 		resultado += " * @version 1.0\n";
-		resultado += " * @author Germán Bravo\n";
-		resultado += " * Julio de 2018\n";
-		resultado += " * \n";
-		resultado += " * Revisado por: Claudia Jiménez, Christian Ariza\n";
-		resultado += "\n ************************************\n\n";
+		resultado += " * @author Juan Yepes, Sergio Pardo\n";
 
 		panelDatos.actualizarInterfaz(resultado);		
     }
