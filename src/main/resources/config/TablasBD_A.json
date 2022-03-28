@@ -1,6 +1,6 @@
 {
 	"title": "Nombres de las tablas de Parranderos Uniandes para la aplicación A",
-	"unidadPersistencia": "hotelandesa12",
+	"unidadPersistencia": "Parranderos",
 	"tablas":
 	[
 		"hotelandesa12_sequence",
