@@ -425,18 +425,18 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 		try 
 		{
     		// Ejecución de la demo y recolección de los resultados
-			long eliminados [] = parranderos.limpiarParranderos();
+			long eliminados [] = parranderos.limpiarA12HotelAndes();
 			
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "\n\n************ Limpiando la base de datos ************ \n";
-			resultado += eliminados [0] + " Gustan eliminados\n";
-			resultado += eliminados [1] + " Sirven eliminados\n";
-			resultado += eliminados [2] + " Visitan eliminados\n";
-			resultado += eliminados [3] + " Bebidas eliminadas\n";
-			resultado += eliminados [4] + " Tipos de bebida eliminados\n";
-			resultado += eliminados [5] + " Bebedores eliminados\n";
-			resultado += eliminados [6] + " Bares eliminados\n";
-			resultado += "\nLimpieza terminada";
+//			resultado += eliminados [0] + " Gustan eliminados\n";
+//			resultado += eliminados [1] + " Sirven eliminados\n";
+//			resultado += eliminados [2] + " Visitan eliminados\n";
+//			resultado += eliminados [3] + " Bebidas eliminadas\n";
+//			resultado += eliminados [4] + " Tipos de bebida eliminados\n";
+//			resultado += eliminados [5] + " Bebedores eliminados\n";
+//			resultado += eliminados [6] + " Bares eliminados\n";
+//			resultado += "\nLimpieza terminada";
    
 			panelDatos.actualizarInterfaz(resultado);
 		} 
