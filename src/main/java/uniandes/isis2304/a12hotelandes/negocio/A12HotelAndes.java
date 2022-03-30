@@ -15,12 +15,14 @@
 
 package uniandes.isis2304.a12hotelandes.negocio;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import com.google.gson.JsonObject;
+
 
 import uniandes.isis2304.a12hotelandes.persistencia.PersistenciaA12HotelAndes;
 
@@ -77,7 +79,7 @@ public class A12HotelAndes
 	}
 
 	/* ****************************************************************
-	 * 			Métodos para manejar los BARES
+	 * 			Métodos para manejar los HOTELES
 	 *****************************************************************/
 
 	/**
@@ -89,10 +91,10 @@ public class A12HotelAndes
 	 */
 	public Hotel adicionarHotel (String nombre, String ubicacion)
 	{
-        log.info ("Adicionando bar: " + nombre);
-        Hotel bar = pp.adicionarHotel (nombre, ubicacion);
-        log.info ("Adicionando bar: " + bar);
-        return bar;
+        log.info ("Adicionando hotel: " + nombre);
+        Hotel hotel = pp.adicionarHotel (nombre, ubicacion);
+        log.info ("Adicionando hotel: " + hotel);
+        return hotel;
 	}
 	
 
@@ -101,56 +103,116 @@ public class A12HotelAndes
 	 */
 	public long eliminarHotelPorNombre (String nombre)
 	{
-        log.info ("Eliminando bar por nombre: " + nombre);
+        log.info ("Eliminando hotel por nombre: " + nombre);
         long resp = pp.eliminarHotelPorNombre (nombre);
-        log.info ("Eliminando bar: " + resp + " tuplas eliminadas");
+        log.info ("Eliminando hotel: " + resp + " tuplas eliminadas");
         return resp;
 	}
 	
-	/**
-	 * Elimina un bebedor por su identificador
-	 * Adiciona entradas al log de la aplicación
-	 * @param idHotel - El identificador del hotel a eliminar
-	 * @return El número de tuplas eliminadas
-	 */
+	
 	public long eliminarHotelPorId (long idHotel)
 	{
-        log.info ("Eliminando bar por id: " + idHotel);
+        log.info ("Eliminando hotel por id: " + idHotel);
         long resp = pp.eliminarHotelPorId (idHotel);
-        log.info ("Eliminando bar: " + resp);
+        log.info ("Eliminando hotel: " + resp);
         return resp;
 	}
 	
-	/**
-	 * Encuentra todos los bares en Parranderos
-	 * Adiciona entradas al log de la aplicación
-	 * @return Una lista de objetos Hotel con todos los hoteles que conoce la aplicación, llenos con su información básica
-	 */
+	public long cambiarUbicacionHotel(Long idHotel, String nuevaUbicacion) {
+		log.info ("Actualizando hotel por id: " + idHotel);
+        long resp = pp.cambiarUbicacionHotel(idHotel, nuevaUbicacion);
+        log.info ("Actualizado hotel: " + resp);
+        return resp;
+	}
+	
+	
 	public List<Hotel> darHoteles ()
 	{
         log.info ("Listando Hoteles");
-        List<Hotel> bares = pp.darHoteles ();	
-        log.info ("Listando Hoteles: " + bares.size() + " bares existentes");
-        return bares;
+        List<Hotel> hoteles = pp.darHoteles ();	
+        log.info ("Listando Hoteles: " + hoteles.size() + " hoteles existentes");
+        return hoteles;
 	}
 
-	/**
-	 * Encuentra todos los bares en Parranderos y los devuelce como VO
-	 * Adiciona entradas al log de la aplicación
-	 * @return Una lista de objetos Hotel con todos las bares que conoce la aplicación, llenos con su información básica
-	 */
+	
 	public List<VOHotel> darVOHoteles ()
 	{
 		log.info ("Generando los VO de Hoteles");
 		List<VOHotel> voHoteles = new LinkedList<VOHotel> ();
-		for (Hotel bar: pp.darHoteles ())
+		for (Hotel hotel: pp.darHoteles ())
 		{
-			voHoteles.add (bar);
+			voHoteles.add (hotel);
 		}
-		log.info ("Generando los VO de Hoteles: " + voHoteles.size () + " bares existentes");
+		log.info ("Generando los VO de Hoteles: " + voHoteles.size () + " hoteles existentes");
 		return voHoteles;
 	}
 
+	/* ****************************************************************
+	 * 			Métodos para manejar CLIENTE
+	 *****************************************************************/
+	
+	public VOCliente adicionarCliente(String nombreCliente, Integer numDoc, Date diaEntrada, Date diaSalida) {
+		log.info ("Adicionando cliente: " + nombreCliente);
+        Cliente cliente = pp.adicionarCliente ( nombreCliente,  numDoc,  diaEntrada,  diaSalida);
+        log.info ("Adicionando cliente: " + cliente);
+        return cliente;
+	}
+	
+	public long eliminarClientePorNombre (String nombre)
+	{
+        log.info ("Eliminando cliente por nombre: " + nombre);
+        long resp = pp.eliminarClientePorNombre (nombre);
+        log.info ("Eliminando cliente: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	
+	public long eliminarClientePorId (long idCliente)
+	{
+        log.info ("Eliminando cliente por id: " + idCliente);
+        long resp = pp.eliminarClientePorId (idCliente);
+        log.info ("Eliminando cliente: " + resp);
+        return resp;
+	}
+	
+	public long eliminarClientePorNumDoc (Integer numDoc)
+	{
+        log.info ("Eliminando cliente por nombre: " + numDoc);
+        long resp = pp.eliminarClientePorNumDoc (numDoc);
+        log.info ("Eliminando cliente: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	
+	public long cambiarNombreCliente(Long idCliente, String nuevaUbicacion) {
+		log.info ("Actualizando cliente por id: " + idCliente);
+        long resp = pp.cambiarNombreCliente(idCliente, nuevaUbicacion);
+        log.info ("Actualizado cliente: " + resp);
+        return resp;
+	}
+	
+	
+	public List<Cliente> darClientees ()
+	{
+        log.info ("Listando Clientees");
+        List<Cliente> clientees = pp.darClientes ();	
+        log.info ("Listando Clientees: " + clientees.size() + " clientees existentes");
+        return clientees;
+	}
+
+	
+	public List<VOCliente> darVOClientees ()
+	{
+		log.info ("Generando los VO de Clientees");
+		List<VOCliente> voClientees = new LinkedList<VOCliente> ();
+		for (Cliente cliente: pp.darClientes ())
+		{
+			voClientees.add (cliente);
+		}
+		log.info ("Generando los VO de Clientees: " + voClientees.size () + " clientees existentes");
+		return voClientees;
+	}
+	
 
 	/* ****************************************************************
 	 * 			Métodos para administración
@@ -164,4 +226,11 @@ public class A12HotelAndes
         log.info ("Limpiando la BD de A12HotelAndes: Listo!");
         return borrrados;
 	}
+
+
+	
+
+	
+
+	
 }

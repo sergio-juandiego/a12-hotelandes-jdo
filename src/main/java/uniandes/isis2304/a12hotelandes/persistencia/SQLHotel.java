@@ -67,5 +67,10 @@ public class SQLHotel {
 		return (List<Hotel>) q.executeList();
 	}
 	
-	// TODO Revisar si hay que implementar más métodos
+	public long cambiarUbicacionHotel (PersistenceManager pm, Long idHotel, String ubicacion)
+	{
+        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaHotel () + " SET ubicacion = ? WHERE id = ?");
+        q.setParameters(ubicacion, idHotel);
+        return (long) q.executeUnique();
+	}
 }

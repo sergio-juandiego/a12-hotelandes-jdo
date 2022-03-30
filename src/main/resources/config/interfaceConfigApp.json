@@ -19,9 +19,38 @@
 				{
 					"label": "Borrar por Id",
 					"event": "eliminarHotelPorId"
+				},
+				{
+					"label": "Actualizar ubicacion",
+					"event": "cambiarUbicacionHotel"
 				}
 			]
 		},
+		{ "menuTitle": "Cliente",
+			"options":
+			  [
+				  {
+					  "label": "Adicionar",
+					  "event": "adicionarCliente"
+				  },
+				  {
+					  "label": "Borrar por ID",
+					  "event": "eliminarClientePorId"
+				  },
+				  {
+					  "label": "Borrar por nombre",
+					  "event": "eliminarClientePorNombre"
+				  },
+				  {
+					  "label": "Borrar por numero de documento",
+					  "event": "eliminarClientePorNumDoc"
+				  },
+				  {
+					  "label": "Cambiar nombre cliente",
+					  "event": "cambiarNombreCliente"
+				  }
+			  ]
+		  },
 		{ "menuTitle": "Mantenimiento",
 		  "options":
 			[

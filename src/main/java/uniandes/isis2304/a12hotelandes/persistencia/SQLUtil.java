@@ -78,7 +78,10 @@ class SQLUtil
 	public long [] limpiarA12HotelAndes (PersistenceManager pm)
 	{
         Query qHotel = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHotel());
+        Query qCliente = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCliente());
+        
         long hotelEliminados = (long) qHotel.executeUnique ();
-        return new long[] {hotelEliminados};
+        long clienteEliminados = (long) qCliente.executeUnique ();
+        return new long[] {hotelEliminados, clienteEliminados};
 	}
 }

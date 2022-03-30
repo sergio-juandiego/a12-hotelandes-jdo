@@ -17,6 +17,7 @@ package uniandes.isis2304.a12hotelandes.persistencia;
 
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +33,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.Hotel;
 
 /**
@@ -87,6 +89,8 @@ public class PersistenciaA12HotelAndes
 	 * Atributo para el acceso a la tabla HTA_HOTEL de la base de datos
 	 */
 	private SQLHotel sqlHotel;
+
+	private SQLCliente sqlCliente;
 	
 	
 	/* ****************************************************************
@@ -98,13 +102,14 @@ public class PersistenciaA12HotelAndes
 	 */
 	private PersistenciaA12HotelAndes ()
 	{
-		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");		
+		pmf = JDOHelper.getPersistenceManagerFactory("A12HotelAndes");		
 		crearClasesSQL ();
 		
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
 		tablas.add ("hotelandesa12");
 		tablas.add ("HTA_HOTEL");
+		tablas.add ("HTA_CLIENTE");
 		//TODO agregar tablas: EL ORDEN IMPORTA
 }
 
@@ -203,6 +208,13 @@ public class PersistenciaA12HotelAndes
 	{
 		return tablas.get (1);
 	}
+	
+
+
+	public String darTablaCliente() {
+		// TODO Auto-generated method stub
+		return tablas.get(2);
+	}
 
 	
 	/**
@@ -255,7 +267,7 @@ public class PersistenciaA12HotelAndes
         try
         {
             tx.begin();
-            long idHotel = nextval ();
+            long idHotel = nextval (); // TODO en los ids de clientes y de personas hay que poner el que definimos en las reglas
             long tuplasInsertadas = sqlHotel.adicionarHotel(pm, idHotel, nombre, ubicacion);
             tx.commit();
 
@@ -336,6 +348,34 @@ public class PersistenciaA12HotelAndes
             pm.close();
         }
 	}
+	
+	public long cambiarUbicacionHotel (long idHotel, String ubicacion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlHotel.cambiarUbicacionHotel (pm, idHotel, ubicacion);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
 
 	
 	public List<Hotel> darHoteles ()
@@ -356,6 +396,175 @@ public class PersistenciaA12HotelAndes
 	}
  
 	
+	/* ****************************************************************
+	 * 			Métodos para manejar los CLIENTES
+	 *****************************************************************/
+	
+
+	public Cliente adicionarCliente(String nombreCliente, Integer numDoc, Date diaEntrada, Date diaSalida) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long idCliente = nextval(); 
+            System.out.println(idCliente);
+            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, idCliente, nombreCliente, numDoc, diaEntrada, diaSalida);
+            System.out.println(tuplasInsertadas);
+            tx.commit();
+
+            log.trace ("Inserción de Cliente: " + nombreCliente + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new Cliente (idCliente, nombreCliente, numDoc, diaEntrada, diaSalida);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public long eliminarClientePorNombre (String nombreCliente) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlCliente.eliminarClientesPorNombre(pm, nombreCliente);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	public long eliminarClientePorId (long idCliente) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlCliente.eliminarClientePorId (pm, idCliente);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+
+	public long eliminarClientePorNumDoc(Integer numDoc) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlCliente.eliminarClientePorNumDoc (pm, numDoc);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public long cambiarNombreCliente (long idCliente, String nuevoNombre) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlCliente.cambiarNombreCliente (pm, idCliente, nuevoNombre);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	public List<Cliente> darClientes ()
+	{
+		return sqlCliente.darClientes (pmf.getPersistenceManager());
+	}
+ 
+	
+	public List<Cliente> darClientesPorNombre (String nombreCliente)
+	{
+		return sqlCliente.darClientesPorNombre (pmf.getPersistenceManager(), nombreCliente);
+	}
+ 
+	
+	public Cliente darClientePorId (long idCliente)
+	{
+		return sqlCliente.darClientePorId (pmf.getPersistenceManager(), idCliente);
+	}
+	
+	//TODO Revisar metodos que faltan
 
 
 	/**
@@ -392,5 +601,6 @@ public class PersistenciaA12HotelAndes
         }
 		
 	}
+
 
  }

@@ -26,6 +26,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -47,6 +50,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes;
+import uniandes.isis2304.a12hotelandes.negocio.VOCliente;
 import uniandes.isis2304.a12hotelandes.negocio.VOHotel;
 
 /**
@@ -250,7 +254,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     		String nombreHotel = JOptionPane.showInputDialog (this, "Nombre del hotel?", "Adicionar hotel", JOptionPane.QUESTION_MESSAGE);
     		String ubicacion = JOptionPane.showInputDialog (this, "Ubicacion del hotel?", "Adicionar hotel", JOptionPane.QUESTION_MESSAGE);
     		
-    		if (nombreHotel != null)
+    		if (nombreHotel != null && ubicacion != null)
     		{
         		VOHotel tb = a12HotelAndes.adicionarHotel(nombreHotel, ubicacion);
         		if (tb == null)
@@ -313,7 +317,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     {
     	try 
     	{
-    		String nombre = JOptionPane.showInputDialog (this, "Nombre del hotel?", "Borrar hotel por Id", JOptionPane.QUESTION_MESSAGE);
+    		String nombre = JOptionPane.showInputDialog (this, "Nombre del hotel?", "Borrar hotel por Nombre", JOptionPane.QUESTION_MESSAGE);
     		if (nombre != null)
     		{
     			
@@ -337,18 +341,222 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 		}
     }
     
+    public void cambiarUbicacionHotel( )
+    {
+    	try 
+    	{
+    		String idHotel = JOptionPane.showInputDialog (this, "id del hotel?", "Actualizar ubicacion hotel por Id", JOptionPane.QUESTION_MESSAGE);
+    		String nuevaUbicacion = JOptionPane.showInputDialog (this, "nueva ubicacion del hotel?", "Actualizar ubicacion hotel por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idHotel != null && nuevaUbicacion != null)
+    		{
+    			
+    			long tbCambiados = a12HotelAndes.cambiarUbicacionHotel(Long.parseLong(idHotel), nuevaUbicacion);
+
+    			String resultado = "En actualizar ubicacion Hotel\n\n";
+    			resultado += tbCambiados + " Hotel actualizados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    
+    /* ****************************************************************
+	 * 			CRUD de Cliente
+	 *****************************************************************/
+    /**
+     * Adiciona un cliente con la información dada por el usuario
+     * Se crea una nueva tupla de tipoBebida en la base de datos, si un cliente con ese nombre no existía
+     */
+    public void adicionarCliente( )
+    {
+    	try 
+    	{
+    		String nombreCliente = JOptionPane.showInputDialog (this, "Nombre del cliente?", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String numDoc = JOptionPane.showInputDialog (this, "Numero documento del cliente?", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String diaEntrada = JOptionPane.showInputDialog (this, "Día de entrada del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String mesEntrada = JOptionPane.showInputDialog (this, "Mes de entrada del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String anioEntrada = JOptionPane.showInputDialog (this, "Año de entrada del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		
+    		String entradaConca = anioEntrada+ "-" + mesEntrada+"-"+diaEntrada;
+    		Date diaEntradaDate = Date.valueOf(entradaConca);
+    		System.out.println(diaEntradaDate);
+    		
+    		String diaSalida = JOptionPane.showInputDialog (this, "Día de entrada del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String mesSalida = JOptionPane.showInputDialog (this, "Mes de salida del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String anioSalida = JOptionPane.showInputDialog (this, "Año de salida del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		
+    		String salidaConca = anioSalida+ "-" + mesSalida+"-"+diaSalida;
+    		Date diaSalidaDate = Date.valueOf(salidaConca);
+    		
+    		if (nombreCliente != null && numDoc != null && diaEntrada != null && diaSalida != null)
+    		{
+        		VOCliente tb = a12HotelAndes.adicionarCliente(nombreCliente, Integer.parseInt(numDoc), diaEntradaDate, diaSalidaDate);
+        		if (tb == null)
+        		{
+        			throw new Exception ("No se pudo crear un cliente con nombre: " + nombreCliente);
+        		}
+        		String resultado = "En adicionarCliente\n\n";
+        		resultado += "Tipo de bebida adicionado exitosamente: " + tb;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+
+
+    /**
+     * Borra de la base de datos el cliente con el identificador dado po el usuario
+     * Cuando dicho cliente no existe, se indica que se borraron 0 registros de la base de datos
+     */
+    public void eliminarClientePorId( )
+    {
+    	try 
+    	{
+    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del cliente?", "Borrar cliente por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idTipoStr != null)
+    		{
+    			long idTipo = Long.valueOf (idTipoStr);
+    			long tbEliminados = a12HotelAndes.eliminarClientePorId (idTipo);
+
+    			String resultado = "En eliminar Cliente\n\n";
+    			resultado += tbEliminados + " Cliente eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void eliminarClientePorNombre( )
+    {
+    	try 
+    	{
+    		String nombre = JOptionPane.showInputDialog (this, "Nombre del cliente?", "Borrar cliente por Nombre", JOptionPane.QUESTION_MESSAGE);
+    		if (nombre != null)
+    		{
+    			
+    			long tbEliminados = a12HotelAndes.eliminarClientePorNombre (nombre);
+
+    			String resultado = "En eliminar Cliente\n\n";
+    			resultado += tbEliminados + " Cliente eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void eliminarClientePorNumDoc( )
+    {
+    	try 
+    	{
+    		String numDocStr = JOptionPane.showInputDialog (this, "Id del cliente?", "Borrar cliente por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (numDocStr != null)
+    		{
+    			Integer numDoc = Integer.parseInt(numDocStr);
+    			long tbEliminados = a12HotelAndes.eliminarClientePorNumDoc(numDoc);
+
+    			String resultado = "En eliminar Cliente\n\n";
+    			resultado += tbEliminados + " Cliente eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    public void cambiarNombreCliente( )
+    {
+    	try 
+    	{
+    		String idCliente = JOptionPane.showInputDialog (this, "id del cliente?", "Actualizar ubicacion cliente por Id", JOptionPane.QUESTION_MESSAGE);
+    		String nuevoNombre = JOptionPane.showInputDialog (this, "nuevo nombre del cliente?", "Actualizar ubicacion cliente por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idCliente != null && nuevoNombre != null)
+    		{
+    			
+    			long tbCambiados = a12HotelAndes.cambiarNombreCliente(Long.parseLong(idCliente), nuevoNombre);
+
+    			String resultado = "En actualizar ubicacion Cliente\n\n";
+    			resultado += tbCambiados + " Cliente actualizados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
 
 
 	/* ****************************************************************
 	 * 			Métodos administrativos
 	 *****************************************************************/
 	/**
-	 * Muestra el log de Parranderos
+	 * Muestra el log de A12HotelAndes
 	 */
-	public void mostrarLogParranderos ()
+	public void mostrarLogA12HotelAndes ()
 	{
 		mostrarArchivo ("a12HotelAndes.log");
 	}
+
 	
 	/**
 	 * Muestra el log de datanucleus
@@ -401,18 +609,16 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 		try 
 		{
     		// Ejecución de la demo y recolección de los resultados
-			long eliminados [] = a12HotelAndes.limpiarA12HotelAndes(); // TODO Mandar bien los borrados
+			long eliminados [] = a12HotelAndes.limpiarA12HotelAndes(); 
+			
+			// TODO MANDAR BIEN LOS BORRADOS
 			
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "\n\n************ Limpiando la base de datos ************ \n";
-//			resultado += eliminados [0] + " Gustan eliminados\n";
-//			resultado += eliminados [1] + " Sirven eliminados\n";
-//			resultado += eliminados [2] + " Visitan eliminados\n";
-//			resultado += eliminados [3] + " Bebidas eliminadas\n";
 			resultado += eliminados [0] + " Hotel eliminados\n";
-//			resultado += eliminados [5] + " Bebedores eliminados\n";
-//			resultado += eliminados [6] + " Bares eliminados\n";
-//			resultado += "\nLimpieza terminada";
+			resultado += eliminados [1] + " Cliente eliminados\n";
+			
+			resultado += "\nLimpieza terminada";
    
 			panelDatos.actualizarInterfaz(resultado);
 		} 
