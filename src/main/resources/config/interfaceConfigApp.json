@@ -5,24 +5,20 @@
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "TipoBebida",
+		{ "menuTitle": "Hotel",
 		  "options":
 			[
 				{
 					"label": "Adicionar",
-					"event": "adicionarTipoBebida"
+					"event": "adicionarHotel"
 				},
 				{
-					"label": "Listar",
-					"event": "listarTipoBebida"
+					"label": "Borrar por nombre",
+					"event": "eliminarHotelPorNombre"
 				},
 				{
 					"label": "Borrar por Id",
-					"event": "eliminarTipoBebidaPorId"
-				},
-				{
-					"label": "Buscar por Nombre",
-					"event": "buscarTipoBebidaPorNombre"
+					"event": "eliminarHotelPorId"
 				}
 			]
 		},

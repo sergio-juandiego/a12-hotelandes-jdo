@@ -47,6 +47,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes;
+import uniandes.isis2304.a12hotelandes.negocio.VOHotel;
 
 /**
  * Clase principal de la interfaz
@@ -85,7 +86,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     /**
      * Asociación a la clase principal del negocio.
      */
-    private A12HotelAndes parranderos;
+    private A12HotelAndes a12HotelAndes;
     
 	/* ****************************************************************
 	 * 			Atributos de interfaz
@@ -125,7 +126,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
         }
         
         tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
-        parranderos = new A12HotelAndes (tableConfig);
+        a12HotelAndes = new A12HotelAndes (tableConfig);
         
     	String path = guiConfig.get("bannerPath").getAsString();
         panelDatos = new PanelDatos ( );
@@ -236,131 +237,107 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     }
     
 	/* ****************************************************************
-	 * 			CRUD de TipoBebida
+	 * 			CRUD de Hotel
 	 *****************************************************************/
-//    /**
-//     * Adiciona un tipo de bebida con la información dada por el usuario
-//     * Se crea una nueva tupla de tipoBebida en la base de datos, si un tipo de bebida con ese nombre no existía
-//     */
-//    public void adicionarTipoBebida( )
-//    {
-//    	try 
-//    	{
-//    		String nombreTipo = JOptionPane.showInputDialog (this, "Nombre del tipo de bedida?", "Adicionar tipo de bebida", JOptionPane.QUESTION_MESSAGE);
-//    		if (nombreTipo != null)
-//    		{
-//        		VOTipoBebida tb = parranderos.adicionarTipoBebida (nombreTipo);
-//        		if (tb == null)
-//        		{
-//        			throw new Exception ("No se pudo crear un tipo de bebida con nombre: " + nombreTipo);
-//        		}
-//        		String resultado = "En adicionarTipoBebida\n\n";
-//        		resultado += "Tipo de bebida adicionado exitosamente: " + tb;
-//    			resultado += "\n Operación terminada";
-//    			panelDatos.actualizarInterfaz(resultado);
-//    		}
-//    		else
-//    		{
-//    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-//    		}
-//		} 
-//    	catch (Exception e) 
-//    	{
-////			e.printStackTrace();
-//			String resultado = generarMensajeError(e);
-//			panelDatos.actualizarInterfaz(resultado);
-//		}
-//    }
-//
-//    /**
-//     * Consulta en la base de datos los tipos de bebida existentes y los muestra en el panel de datos de la aplicación
-//     */
-//    public void listarTipoBebida( )
-//    {
-//    	try 
-//    	{
-//			List <VOTipoBebida> lista = parranderos.darVOTiposBebida();
-//
-//			String resultado = "En listarTipoBebida";
-//			resultado +=  "\n" + listarTiposBebida (lista);
-//			panelDatos.actualizarInterfaz(resultado);
-//			resultado += "\n Operación terminada";
-//		} 
-//    	catch (Exception e) 
-//    	{
-////			e.printStackTrace();
-//			String resultado = generarMensajeError(e);
-//			panelDatos.actualizarInterfaz(resultado);
-//		}
-//    }
-//
-//    /**
-//     * Borra de la base de datos el tipo de bebida con el identificador dado po el usuario
-//     * Cuando dicho tipo de bebida no existe, se indica que se borraron 0 registros de la base de datos
-//     */
-//    public void eliminarTipoBebidaPorId( )
-//    {
-//    	try 
-//    	{
-//    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del tipo de bedida?", "Borrar tipo de bebida por Id", JOptionPane.QUESTION_MESSAGE);
-//    		if (idTipoStr != null)
-//    		{
-//    			long idTipo = Long.valueOf (idTipoStr);
-//    			long tbEliminados = parranderos.eliminarTipoBebidaPorId (idTipo);
-//
-//    			String resultado = "En eliminar TipoBebida\n\n";
-//    			resultado += tbEliminados + " Tipos de bebida eliminados\n";
-//    			resultado += "\n Operación terminada";
-//    			panelDatos.actualizarInterfaz(resultado);
-//    		}
-//    		else
-//    		{
-//    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-//    		}
-//		} 
-//    	catch (Exception e) 
-//    	{
-////			e.printStackTrace();
-//			String resultado = generarMensajeError(e);
-//			panelDatos.actualizarInterfaz(resultado);
-//		}
-//    }
-//
-//    /**
-//     * Busca el tipo de bebida con el nombre indicado por el usuario y lo muestra en el panel de datos
-//     */
-//    public void buscarTipoBebidaPorNombre( )
-//    {
-//    	try 
-//    	{
-//    		String nombreTb = JOptionPane.showInputDialog (this, "Nombre del tipo de bedida?", "Buscar tipo de bebida por nombre", JOptionPane.QUESTION_MESSAGE);
-//    		if (nombreTb != null)
-//    		{
-//    			VOTipoBebida tipoBebida = parranderos.darTipoBebidaPorNombre (nombreTb);
-//    			String resultado = "En buscar Tipo Bebida por nombre\n\n";
-//    			if (tipoBebida != null)
-//    			{
-//        			resultado += "El tipo de bebida es: " + tipoBebida;
-//    			}
-//    			else
-//    			{
-//        			resultado += "Un tipo de bebida con nombre: " + nombreTb + " NO EXISTE\n";    				
-//    			}
-//    			resultado += "\n Operación terminada";
-//    			panelDatos.actualizarInterfaz(resultado);
-//    		}
-//    		else
-//    		{
-//    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-//    		}
-//		} 
-//    	catch (Exception e) 
-//    	{
-////			e.printStackTrace();
-//			String resultado = generarMensajeError(e);
-//			panelDatos.actualizarInterfaz(resultado);
-//		}
-//    }
+    /**
+     * Adiciona un hotel con la información dada por el usuario
+     * Se crea una nueva tupla de tipoBebida en la base de datos, si un hotel con ese nombre no existía
+     */
+    public void adicionarHotel( )
+    {
+    	try 
+    	{
+    		String nombreHotel = JOptionPane.showInputDialog (this, "Nombre del hotel?", "Adicionar hotel", JOptionPane.QUESTION_MESSAGE);
+    		String presupuesto = JOptionPane.showInputDialog (this, "Presupuesto del hotel?", "Adicionar hotel", JOptionPane.QUESTION_MESSAGE);
+    		String ubicacion = JOptionPane.showInputDialog (this, "Ubicacion del hotel?", "Adicionar hotel", JOptionPane.QUESTION_MESSAGE);
+    		
+    		if (nombreHotel != null)
+    		{
+        		VOHotel tb = a12HotelAndes.adicionarHotel(nombreHotel, presupuesto, ubicacion);
+        		if (tb == null)
+        		{
+        			throw new Exception ("No se pudo crear un hotel con nombre: " + nombreHotel);
+        		}
+        		String resultado = "En adicionarHotel\n\n";
+        		resultado += "Tipo de bebida adicionado exitosamente: " + tb;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+
+
+    /**
+     * Borra de la base de datos el hotel con el identificador dado po el usuario
+     * Cuando dicho hotel no existe, se indica que se borraron 0 registros de la base de datos
+     */
+    public void eliminarHotelPorId( )
+    {
+    	try 
+    	{
+    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del hotel?", "Borrar hotel por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idTipoStr != null)
+    		{
+    			long idTipo = Long.valueOf (idTipoStr);
+    			long tbEliminados = a12HotelAndes.eliminarHotelPorId (idTipo);
+
+    			String resultado = "En eliminar Hotel\n\n";
+    			resultado += tbEliminados + " Hotel eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void eliminarHotelPorNombre( )
+    {
+    	try 
+    	{
+    		String nombre = JOptionPane.showInputDialog (this, "Nombre del hotel?", "Borrar hotel por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (nombre != null)
+    		{
+    			
+    			long tbEliminados = a12HotelAndes.eliminarHotelPorNombre (nombre);
+
+    			String resultado = "En eliminar Hotel\n\n";
+    			resultado += tbEliminados + " Hotel eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
 
 
 	/* ****************************************************************
@@ -371,7 +348,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 	 */
 	public void mostrarLogParranderos ()
 	{
-		mostrarArchivo ("parranderos.log");
+		mostrarArchivo ("a12HotelAndes.log");
 	}
 	
 	/**
@@ -383,16 +360,16 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 	}
 	
 	/**
-	 * Limpia el contenido del log de parranderos
+	 * Limpia el contenido del log de a12HotelAndes
 	 * Muestra en el panel de datos la traza de la ejecución
 	 */
 	public void limpiarLogParranderos ()
 	{
 		// Ejecución de la operación y recolección de los resultados
-		boolean resp = limpiarArchivo ("parranderos.log");
+		boolean resp = limpiarArchivo ("a12HotelAndes.log");
 
 		// Generación de la cadena de caracteres con la traza de la ejecución de la demo
-		String resultado = "\n\n************ Limpiando el log de parranderos ************ \n";
+		String resultado = "\n\n************ Limpiando el log de a12HotelAndes ************ \n";
 		resultado += "Archivo " + (resp ? "limpiado exitosamente" : "NO PUDO ser limpiado !!");
 		resultado += "\nLimpieza terminada";
 
@@ -417,7 +394,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 	}
 	
 	/**
-	 * Limpia todas las tuplas de todas las tablas de la base de datos de parranderos
+	 * Limpia todas las tuplas de todas las tablas de la base de datos de a12HotelAndes
 	 * Muestra en el panel de datos el número de tuplas eliminadas de cada tabla
 	 */
 	public void limpiarBD ()
@@ -425,7 +402,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 		try 
 		{
     		// Ejecución de la demo y recolección de los resultados
-			long eliminados [] = parranderos.limpiarA12HotelAndes();
+			long eliminados [] = a12HotelAndes.limpiarA12HotelAndes(); // TODO Mandar bien los borrados
 			
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "\n\n************ Limpiando la base de datos ************ \n";
@@ -433,7 +410,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 //			resultado += eliminados [1] + " Sirven eliminados\n";
 //			resultado += eliminados [2] + " Visitan eliminados\n";
 //			resultado += eliminados [3] + " Bebidas eliminadas\n";
-//			resultado += eliminados [4] + " Tipos de bebida eliminados\n";
+			resultado += eliminados [0] + " Hotel eliminados\n";
 //			resultado += eliminados [5] + " Bebedores eliminados\n";
 //			resultado += eliminados [6] + " Bares eliminados\n";
 //			resultado += "\nLimpieza terminada";
@@ -519,15 +496,15 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 	 * 			Métodos privados para la presentación de resultados y otras operaciones
 	 *****************************************************************/
 //    /**
-//     * Genera una cadena de caracteres con la lista de los tipos de bebida recibida: una línea por cada tipo de bebida
+//     * Genera una cadena de caracteres con la lista de los tipos de bebida recibida: una línea por cada hotel
 //     * @param lista - La lista con los tipos de bebida
-//     * @return La cadena con una líea para cada tipo de bebida recibido
+//     * @return La cadena con una líea para cada hotel recibido
 //     */
-//    private String listarTiposBebida(List<VOTipoBebida> lista) 
+//    private String listarTiposBebida(List<VOHotel> lista) 
 //    {
 //    	String resp = "Los tipos de bebida existentes son:\n";
 //    	int i = 1;
-//        for (VOTipoBebida tb : lista)
+//        for (VOHotel tb : lista)
 //        {
 //        	resp += i++ + ". " + tb.toString() + "\n";
 //        }
@@ -559,7 +536,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 	{
 		String resultado = "************ Error en la ejecución\n";
 		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
-		resultado += "\n\nRevise datanucleus.log y parranderos.log para más detalles";
+		resultado += "\n\nRevise datanucleus.log y a12HotelAndes.log para más detalles";
 		return resultado;
 	}
 

@@ -236,7 +236,7 @@ public class PersistenciaA12HotelAndes
 
 	
 	/* ****************************************************************
-	 * 			Métodos para manejar los BARES
+	 * 			Métodos para manejar los HOTELES
 	 *****************************************************************/
 	
 	/**
