@@ -76,27 +76,9 @@ class SQLUtil
 	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
 	 */
 	public long [] limpiarA12HotelAndes (PersistenceManager pm)
-//	{
-//        Query qGustan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGustan ());          
-//        Query qSirven = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSirven ());
-//        Query qVisitan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan ());
-//        Query qBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebida ());
-//        Query qTipoBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoBebida ());
-//        Query qBebedor = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebedor ());
-//        Query qBar = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBar ());
-//
-//        long gustanEliminados = (long) qGustan.executeUnique ();
-//        long sirvenEliminados = (long) qSirven.executeUnique ();
-//        long visitanEliminadas = (long) qVisitan.executeUnique ();
-//        long bebidasEliminadas = (long) qBebida.executeUnique ();
-//        long tiposBebidaEliminados = (long) qTipoBebida.executeUnique ();
-//        long bebedoresEliminados = (long) qBebedor.executeUnique ();
-//        long baresEliminados = (long) qBar.executeUnique ();
-//        return new long[] {gustanEliminados, sirvenEliminados, visitanEliminadas, bebidasEliminadas, 
-//        		tiposBebidaEliminados, bebedoresEliminados, baresEliminados};
-//	} TODO cambiar, revisar
 	{
-		return new long[] {0,0};
+        Query qHotel = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHotel());
+        long hotelEliminados = (long) qHotel.executeUnique ();
+        return new long[] {hotelEliminados};
 	}
-
 }

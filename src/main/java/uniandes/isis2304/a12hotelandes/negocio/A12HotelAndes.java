@@ -79,28 +79,25 @@ public class A12HotelAndes
 	/* ****************************************************************
 	 * 			Métodos para manejar los BARES
 	 *****************************************************************/
+
 	/**
-	 * Adiciona de manera persistente un bar 
-	 * Adiciona entradas al log de la aplicación
-	 * @param nombre - El nombre del bar
-	 * @param presupuesto - El presupuesto del bar (ALTO, MEDIO, BAJO)
-	 * @param ciudad - La ciudad del bar
-	 * @param sedes - El número de sedes que tiene el bar en la ciudad (Mayor que 0)
-	 * @return El objeto Hotel adicionado. null si ocurre alguna Excepción
+	 * 
+	 * @param nombre
+	 * @param presupuesto
+	 * @param ubicacion
+	 * @return Hotel
 	 */
-	public Hotel adicionarHotel (String nombre, String presupuesto, String ubicacion)
+	public Hotel adicionarHotel (String nombre, String ubicacion)
 	{
         log.info ("Adicionando bar: " + nombre);
-        Hotel bar = pp.adicionarHotel (nombre, presupuesto, ubicacion);
+        Hotel bar = pp.adicionarHotel (nombre, ubicacion);
         log.info ("Adicionando bar: " + bar);
         return bar;
 	}
 	
+
 	/**
-	 * Elimina un bar por su nombre
-	 * Adiciona entradas al log de la aplicación
-	 * @param nombre - El nombre del bar a eliminar
-	 * @return El número de tuplas eliminadas
+	 * @param nombre
 	 */
 	public long eliminarHotelPorNombre (String nombre)
 	{
@@ -113,7 +110,7 @@ public class A12HotelAndes
 	/**
 	 * Elimina un bebedor por su identificador
 	 * Adiciona entradas al log de la aplicación
-	 * @param idHotel - El identificador del bar a eliminar
+	 * @param idHotel - El identificador del hotel a eliminar
 	 * @return El número de tuplas eliminadas
 	 */
 	public long eliminarHotelPorId (long idHotel)
@@ -127,7 +124,7 @@ public class A12HotelAndes
 	/**
 	 * Encuentra todos los bares en Parranderos
 	 * Adiciona entradas al log de la aplicación
-	 * @return Una lista de objetos Hotel con todos las bares que conoce la aplicación, llenos con su información básica
+	 * @return Una lista de objetos Hotel con todos los hoteles que conoce la aplicación, llenos con su información básica
 	 */
 	public List<Hotel> darHoteles ()
 	{
@@ -159,11 +156,7 @@ public class A12HotelAndes
 	 * 			Métodos para administración
 	 *****************************************************************/
 
-	/**
-	 * Elimina todas las tuplas de todas las tablas de la base de datos de Parranderos
-	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
-	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
-	 */
+
 	public long [] limpiarA12HotelAndes ()
 	{
         log.info ("Limpiando la BD de A12HotelAndes");

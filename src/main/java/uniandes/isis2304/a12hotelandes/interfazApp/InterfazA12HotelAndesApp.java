@@ -248,12 +248,11 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     	try 
     	{
     		String nombreHotel = JOptionPane.showInputDialog (this, "Nombre del hotel?", "Adicionar hotel", JOptionPane.QUESTION_MESSAGE);
-    		String presupuesto = JOptionPane.showInputDialog (this, "Presupuesto del hotel?", "Adicionar hotel", JOptionPane.QUESTION_MESSAGE);
     		String ubicacion = JOptionPane.showInputDialog (this, "Ubicacion del hotel?", "Adicionar hotel", JOptionPane.QUESTION_MESSAGE);
     		
     		if (nombreHotel != null)
     		{
-        		VOHotel tb = a12HotelAndes.adicionarHotel(nombreHotel, presupuesto, ubicacion);
+        		VOHotel tb = a12HotelAndes.adicionarHotel(nombreHotel, ubicacion);
         		if (tb == null)
         		{
         			throw new Exception ("No se pudo crear un hotel con nombre: " + nombreHotel);

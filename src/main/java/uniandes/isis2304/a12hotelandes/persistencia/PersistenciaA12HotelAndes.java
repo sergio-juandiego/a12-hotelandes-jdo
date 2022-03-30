@@ -248,7 +248,7 @@ public class PersistenciaA12HotelAndes
 	 * @param sedes - El número de sedes del bar en la ciudad (Mayor que 0)
 	 * @return El objeto Hotel adicionado. null si ocurre alguna Excepción
 	 */
-	public Hotel adicionarHotel(String nombre, String ciudad, String ubicacion) 
+	public Hotel adicionarHotel(String nombre, String ubicacion) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
