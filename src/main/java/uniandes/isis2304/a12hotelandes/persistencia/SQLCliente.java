@@ -23,11 +23,12 @@ public class SQLCliente {
 	// CRUD
 	
 
-	public long adicionarCliente (PersistenceManager pm, long idCliente, String nombre, Integer numDoc, Date diaEntrada, Date diaSalida) 
+	public long adicionarCliente (PersistenceManager pm, long idCliente, String nombre, String tipoDoc, Integer numDoc, Date diaEntrada, Date diaSalida) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCliente () + "(id, nombre, numdoc, diaentrada, diasalida) values (?, ?, ?, ?, ?)");
-        return (long) q.executeUnique();
-	} // no esta haciendo este query por alguna razón que desconozco
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCliente () + "(id, nombre, tipodoc, numdoc, diaentrada, diasalida) values (?, ?, ?, ?, ?, ?)");
+        q.setParameters(idCliente, nombre, tipoDoc, numDoc, diaEntrada, diaSalida);
+		return (long) q.executeUnique();
+	}
 	
 	
 	public long eliminarClientesPorNombre (PersistenceManager pm, String nombreCliente)

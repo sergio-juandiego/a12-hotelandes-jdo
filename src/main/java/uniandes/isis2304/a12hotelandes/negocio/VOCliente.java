@@ -15,5 +15,7 @@ public interface VOCliente {
 	Date getDiaSalida();
 
 	String toString();
+	
+	String getTipoDoc();
 
 }

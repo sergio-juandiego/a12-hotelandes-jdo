@@ -18,7 +18,6 @@ package uniandes.isis2304.a12hotelandes.persistencia;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,6 +34,7 @@ import com.google.gson.JsonObject;
 
 import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.Hotel;
+import uniandes.isis2304.a12hotelandes.negocio.TipoHabitacion;
 
 /**
  * Clase para el manejador de persistencia del proyecto Parranderos
@@ -89,8 +89,8 @@ public class PersistenciaA12HotelAndes
 	 * Atributo para el acceso a la tabla HTA_HOTEL de la base de datos
 	 */
 	private SQLHotel sqlHotel;
-
 	private SQLCliente sqlCliente;
+	private SQLTipoHabitacion sqlTipoHabitacion;
 	
 	
 	/* ****************************************************************
@@ -110,6 +110,8 @@ public class PersistenciaA12HotelAndes
 		tablas.add ("hotelandesa12");
 		tablas.add ("HTA_HOTEL");
 		tablas.add ("HTA_CLIENTE");
+		tablas.add ("HTA_TIPO_HABITACION");
+		
 		//TODO agregar tablas: EL ORDEN IMPORTA
 }
 
@@ -187,7 +189,8 @@ public class PersistenciaA12HotelAndes
 	{
 		
 		sqlHotel = new SQLHotel(this);
-		
+		sqlCliente = new SQLCliente(this);
+		sqlTipoHabitacion = new SQLTipoHabitacion(this);
 		// TODO Crear todas las clases
 		
 		sqlUtil = new SQLUtil(this);
@@ -201,19 +204,20 @@ public class PersistenciaA12HotelAndes
 		return tablas.get (0);
 	}
 
-	/**
-	 * @return La cadena de caracteres con el nombre de la tabla de TipoBebida de parranderos
-	 */
+	
 	public String darTablaHotel()
 	{
 		return tablas.get (1);
 	}
-	
 
-
-	public String darTablaCliente() {
-		// TODO Auto-generated method stub
+	public String darTablaCliente() 
+	{
 		return tablas.get(2);
+	}
+	
+	public String darTablaTipoHabitacion() 
+	{
+		return tablas.get(3);
 	}
 
 	
@@ -401,7 +405,7 @@ public class PersistenciaA12HotelAndes
 	 *****************************************************************/
 	
 
-	public Cliente adicionarCliente(String nombreCliente, Integer numDoc, Date diaEntrada, Date diaSalida) {
+	public Cliente adicionarCliente(String nombreCliente, String tipoDoc, Integer numDoc, Date diaEntrada, Date diaSalida) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
@@ -409,17 +413,17 @@ public class PersistenciaA12HotelAndes
         	tx.begin();
             long idCliente = nextval(); 
             System.out.println(idCliente);
-            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, idCliente, nombreCliente, numDoc, diaEntrada, diaSalida);
+            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, idCliente, tipoDoc, nombreCliente, numDoc, diaEntrada, diaSalida);
             System.out.println(tuplasInsertadas);
             tx.commit();
 
             log.trace ("Inserción de Cliente: " + nombreCliente + ": " + tuplasInsertadas + " tuplas insertadas");
 
-            return new Cliente (idCliente, nombreCliente, numDoc, diaEntrada, diaSalida);
+            return new Cliente (idCliente,  nombreCliente,  tipoDoc,  numDoc,  diaEntrada,  diaSalida);
         }
         catch (Exception e)
         {
-//        	e.printStackTrace();
+        	e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }
@@ -564,7 +568,149 @@ public class PersistenciaA12HotelAndes
 		return sqlCliente.darClientePorId (pmf.getPersistenceManager(), idCliente);
 	}
 	
-	//TODO Revisar metodos que faltan
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los TIPO_HABITACION
+	 *****************************************************************/
+	
+
+	public TipoHabitacion adicionarTipoHabitacion(String nombre, String descripcion) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long idTipoHabitacion = nextval(); 
+            System.out.println(idTipoHabitacion);
+            long tuplasInsertadas = sqlTipoHabitacion.adicionarTipoHabitacion(pm, idTipoHabitacion, nombre, descripcion);
+            System.out.println(tuplasInsertadas);
+            tx.commit();
+
+            log.trace ("Inserción de TipoHabitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new TipoHabitacion ();
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public long eliminarTipoHabitacionPorNombre (String nombreTipoHabitacion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlTipoHabitacion.eliminarTipoHabitacionesPorNombre(pm, nombreTipoHabitacion);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	public long eliminarTipoHabitacionPorId (long idTipoHabitacion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlTipoHabitacion.eliminarTipoHabitacionPorId (pm, idTipoHabitacion);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+
+	
+	public long cambiarDescripcionTipoHabitacion (long idTipoHabitacion, String nuevaDescripcion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlTipoHabitacion.cambiarDescripcionTipoHabitacion (pm, idTipoHabitacion, nuevaDescripcion);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	public List<TipoHabitacion> darTipoHabitaciones ()
+	{
+		return sqlTipoHabitacion.darTipoHabitaciones (pmf.getPersistenceManager());
+	}
+ 
+	
+	public List<TipoHabitacion> darTipoHabitacionesPorNombre (String nombreTipoHabitacion)
+	{
+		return sqlTipoHabitacion.darTipoHabitacionesPorNombre (pmf.getPersistenceManager(), nombreTipoHabitacion);
+	}
+ 
+	
+	public TipoHabitacion darTipoHabitacionPorId (long idTipoHabitacion)
+	{
+		return sqlTipoHabitacion.darTipoHabitacionPorId (pmf.getPersistenceManager(), idTipoHabitacion);
+	}
+	
 
 
 	/**
@@ -601,6 +747,5 @@ public class PersistenciaA12HotelAndes
         }
 		
 	}
-
 
  }

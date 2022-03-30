@@ -151,9 +151,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar CLIENTE
 	 *****************************************************************/
 	
-	public VOCliente adicionarCliente(String nombreCliente, Integer numDoc, Date diaEntrada, Date diaSalida) {
+	public Cliente adicionarCliente(String nombreCliente, String tipoDoc, Integer numDoc, Date diaEntrada, Date diaSalida) {
 		log.info ("Adicionando cliente: " + nombreCliente);
-        Cliente cliente = pp.adicionarCliente ( nombreCliente,  numDoc,  diaEntrada,  diaSalida);
+        Cliente cliente = pp.adicionarCliente ( nombreCliente, tipoDoc, numDoc,  diaEntrada,  diaSalida);
         log.info ("Adicionando cliente: " + cliente);
         return cliente;
 	}
@@ -201,9 +201,9 @@ public class A12HotelAndes
 	}
 
 	
-	public List<VOCliente> darVOClientees ()
+	public List<VOCliente> darVOClientes ()
 	{
-		log.info ("Generando los VO de Clientees");
+		log.info ("Generando los VO de Clientes");
 		List<VOCliente> voClientees = new LinkedList<VOCliente> ();
 		for (Cliente cliente: pp.darClientes ())
 		{
@@ -211,6 +211,64 @@ public class A12HotelAndes
 		}
 		log.info ("Generando los VO de Clientees: " + voClientees.size () + " clientees existentes");
 		return voClientees;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar TIPO_HABITACION
+	 *****************************************************************/
+	
+	public TipoHabitacion adicionarTipoHabitacion(String nombre, String descripcion) {
+		log.info ("Adicionando tipoHabitacion: " + nombre);
+        TipoHabitacion tipoHabitacion = pp.adicionarTipoHabitacion ( nombre,  descripcion);
+        log.info ("Adicionando tipoHabitacion: " + tipoHabitacion);
+        return tipoHabitacion;
+	}
+	
+	public long eliminarTipoHabitacionPorNombre (String nombre)
+	{
+        log.info ("Eliminando tipoHabitacion por nombre: " + nombre);
+        long resp = pp.eliminarTipoHabitacionPorNombre (nombre);
+        log.info ("Eliminando tipoHabitacion: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	
+	public long eliminarTipoHabitacionPorId (long idTipoHabitacion)
+	{
+        log.info ("Eliminando tipoHabitacion por id: " + idTipoHabitacion);
+        long resp = pp.eliminarTipoHabitacionPorId (idTipoHabitacion);
+        log.info ("Eliminando tipoHabitacion: " + resp);
+        return resp;
+	}
+	
+	
+	public long cambiarDescripcionTipoHabitacion(Long idTipoHabitacion, String nuevaDescripcion) {
+		log.info ("Actualizando tipoHabitacion por id: " + idTipoHabitacion);
+        long resp = pp.cambiarDescripcionTipoHabitacion(idTipoHabitacion, nuevaDescripcion);
+        log.info ("Actualizado tipoHabitacion: " + resp);
+        return resp;
+	}
+	
+	
+	public List<TipoHabitacion> darTipoHabitaciones ()
+	{
+        log.info ("Listando TipoHabitaciones");
+        List<TipoHabitacion> tipoHabitaciones = pp.darTipoHabitaciones ();	
+        log.info ("Listando TipoHabitaciones: " + tipoHabitaciones.size() + " tipoHabitaciones existentes");
+        return tipoHabitaciones;
+	}
+
+	
+	public List<VOTipoHabitacion> darVOTipoHabitacions ()
+	{
+		log.info ("Generando los VO de TipoHabitacions");
+		List<VOTipoHabitacion> voTipoHabitaciones = new LinkedList<VOTipoHabitacion> ();
+		for (TipoHabitacion tipoHabitacion: pp.darTipoHabitaciones ())
+		{
+			voTipoHabitaciones.add (tipoHabitacion);
+		}
+		log.info ("Generando los VO de TipoHabitaciones: " + voTipoHabitaciones.size () + " tipoHabitaciones existentes");
+		return voTipoHabitaciones;
 	}
 	
 
@@ -226,6 +284,7 @@ public class A12HotelAndes
         log.info ("Limpiando la BD de A12HotelAndes: Listo!");
         return borrrados;
 	}
+
 
 
 	

@@ -6,6 +6,7 @@ public class Cliente implements VOCliente {
 	
 	public Long id;
 	public String nombre;
+	public String tipoDoc;
 	public Integer numDoc;
 	public Date diaEntrada;
 	public Date diaSalida;
@@ -23,6 +24,13 @@ public class Cliente implements VOCliente {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	@Override
+	public String getTipoDoc() {
+		return tipoDoc;
+	}
+	public void setTipoDoc(String tipoDoc) {
+		this.tipoDoc = tipoDoc;
 	}
 	@Override
 	public Integer getNumDoc() {
@@ -49,14 +57,16 @@ public class Cliente implements VOCliente {
 		super();
 		this.id = 0L;
 		this.nombre = "";
+		this.tipoDoc = "";
 		this.numDoc = 0;
 		this.diaEntrada = new Date (0);
 		this.diaSalida = new Date (0);
 	}
-	public Cliente(Long id, String nombre, Integer numDoc, Date diaEntrada, Date diaSalida) {
+	public Cliente(Long id, String nombre, String tipoDoc, Integer numDoc, Date diaEntrada, Date diaSalida) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
+		this.tipoDoc = tipoDoc;
 		this.numDoc = numDoc;
 		this.diaEntrada = diaEntrada;
 		this.diaSalida = diaSalida;

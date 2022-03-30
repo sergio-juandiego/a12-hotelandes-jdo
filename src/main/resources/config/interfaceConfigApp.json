@@ -51,6 +51,27 @@
 				  }
 			  ]
 		  },
+		{ "menuTitle": "Tipo Habitacion",
+		"options":
+			[
+				{
+					"label": "Adicionar",
+					"event": "adicionarTipoHabitacion"
+				},
+				{
+					"label": "Borrar por ID",
+					"event": "eliminarTipoHabitacionPorId"
+				},
+				{
+					"label": "Borrar por nombre",
+					"event": "eliminarTipoHabitacionPorNombre"
+				},
+				{
+					"label": "Cambiar descripcion",
+					"event": "cambiarDescripcionTipoHabitacion"
+				}
+			]
+		},
 		{ "menuTitle": "Mantenimiento",
 		  "options":
 			[
