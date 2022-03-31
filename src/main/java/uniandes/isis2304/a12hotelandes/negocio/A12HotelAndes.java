@@ -424,7 +424,58 @@ public class A12HotelAndes
 		return voUsuarioSistemaes;
 	}
 	
+	/* ****************************************************************
+	 * 			Métodos para manejar RESERVA_HABITACION
+	 *****************************************************************/
 	
+	public ReservaHabitacion adicionarReservaHabitacion(Long idHabitacion, Integer numDocCliente, String tipoDocCliente, Integer periodo,
+			String completada) {
+		log.info ("Adicionando ReservaHabitacion: ");
+        ReservaHabitacion ReservaHabitacion = pp.adicionarReservaHabitacion ( idHabitacion,  numDocCliente,  tipoDocCliente,  periodo,
+    			completada);
+        log.info ("Adicionando ReservaHabitacion: " + ReservaHabitacion);
+        return ReservaHabitacion;
+	}
+	
+	
+	
+	public long eliminarReservaHabitacionPorId (long idReservaHabitacion)
+	{
+        log.info ("Eliminando ReservaHabitacion por id: " + idReservaHabitacion);
+        long resp = pp.eliminarReservaHabitacionPorId (idReservaHabitacion);
+        log.info ("Eliminando ReservaHabitacion: " + resp);
+        return resp;
+	}
+	
+	
+	public long cambiarCompletadaReservaHabitacion(Long idReservaHabitacion, String completada) {
+		log.info ("Actualizando ReservaHabitacion por id: " + idReservaHabitacion);
+        long resp = pp.cambiarCompletadaReservaHabitacion(idReservaHabitacion, completada);
+        log.info ("Actualizado ReservaHabitacion: " + resp);
+        return resp;
+	}
+	
+	
+	public List<ReservaHabitacion> darReservaHabitaciones ()
+	{
+        log.info ("Listando ReservaHabitaciones");
+        List<ReservaHabitacion> ReservaHabitaciones = pp.darReservaHabitaciones ();	
+        log.info ("Listando ReservaHabitaciones: " + ReservaHabitaciones.size() + " ReservaHabitaciones existentes");
+        return ReservaHabitaciones;
+	}
+
+	
+	public List<VOReservaHabitacion> darVOReservaHabitaciones ()
+	{
+		log.info ("Generando los VO de ReservaHabitacions");
+		List<VOReservaHabitacion> voReservaHabitaciones = new LinkedList<VOReservaHabitacion> ();
+		for (ReservaHabitacion ReservaHabitacion: pp.darReservaHabitaciones ())
+		{
+			voReservaHabitaciones.add (ReservaHabitacion);
+		}
+		log.info ("Generando los VO de ReservaHabitaciones: " + voReservaHabitaciones.size () + " ReservaHabitaciones existentes");
+		return voReservaHabitaciones;
+	}
 	
 	
 	

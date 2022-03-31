@@ -1,7 +1,7 @@
 {
-	"title": "Aplicación transaccional de Parranderos Uniandes",
-	"frameH": 600,
-	"frameW": 800,
+	"title": "Aplicación transaccional de HotelAndes",
+	"frameH": 400,
+	"frameW": 1400,
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
@@ -127,12 +127,29 @@
 					}
 				]
 			},
+		{ "menuTitle": "Reserva Habitacion",
+			"options":
+				[
+					{
+						"label": "Adicionar",
+						"event": "adicionarReservaHabitacion"
+					},
+					{
+						"label": "Borrar por ID",
+						"event": "eliminarReservaHabitacionPorId"
+					},
+					{
+						"label": "Completar reserva por ID",
+						"event": "cambiarCompletadaReservaHabitacion"
+					}
+				]
+			},
 		{ "menuTitle": "Mantenimiento",
 		  "options":
 			[
 				{
-					"label": "Mostrar log Parranderos",
-					"event": "mostrarLogParranderos"
+					"label": "Mostrar log a12HotelAndes",
+					"event": "mostrarLogA12HotelAndes"
 				},
 				{
 					"label": "Mostrar log datanucleus",

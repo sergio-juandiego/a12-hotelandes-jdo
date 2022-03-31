@@ -36,6 +36,7 @@ import com.google.gson.JsonObject;
 import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.Habitacion;
 import uniandes.isis2304.a12hotelandes.negocio.Hotel;
+import uniandes.isis2304.a12hotelandes.negocio.ReservaHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.RolesDeUsuario;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioLPE;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioSpa;
@@ -1107,6 +1108,114 @@ public class PersistenciaA12HotelAndes
 	public UsuarioSistema darUsuarioSistemaPorId (long idUsuarioSistema)
 	{
 		return sqlUsuarioSistema.darUsuarioSistemaPorId (pmf.getPersistenceManager(), idUsuarioSistema);
+	}
+	
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los Reserva Habitacion
+	 *****************************************************************/
+	
+
+	public ReservaHabitacion adicionarReservaHabitacion (Long idHabitacion, Integer numDocCliente, String tipoDocCliente, Integer periodo, String completada)  {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long idReservaHabitacion = nextval(); 
+            long tuplasInsertadas = sqlReservaHabitacion.adicionarReservaHabitacion ( pm,  idReservaHabitacion,  idHabitacion,  numDocCliente,  tipoDocCliente,  periodo, completada) ;
+            tx.commit();
+
+            log.trace ("Inserción de ReservaHabitacion: " + idReservaHabitacion + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ReservaHabitacion (idReservaHabitacion, idHabitacion, numDocCliente, tipoDocCliente, periodo, completada);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	System.out.println( idHabitacion+ " " +  numDocCliente+ " " +  tipoDocCliente+ " " +  periodo+ " " +  completada);
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	public long eliminarReservaHabitacionPorId (long idReservaHabitacion) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlReservaHabitacion.eliminarReservaHabitacionPorId (pm, idReservaHabitacion);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+
+	
+	public long cambiarCompletadaReservaHabitacion (long idReservaHabitacion, String completada) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlReservaHabitacion.cambiarCompletadaReservaHabitacion (pm, idReservaHabitacion, completada);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	public List<ReservaHabitacion> darReservaHabitaciones()
+	{
+		return sqlReservaHabitacion.darReservaHabitaciones (pmf.getPersistenceManager());
+	}
+ 
+	
+	public ReservaHabitacion darReservaHabitacionPorId (long idReservaHabitacion)
+	{
+		return sqlReservaHabitacion.darReservaHabitacionPorId (pmf.getPersistenceManager(), idReservaHabitacion);
 	}
 	
 	

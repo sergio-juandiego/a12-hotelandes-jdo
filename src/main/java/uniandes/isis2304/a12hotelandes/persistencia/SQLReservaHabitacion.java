@@ -18,10 +18,11 @@ public class SQLReservaHabitacion {
 		this.pp = pp;
 	}
 	
-	public long adicionarReservaHabitacion (PersistenceManager pm, long idReservaHabitacion, Integer costoPorNoche, Integer cuenta, Long tipoReservaHabitacion, String aprovisionamiento) 
+	public long adicionarReservaHabitacion (PersistenceManager pm, Long idReservaHabitacion, Long idHabitacion, Integer numDocCliente, String tipoDocCliente, Integer periodo,
+			String completada) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReservaHabitacion () + "(id, costopornoche, cuenta, tipohabitacion, aprovisionamiento) values (?, ?, ?, ?, ?)");
-        q.setParameters( idReservaHabitacion,  costoPorNoche,  cuenta,  tipoReservaHabitacion,  aprovisionamiento);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReservaHabitacion () + "(id, idhabitacion, numdoccliente, tipodoccliente, periodo, completada) values (?, ?, ?, ?, ?, ?)");
+        q.setParameters( idReservaHabitacion,  idHabitacion,  numDocCliente,  tipoDocCliente,  periodo, completada);
         return (long) q.executeUnique();
 	}
 	
@@ -50,10 +51,10 @@ public class SQLReservaHabitacion {
 		return (List<ReservaHabitacion>) q.executeList();
 	}
 	
-	public long cambiarAprovisionamientonReservaHabitacion (PersistenceManager pm, Long idReservaHabitacion, String aprovisionamiento)
+	public long cambiarCompletadaReservaHabitacion (PersistenceManager pm, Long idReservaHabitacion, String completada)
 	{
-        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaReservaHabitacion () + " SET aprovisionamiento = ? WHERE id = ?");
-        q.setParameters(aprovisionamiento, idReservaHabitacion);
+        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaReservaHabitacion () + " SET completada = ? WHERE id = ?");
+        q.setParameters(completada, idReservaHabitacion);
         return (long) q.executeUnique();
 	}
 
