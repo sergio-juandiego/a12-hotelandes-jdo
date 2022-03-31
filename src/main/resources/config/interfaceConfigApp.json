@@ -89,7 +89,7 @@
 					}
 				]
 			},
-		{ "menuTitle": "RolesDeUsuario",
+		{ "menuTitle": "Roles De Usuario",
 			"options":
 				[
 					{
@@ -103,6 +103,27 @@
 					{
 						"label": "Borrar por Nombre",
 						"event": "eliminarRolesDeUsuarioPorNombre"
+					}
+				]
+			},
+		{ "menuTitle": "Usuario Sistema",
+			"options":
+				[
+					{
+						"label": "Adicionar",
+						"event": "adicionarUsuarioSistema"
+					},
+					{
+						"label": "Borrar por ID",
+						"event": "eliminarUsuarioSistemaPorId"
+					},
+					{
+						"label": "Borrar por Nombre",
+						"event": "eliminarUsuarioSistemaPorNombre"
+					},
+					{
+						"label": "Cambiar nombre por ID",
+						"event": "cambiarNombreUsuarioSistema"
 					}
 				]
 			},

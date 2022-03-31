@@ -3,3 +3,12 @@
 16:07:07,868 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
 16:07:27,465 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando hotel: NH
 16:07:28,220 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando hotel: Hotel [id=1, nombre=NH, ubicacion=Nueva Granada]
+16:53:39,368 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+16:53:39,370 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+16:53:39,419 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+16:53:56,499 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: Administrador
+16:53:57,060 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: RolesDeUsuario [id=2, nombre=Administrador]
+16:54:11,891 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando usuarioSistema: Juan
+16:54:12,067 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando usuarioSistema: UsuarioSistema [id=3, nombre=Juan, rol=2]
+16:55:06,135 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Actualizando usuarioSistema por id: 3
+16:55:06,229 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Actualizado usuarioSistema: 1

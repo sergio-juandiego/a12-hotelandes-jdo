@@ -41,6 +41,7 @@ import uniandes.isis2304.a12hotelandes.negocio.ServicioLPE;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioSpa;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioTienda;
 import uniandes.isis2304.a12hotelandes.negocio.TipoHabitacion;
+import uniandes.isis2304.a12hotelandes.negocio.UsuarioSistema;
 
 /**
  * Clase para el manejador de persistencia del proyecto Parranderos
@@ -968,9 +969,159 @@ public class PersistenciaA12HotelAndes
 		return sqlRolesDeUsuario.darRolesDeUsuarioPorId (pmf.getPersistenceManager(), idRolesDeUsuario);
 	}
 
-	
-	
 	/* ****************************************************************
+	 * 			Métodos para manejar los Usuario Sistema
+	 *****************************************************************/
+	
+
+	public UsuarioSistema adicionarUsuarioSistema(String nombre, Long rol) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long idUsuarioSistema = nextval(); 
+            long tuplasInsertadas = sqlUsuarioSistema.adicionarUsuarioSistema(pm, idUsuarioSistema, nombre, rol);
+            tx.commit();
+
+            log.trace ("Inserción de UsuarioSistema: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new UsuarioSistema (idUsuarioSistema, nombre, rol);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public long eliminarUsuarioSistemaPorNombre (String nombreUsuarioSistema) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlUsuarioSistema.eliminarUsuariosSistemaPorNombre(pm, nombreUsuarioSistema);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	public long eliminarUsuarioSistemaPorId (long idUsuarioSistema) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlUsuarioSistema.eliminarUsuarioSistemaPorId (pm, idUsuarioSistema);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+
+	
+	public long cambiarNombreUsuarioSistema (long idUsuarioSistema, String nombre) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlUsuarioSistema.cambiarNombreUsuarioSistema (pm, idUsuarioSistema, nombre);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	public List<UsuarioSistema> darUsuariosSistema()
+	{
+		return sqlUsuarioSistema.darUsuariosSistema (pmf.getPersistenceManager());
+	}
+ 
+	
+	public List<UsuarioSistema> darUsuariosSistemaPorNombre (String nombreUsuarioSistema)
+	{
+		return sqlUsuarioSistema.darUsuariosSistemaPorNombre (pmf.getPersistenceManager(), nombreUsuarioSistema);
+	}
+ 
+	
+	public UsuarioSistema darUsuarioSistemaPorId (long idUsuarioSistema)
+	{
+		return sqlUsuarioSistema.darUsuarioSistemaPorId (pmf.getPersistenceManager(), idUsuarioSistema);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* **************************************************************** SERGIO
 	 * 			Métodos para manejar el Servicio Tienda
 	 *****************************************************************/
 	

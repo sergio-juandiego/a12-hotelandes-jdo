@@ -81,7 +81,7 @@ private final static String SQL = PersistenciaA12HotelAndes.SQL;
 	
 	public long cambiarDescripcionTipoHabitacion (PersistenceManager pm, Long idTipoHabitacion, String descripcion)
 	{
-        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaTipoHabitacion () + " SET nombre = ? WHERE id = ?");
+        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaTipoHabitacion () + " SET descripcion = ? WHERE id = ?");
         q.setParameters(descripcion, idTipoHabitacion);
         return (long) q.executeUnique();
 	}

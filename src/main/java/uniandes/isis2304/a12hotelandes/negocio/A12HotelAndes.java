@@ -367,6 +367,72 @@ public class A12HotelAndes
 	}
 
 	/* ****************************************************************
+	 * 			Métodos para manejar USUARIO_SISTEMA
+	 *****************************************************************/
+	
+	public UsuarioSistema adicionarUsuarioSistema(String nombre, Long rol) {
+		log.info ("Adicionando usuarioSistema: " + nombre);
+        UsuarioSistema usuarioSistema = pp.adicionarUsuarioSistema ( nombre,  rol);
+        log.info ("Adicionando usuarioSistema: " + usuarioSistema);
+        return usuarioSistema;
+	}
+	
+	public long eliminarUsuarioSistemaPorNombre (String nombre)
+	{
+        log.info ("Eliminando usuarioSistema por nombre: " + nombre);
+        long resp = pp.eliminarUsuarioSistemaPorNombre (nombre);
+        log.info ("Eliminando usuarioSistema: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	
+	public long eliminarUsuarioSistemaPorId (long idUsuarioSistema)
+	{
+        log.info ("Eliminando usuarioSistema por id: " + idUsuarioSistema);
+        long resp = pp.eliminarUsuarioSistemaPorId (idUsuarioSistema);
+        log.info ("Eliminando usuarioSistema: " + resp);
+        return resp;
+	}
+	
+	
+	public long cambiarNombreUsuarioSistema(Long idUsuarioSistema, String nombre) {
+		log.info ("Actualizando usuarioSistema por id: " + idUsuarioSistema);
+        long resp = pp.cambiarNombreUsuarioSistema(idUsuarioSistema, nombre);
+        log.info ("Actualizado usuarioSistema: " + resp);
+        return resp;
+	}
+	
+	
+	public List<UsuarioSistema> darUsuariosSistema()
+	{
+        log.info ("Listando UsuarioSistemaes");
+        List<UsuarioSistema> usuarioSistemaes = pp.darUsuariosSistema ();	
+        log.info ("Listando UsuarioSistemaes: " + usuarioSistemaes.size() + " usuarioSistemaes existentes");
+        return usuarioSistemaes;
+	}
+
+	
+	public List<VOUsuarioSistema> darVOUsuarioSistemas ()
+	{
+		log.info ("Generando los VO de UsuarioSistemas");
+		List<VOUsuarioSistema> voUsuarioSistemaes = new LinkedList<VOUsuarioSistema> ();
+		for (UsuarioSistema usuarioSistema: pp.darUsuariosSistema ())
+		{
+			voUsuarioSistemaes.add (usuarioSistema);
+		}
+		log.info ("Generando los VO de UsuarioSistemaes: " + voUsuarioSistemaes.size () + " usuarioSistemaes existentes");
+		return voUsuarioSistemaes;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* **************************************************************** SERGIO
 	 * 			Métodos para manejar Servicio Tienda
 	 *****************************************************************/
 	
