@@ -20,6 +20,7 @@ import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import com.google.gson.JsonObject;
 
@@ -40,7 +41,7 @@ public class A12HotelAndes
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(A12HotelAndes.class.getName());
+	private static Logger log = LogManager.getLogger(A12HotelAndes.class.getName());
 	
 	/* ****************************************************************
 	 * 			Atributos

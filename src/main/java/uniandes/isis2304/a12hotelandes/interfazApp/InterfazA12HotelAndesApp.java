@@ -41,6 +41,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
@@ -73,7 +74,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(InterfazA12HotelAndesApp.class.getName());
+	private static final Logger log = LogManager.getLogger(InterfazA12HotelAndesApp.class.getName());
 	
 	/**
 	 * Ruta al archivo de configuración de la interfaz

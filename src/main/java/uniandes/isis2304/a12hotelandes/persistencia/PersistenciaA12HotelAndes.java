@@ -27,6 +27,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
 
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -59,7 +60,7 @@ public class PersistenciaA12HotelAndes
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(PersistenciaA12HotelAndes.class.getName());
+	private static Logger log = LogManager.getLogger(PersistenciaA12HotelAndes.class.getName());
 	
 	/**
 	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una consulta
@@ -98,9 +99,15 @@ public class PersistenciaA12HotelAndes
 	private SQLTipoHabitacion sqlTipoHabitacion;
 	private SQLHabitacion sqlHabitacion;
 	private SQLRolesDeUsuario sqlRolesDeUsuario;
+	private SQLUsuarioSistema sqlUsuarioSistema;
+	private SQLReservaHabitacion sqlReservaHabitacion;
+	
+	
+	
 	private SQLServicioTienda sqlServicioTienda;
 	private SQLServicioSpa sqlServicioSpa;
 	private SQLServicioLPE sqlServicioLPE;
+
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -117,19 +124,19 @@ public class PersistenciaA12HotelAndes
 		// Define los nombres por defecto de las tablas de la base de datos
 		tablas = new LinkedList<String> ();
 		tablas.add ("hotelandesa12");
-		tablas.add ("HTA_HOTEL");
+		tablas.add ("HTA_HOTEL"); // 1
 		tablas.add ("HTA_CLIENTE");
-		tablas.add ("HTA_TIPO_HABITACION");
+		tablas.add ("HTA_TIPO_HABITACION"); //3
 		tablas.add ("HTA_HABITACION");
-		tablas.add ("HTA_ROLES_DE_USUARIO");
+		tablas.add ("HTA_ROLES_DE_USUARIO"); // 5
 		tablas.add ("HTA_USUARIO_SISTEMA");
-		tablas.add ("HTA_RESERVA_HABITACION");
-		tablas.add ("HTA_SERVICIO");
-		tablas.add ("HTA_RESERVA_DE_SERVICIO");
+		tablas.add ("HTA_RESERVA_HABITACION"); // 7
+		tablas.add ("HTA_SERVICIO"); // 8
+		tablas.add ("HTA_RESERVA_DE_SERVICIO"); // 9
 		tablas.add ("HTA_SERVICIO_PISCINA");
-		tablas.add ("HTA_SERVICIO_GIMNASIO");
+		tablas.add ("HTA_SERVICIO_GIMNASIO"); //11
 		tablas.add ("HTA_SERVICIO_INTERNET");
-		tablas.add ("HTA_SERVICIO_BAR");
+		tablas.add ("HTA_SERVICIO_BAR"); //13
 		tablas.add ("HTA_SERVICIO_RESTAURANTE");
 		tablas.add ("HTA_SERVICIO_SUPERMERCADO");
 		tablas.add ("HTA_SERVICIO_TIENDA");
@@ -146,6 +153,7 @@ public class PersistenciaA12HotelAndes
 		tablas.add ("HTA_TODO_INCLUIDO");
 		tablas.add ("HTA_PRODUCTOS_TODO_INCLUIDO");
 		tablas.add ("HTA_PROMOCION_PARTICULAR");
+		tablas.add ("HTA_RESERVA_DE_SERVICIO");
 }
 
 	/**
@@ -226,6 +234,13 @@ public class PersistenciaA12HotelAndes
 		sqlTipoHabitacion = new SQLTipoHabitacion(this);
 		sqlHabitacion = new SQLHabitacion(this);
 		sqlRolesDeUsuario = new SQLRolesDeUsuario(this);
+		sqlUsuarioSistema = new SQLUsuarioSistema(this);
+		sqlReservaHabitacion = new SQLReservaHabitacion(this);
+		
+		
+		
+		
+		
 		sqlServicioTienda = new SQLServicioTienda(this);
 		sqlServicioSpa = new SQLServicioSpa(this);
 		sqlServicioLPE = new SQLServicioLPE(this);
@@ -263,6 +278,14 @@ public class PersistenciaA12HotelAndes
 	
 	public String darTablaRolesDeUsuario() {
 		return tablas.get(5);
+	}
+	
+	public String darTablaUsuarioSistema() {
+		return tablas.get(6);
+	}
+	
+	public String darTablaReservaHabitacion() {
+		return tablas.get(7);
 	}
 
 	
@@ -1239,5 +1262,8 @@ public class PersistenciaA12HotelAndes
         }
 		
 	}
+
+
+	
 
  }
