@@ -315,6 +315,55 @@ public class A12HotelAndes
 		return voHabitaciones;
 	}
 	
+	/* ****************************************************************
+	 * 			Métodos para manejar ROLES_DE_USUARIO
+	 *****************************************************************/
+	
+	public RolesDeUsuario adicionarRolesDeUsuario(String nombre) {
+		log.info ("Adicionando tipoHabitacion: " + nombre);
+        RolesDeUsuario tipoHabitacion = pp.adicionarRolesDeUsuario (nombre);
+        log.info ("Adicionando tipoHabitacion: " + tipoHabitacion);
+        return tipoHabitacion;
+	} // TODO CAMBIAR atributos
+	
+	public long eliminarRolesDeUsuarioPorNombre (String nombre)
+	{
+        log.info ("Eliminando tipoHabitacion por nombre: " + nombre);
+        long resp = pp.eliminarRolesDeUsuarioPorNombre (nombre);
+        log.info ("Eliminando tipoHabitacion: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	
+	public long eliminarRolesDeUsuarioPorId (long idRolesDeUsuario)
+	{
+        log.info ("Eliminando tipoHabitacion por id: " + idRolesDeUsuario);
+        long resp = pp.eliminarRolesDeUsuarioPorId (idRolesDeUsuario);
+        log.info ("Eliminando tipoHabitacion: " + resp);
+        return resp;
+	}
+
+	
+	public List<RolesDeUsuario> darRolesDeUsuarioes ()
+	{
+        log.info ("Listando RolesDeUsuarioes");
+        List<RolesDeUsuario> tipoHabitaciones = pp.darRolesDeUsuarios ();	
+        log.info ("Listando RolesDeUsuarioes: " + tipoHabitaciones.size() + " tipoHabitaciones existentes");
+        return tipoHabitaciones;
+	}
+
+	
+	public List<VORolesDeUsuario> darVORolesDeUsuarios ()
+	{
+		log.info ("Generando los VO de RolesDeUsuarios");
+		List<VORolesDeUsuario> voRolesDeUsuarioes = new LinkedList<VORolesDeUsuario> ();
+		for (RolesDeUsuario tipoHabitacion: pp.darRolesDeUsuarios ())
+		{
+			voRolesDeUsuarioes.add (tipoHabitacion);
+		}
+		log.info ("Generando los VO de RolesDeUsuarioes: " + voRolesDeUsuarioes.size () + " tipoHabitaciones existentes");
+		return voRolesDeUsuarioes;
+	}
 
 	/* ****************************************************************
 	 * 			Métodos para administración

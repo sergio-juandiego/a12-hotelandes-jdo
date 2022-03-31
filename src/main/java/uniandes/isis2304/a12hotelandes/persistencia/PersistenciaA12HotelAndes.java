@@ -35,6 +35,7 @@ import com.google.gson.JsonObject;
 import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.Habitacion;
 import uniandes.isis2304.a12hotelandes.negocio.Hotel;
+import uniandes.isis2304.a12hotelandes.negocio.RolesDeUsuario;
 import uniandes.isis2304.a12hotelandes.negocio.TipoHabitacion;
 
 /**
@@ -92,8 +93,8 @@ public class PersistenciaA12HotelAndes
 	private SQLHotel sqlHotel;
 	private SQLCliente sqlCliente;
 	private SQLTipoHabitacion sqlTipoHabitacion;
-
 	private SQLHabitacion sqlHabitacion;
+	private SQLRolesDeUsuario sqlRolesDeUsuario;
 	
 	
 	/* ****************************************************************
@@ -231,7 +232,6 @@ public class PersistenciaA12HotelAndes
 	{
 		return tablas.get (0);
 	}
-
 	
 	public String darTablaHotel()
 	{
@@ -251,6 +251,11 @@ public class PersistenciaA12HotelAndes
 	public String darTablaHabitacion() {
 		return tablas.get(4);
 	}
+	
+	public String darTablaRolesDeUsuario() {
+		return tablas.get(5);
+	}
+
 
 	
 	/**
@@ -444,7 +449,6 @@ public class PersistenciaA12HotelAndes
         {
         	tx.begin();
             long tuplasInsertadas = sqlCliente.adicionarCliente(pm, tipoDoc, nombreCliente, numDoc, diaEntrada, diaSalida);
-            System.out.println(tuplasInsertadas);
             tx.commit();
 
             log.trace ("Inserción de Cliente: " + nombreCliente + ": " + tuplasInsertadas + " tuplas insertadas");
@@ -582,9 +586,7 @@ public class PersistenciaA12HotelAndes
         {
         	tx.begin();
             long idTipoHabitacion = nextval(); 
-            System.out.println(idTipoHabitacion);
             long tuplasInsertadas = sqlTipoHabitacion.adicionarTipoHabitacion(pm, idTipoHabitacion, nombre, descripcion);
-            System.out.println(tuplasInsertadas);
             tx.commit();
 
             log.trace ("Inserción de TipoHabitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
@@ -714,7 +716,7 @@ public class PersistenciaA12HotelAndes
 	
 	
 	/* ****************************************************************
-	 * 			Métodos para manejar los _HABITACION
+	 * 			Métodos para manejar los HABITACION
 	 *****************************************************************/
 	
 
@@ -725,9 +727,7 @@ public class PersistenciaA12HotelAndes
         {
         	tx.begin();
             long idHabitacion = nextval(); 
-            System.out.println(idHabitacion);
             long tuplasInsertadas = sqlHabitacion.adicionarHabitacion(pm, idHabitacion, costoPorNoche,  cuenta,  tipoHabitacion, aprovisionamiento);
-            System.out.println(tuplasInsertadas);
             tx.commit();
 
             log.trace ("Inserción de Habitacion de tipo: " + tipoHabitacion + ": " + tuplasInsertadas + " tuplas insertadas");
@@ -821,6 +821,113 @@ public class PersistenciaA12HotelAndes
 		return sqlHabitacion.darHabitacionPorId (pmf.getPersistenceManager(), idHabitacion);
 	}
 
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los ROLES_DE_USUARIO
+	 *****************************************************************/
+	
+
+	public RolesDeUsuario adicionarRolesDeUsuario(String nombre) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long idRolesDeUsuario = nextval(); 
+            long tuplasInsertadas = sqlRolesDeUsuario.adicionarRolesDeUsuario(pm, idRolesDeUsuario, nombre);
+            tx.commit();
+
+            log.trace ("Inserción de RolesDeUsuario: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new RolesDeUsuario ();
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public long eliminarRolesDeUsuarioPorNombre (String nombreRolesDeUsuario) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlRolesDeUsuario.eliminarRolesDeUsuarioPorNombre(pm, nombreRolesDeUsuario);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	public long eliminarRolesDeUsuarioPorId (long idRolesDeUsuario) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlRolesDeUsuario.eliminarRolesDeUsuarioPorId (pm, idRolesDeUsuario);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+
+	
+
+	
+	public List<RolesDeUsuario> darRolesDeUsuarios ()
+	{
+		return sqlRolesDeUsuario.darRolesDeUsuarios (pmf.getPersistenceManager());
+	}
+
+	
+	public RolesDeUsuario darRolesDeUsuarioPorId (long idRolesDeUsuario)
+	{
+		return sqlRolesDeUsuario.darRolesDeUsuarioPorId (pmf.getPersistenceManager(), idRolesDeUsuario);
+	}
 
 	/**
 	 * Elimina todas las tuplas de todas las tablas de la base de datos de Parranderos

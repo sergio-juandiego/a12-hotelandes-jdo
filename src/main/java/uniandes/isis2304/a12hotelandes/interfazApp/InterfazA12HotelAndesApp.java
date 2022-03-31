@@ -53,6 +53,7 @@ import uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes;
 import uniandes.isis2304.a12hotelandes.negocio.VOCliente;
 import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOHotel;
+import uniandes.isis2304.a12hotelandes.negocio.VORolesDeUsuario;
 import uniandes.isis2304.a12hotelandes.negocio.VOTipoHabitacion;
 
 /**
@@ -754,6 +755,109 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 		}
     }
 
+    
+    /* ****************************************************************
+	 * 			CRUD de RolesDeUsuario
+	 *****************************************************************/
+    /**
+     * Adiciona un roles de usuario con la información dada por el usuario
+     * Se crea una nueva tupla de tipoBebida en la base de datos, si un roles de usuario con ese nombre no existía
+     */
+    public void adicionarRolesDeUsuario( )
+    {
+    	try 
+    	{
+    		String nombreRolesDeUsuario = JOptionPane.showInputDialog (this, "Nombre del roles de usuario?", "Adicionar roles de usuario", JOptionPane.QUESTION_MESSAGE);
+    		String descripcion= JOptionPane.showInputDialog (this, "Descripcion del roles de usuario?", "Adicionar roles de usuario", JOptionPane.QUESTION_MESSAGE);
+    		
+    		
+    		if (nombreRolesDeUsuario!= null && descripcion!= null)
+    		{
+        		VORolesDeUsuario tb = a12HotelAndes.adicionarRolesDeUsuario(nombreRolesDeUsuario);
+        		if (tb == null)
+        		{
+        			throw new Exception ("No se pudo crear un roles de usuario con nombre: " + nombreRolesDeUsuario);
+        		}
+        		String resultado = "En adicionarRolesDeUsuario\n\n";
+        		resultado += "Tipo de habitacion adicionado exitosamente: " + tb;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    } // TODO cambiar atributos
+
+
+    /**
+     * Borra de la base de datos el roles de usuario con el identificador dado po el usuario
+     * Cuando dicho roles de usuario no existe, se indica que se borraron 0 registros de la base de datos
+     */
+    public void eliminarRolesDeUsuarioPorId( )
+    {
+    	try 
+    	{
+    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del roles de usuario?", "Borrar roles de usuario por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idTipoStr != null)
+    		{
+    			long idTipo = Long.valueOf (idTipoStr);
+    			long tbEliminados = a12HotelAndes.eliminarRolesDeUsuarioPorId (idTipo);
+
+    			String resultado = "En eliminar RolesDeUsuario\n\n";
+    			resultado += tbEliminados + " RolesDeUsuario eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void eliminarRolesDeUsuarioPorNombre( )
+    {
+    	try 
+    	{
+    		String nombre = JOptionPane.showInputDialog (this, "Nombre del roles de usuario?", "Borrar roles de usuario por Nombre", JOptionPane.QUESTION_MESSAGE);
+    		if (nombre != null)
+    		{
+    			
+    			long tbEliminados = a12HotelAndes.eliminarRolesDeUsuarioPorNombre (nombre);
+
+    			String resultado = "En eliminar RolesDeUsuario\n\n";
+    			resultado += tbEliminados + " RolesDeUsuario eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
 
 	/* ****************************************************************
 	 * 			Métodos administrativos
@@ -839,53 +943,53 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 		}
 	}
 	
-	/**
-	 * Muestra la presentación general del proyecto
-	 */
-	public void mostrarPresentacionGeneral ()
-	{
-		mostrarArchivo ("data/00-ST-ParranderosJDO.pdf");
-	}
-	
-	/**
-	 * Muestra el modelo conceptual de Parranderos
-	 */
-	public void mostrarModeloConceptual ()
-	{
-		mostrarArchivo ("data/Modelo Conceptual Parranderos.pdf");
-	}
-	
-	/**
-	 * Muestra el esquema de la base de datos de Parranderos
-	 */
-	public void mostrarEsquemaBD ()
-	{
-		mostrarArchivo ("data/Esquema BD Parranderos.pdf");
-	}
-	
-	/**
-	 * Muestra el script de creación de la base de datos
-	 */
-	public void mostrarScriptBD ()
-	{
-		mostrarArchivo ("data/EsquemaParranderos.sql");
-	}
-	
-	/**
-	 * Muestra la arquitectura de referencia para Parranderos
-	 */
-	public void mostrarArqRef ()
-	{
-		mostrarArchivo ("data/ArquitecturaReferencia.pdf");
-	}
-	
-	/**
-	 * Muestra la documentación Javadoc del proyectp
-	 */
-	public void mostrarJavadoc ()
-	{
-		mostrarArchivo ("doc/index.html");
-	}
+//	/**
+//	 * Muestra la presentación general del proyecto
+//	 */
+//	public void mostrarPresentacionGeneral ()
+//	{
+//		mostrarArchivo ("data/00-ST-ParranderosJDO.pdf");
+//	}
+//	
+//	/**
+//	 * Muestra el modelo conceptual de Parranderos
+//	 */
+//	public void mostrarModeloConceptual ()
+//	{
+//		mostrarArchivo ("data/Modelo Conceptual Parranderos.pdf");
+//	}
+//	
+//	/**
+//	 * Muestra el esquema de la base de datos de Parranderos
+//	 */
+//	public void mostrarEsquemaBD ()
+//	{
+//		mostrarArchivo ("data/Esquema BD Parranderos.pdf");
+//	}
+//	
+//	/**
+//	 * Muestra el script de creación de la base de datos
+//	 */
+//	public void mostrarScriptBD ()
+//	{
+//		mostrarArchivo ("data/EsquemaParranderos.sql");
+//	}
+//	
+//	/**
+//	 * Muestra la arquitectura de referencia para Parranderos
+//	 */
+//	public void mostrarArqRef ()
+//	{
+//		mostrarArchivo ("data/ArquitecturaReferencia.pdf");
+//	}
+//	
+//	/**
+//	 * Muestra la documentación Javadoc del proyectp
+//	 */
+//	public void mostrarJavadoc ()
+//	{
+//		mostrarArchivo ("doc/index.html");
+//	}
 	
 	/**
      * Muestra la información acerca del desarrollo de esta aplicación
@@ -898,9 +1002,10 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 		resultado += " * Licenciado	bajo	el	esquema	Academic Free License versión 2.1\n";
 		resultado += " * \n";		
 		resultado += " * Curso: isis2304 - Sistemas Transaccionales\n";
-		resultado += " * Proyecto: Parranderos Uniandes\n";
+		resultado += " * Proyecto: HotelAndes\n";
 		resultado += " * @version 1.0\n";
-		resultado += " * @author Juan Yepes, Sergio Pardo\n";
+		resultado += " * @author Juan Yepes\n";
+		resultado += " * @author Sergio Pardo\n";
 
 		panelDatos.actualizarInterfaz(resultado);		
     }
