@@ -54,11 +54,13 @@ import uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes;
 import uniandes.isis2304.a12hotelandes.negocio.VOCliente;
 import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOHotel;
+import uniandes.isis2304.a12hotelandes.negocio.VOReservaHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VORolesDeUsuario;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioLavadoPlanchadoEmbolado;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioSpa;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioTienda;
 import uniandes.isis2304.a12hotelandes.negocio.VOTipoHabitacion;
+import uniandes.isis2304.a12hotelandes.negocio.VOUsuarioSistema;
 
 /**
  * Clase principal de la interfaz
@@ -861,8 +863,263 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 		}
     }
     
+    /* ****************************************************************
+	 * 			CRUD de UsuarioSistema
+	 *****************************************************************/
+    /**
+     * Adiciona un  usuario con la información dada por el usuario
+     * Se crea una nueva tupla de Bebida en la base de datos, si un  usuario con ese nombre no existía
+     */
+    public void adicionarUsuarioSistema( )
+    {
+    	try 
+    	{
+    		String nombre = JOptionPane.showInputDialog (this, "Nombre del  usuario?", "Adicionar  usuario", JOptionPane.QUESTION_MESSAGE);
+    		String idRol = JOptionPane.showInputDialog (this, "id del rol del  usuario?", "Adicionar  usuario", JOptionPane.QUESTION_MESSAGE);
+
+    		
+    		
+    		if (nombre!= null && idRol != null)
+    		{
+        		VOUsuarioSistema tb = a12HotelAndes.adicionarUsuarioSistema(nombre, Long.parseLong(idRol));
+        		if (tb == null)
+        		{
+        			throw new Exception ("No se pudo crear un  usuario: " );
+        		}
+        		String resultado = "En adicionarUsuarioSistema\n\n";
+        		resultado += "UsuarioSistema adicionado exitosamente: " + tb;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+
+
+    /**
+     * Borra de la base de datos el  usuario con el identificador dado po el usuario
+     * Cuando dicho  usuario no existe, se indica que se borraron 0 registros de la base de datos
+     */
+    public void eliminarUsuarioSistemaPorId( )
+    {
+    	try 
+    	{
+    		String idStr = JOptionPane.showInputDialog (this, "Id del  usuario?", "Borrar  usuario por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idStr != null)
+    		{
+    			long id = Long.valueOf (idStr);
+    			long tbEliminados = a12HotelAndes.eliminarUsuarioSistemaPorId (id);
+
+    			String resultado = "En eliminar UsuarioSistema\n\n";
+    			resultado += tbEliminados + " UsuarioSistema eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    /**
+     * Borra de la base de datos el  usuario con el identificador dado po el usuario
+     * Cuando dicho  usuario no existe, se indica que se borraron 0 registros de la base de datos
+     */
+    public void eliminarUsuarioSistemaPorNombre( )
+    {
+    	try 
+    	{
+    		String nombre = JOptionPane.showInputDialog (this, "nombre del  usuario?", "Borrar  usuario por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (nombre != null)
+    		{
+    			long tbEliminados = a12HotelAndes.eliminarUsuarioSistemaPorNombre (nombre);
+
+    			String resultado = "En eliminar UsuarioSistema\n\n";
+    			resultado += tbEliminados + " UsuarioSistema eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void cambiarNombreUsuarioSistema( )
+    {
+    	try 
+    	{
+    		String idUsuarioSistema = JOptionPane.showInputDialog (this, "id del  usuario?", "Actualizar ubicacion  usuario por Id", JOptionPane.QUESTION_MESSAGE);
+    		String nuevoNombre = JOptionPane.showInputDialog (this, "nuevo nombre del  usuario?", "Actualizar ubicacion  usuario por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idUsuarioSistema != null && nuevoNombre != null)
+    		{
+    			
+    			long tbCambiados = a12HotelAndes.cambiarNombreUsuarioSistema(Long.parseLong(idUsuarioSistema), nuevoNombre);
+
+    			String resultado = "En actualizar ubicacion UsuarioSistema\n\n";
+    			resultado += tbCambiados + " UsuarioSistema actualizados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
 
     
+    /* ****************************************************************
+   	 * 			CRUD de ReservaHabitacion
+   	 *****************************************************************/
+       /**
+        * Adiciona un tipo habitacion con la información dada por el usuario
+        * Se crea una nueva tupla de tipoBebida en la base de datos, si un tipo habitacion con ese nombre no existía
+        */
+       public void adicionarReservaHabitacion( )
+       {
+       	try 
+       	{
+       		String idHabitacion = JOptionPane.showInputDialog (this, "ID habitacion?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
+       		String numDocCliente = JOptionPane.showInputDialog (this, "Numero documento cliente?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
+       		String tipoDocCliente = JOptionPane.showInputDialog (this, "Tipo documento cliente? (CC,TI,CE)", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
+       		String periodo = JOptionPane.showInputDialog (this, "Periodo de la reserva?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
+       		
+       		
+       		
+       		if (idHabitacion!= null && numDocCliente!= null && tipoDocCliente!= null && periodo != null)
+       		{
+           		VOReservaHabitacion tb = a12HotelAndes.adicionarReservaHabitacion(Long.parseLong(idHabitacion), Integer.parseInt(numDocCliente), tipoDocCliente, Integer.parseInt(periodo),
+           				"N");
+           		if (tb == null)
+           		{
+           			throw new Exception ("No se pudo crear un reserva para la habitacion con id: " + idHabitacion);
+           		}
+           		String resultado = "En adicionarReservaHabitacion\n\n";
+           		resultado += "Tipo de habitacion adicionado exitosamente: " + tb;
+       			resultado += "\n Operación terminada";
+       			panelDatos.actualizarInterfaz(resultado);
+       		}
+       		else
+       		{
+       			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+       		}
+   		} 
+       	catch (Exception e) 
+       	{
+//   			e.printStackTrace();
+   			String resultado = generarMensajeError(e);
+   			panelDatos.actualizarInterfaz(resultado);
+   		}
+       }
+
+
+       /**
+        * Borra de la base de datos el tipo habitacion con el identificador dado po el usuario
+        * Cuando dicho tipo habitacion no existe, se indica que se borraron 0 registros de la base de datos
+        */
+       public void eliminarReservaHabitacionPorId( )
+       {
+       	try 
+       	{
+       		String idTipoStr = JOptionPane.showInputDialog (this, "Id del tipo habitacion?", "Borrar tipo habitacion por Id", JOptionPane.QUESTION_MESSAGE);
+       		if (idTipoStr != null)
+       		{
+       			long idTipo = Long.valueOf (idTipoStr);
+       			long tbEliminados = a12HotelAndes.eliminarReservaHabitacionPorId (idTipo);
+
+       			String resultado = "En eliminar ReservaHabitacion\n\n";
+       			resultado += tbEliminados + " ReservaHabitacion eliminados\n";
+       			resultado += "\n Operación terminada";
+       			panelDatos.actualizarInterfaz(resultado);
+       		}
+       		else
+       		{
+       			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+       		}
+   		} 
+       	catch (Exception e) 
+       	{
+//   			e.printStackTrace();
+   			String resultado = generarMensajeError(e);
+   			panelDatos.actualizarInterfaz(resultado);
+   		}
+       }
+       
+       
+       
+       public void cambiarCompletadaReservaHabitacion( )
+       {
+       	try 
+       	{
+       		String idReserva = JOptionPane.showInputDialog (this, "idReserva?", "Actualizar reserva por Id", JOptionPane.QUESTION_MESSAGE);
+       		String completada = JOptionPane.showInputDialog (this, "Reserva completada?", "Actualizar reserva (Y,N)", JOptionPane.QUESTION_MESSAGE);
+       		
+       		if (idReserva != null && completada != null)
+       		{
+       			
+       			long tbCambiados = a12HotelAndes.cambiarCompletadaReservaHabitacion(Long.parseLong(idReserva), completada);
+
+       			String resultado = "En actualizar ubicacion ReservaHabitacion\n\n";
+       			resultado += tbCambiados + " ReservaHabitacion actualizados\n";
+       			resultado += "\n Operación terminada";
+       			panelDatos.actualizarInterfaz(resultado);
+       		}
+       		else
+       		{
+       			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+       		}
+   		} 
+       	catch (Exception e) 
+       	{
+//   			e.printStackTrace();
+   			String resultado = generarMensajeError(e);
+   			panelDatos.actualizarInterfaz(resultado);
+   		}
+       }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    // LAS DE SERGIO
     
     /* ****************************************************************
 	 * 			CRUD de Servicio Tienda

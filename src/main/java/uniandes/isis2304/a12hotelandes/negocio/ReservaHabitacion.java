@@ -1,6 +1,6 @@
 package uniandes.isis2304.a12hotelandes.negocio;
 
-public class ReservaHabitacion implements VOReseervaHabitacion {
+public class ReservaHabitacion implements VOReservaHabitacion {
 	
 	public Long id;
 	public Long idHabitacion;

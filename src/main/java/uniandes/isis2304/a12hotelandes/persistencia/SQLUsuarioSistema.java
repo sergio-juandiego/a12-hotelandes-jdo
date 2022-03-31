@@ -53,14 +53,6 @@ public class SQLUsuarioSistema {
 	}
 
 	
-	public List<UsuarioSistema> darUsuariosSistemaPorNumDoc (PersistenceManager pm, Integer numDoc) 
-	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaUsuarioSistema () + " WHERE id = ?");
-		q.setResultClass(UsuarioSistema.class);
-		q.setParameters(numDoc);
-		return (List<UsuarioSistema>) q.executeUnique();
-	}
-	
 	public List<UsuarioSistema> darUsuariosSistemaPorNombre (PersistenceManager pm, String nombreUsuarioSistema) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaUsuarioSistema () + " WHERE nombre = ?");
@@ -70,17 +62,17 @@ public class SQLUsuarioSistema {
 	}
 
 	
-	public List<UsuarioSistema> darUsuarioSistemaes (PersistenceManager pm)
+	public List<UsuarioSistema> darUsuariosSistema (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaUsuarioSistema ());
 		q.setResultClass(UsuarioSistema.class);
 		return (List<UsuarioSistema>) q.executeList();
 	}
 	
-	public long cambiarDescripcionUsuarioSistema (PersistenceManager pm, Long idUsuarioSistema, String descripcion)
+	public long cambiarNombreUsuarioSistema (PersistenceManager pm, Long idUsuarioSistema, String nombre)
 	{
         Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaUsuarioSistema () + " SET nombre = ? WHERE id = ?");
-        q.setParameters(descripcion, idUsuarioSistema);
+        q.setParameters(nombre, idUsuarioSistema);
         return (long) q.executeUnique();
 	}
 

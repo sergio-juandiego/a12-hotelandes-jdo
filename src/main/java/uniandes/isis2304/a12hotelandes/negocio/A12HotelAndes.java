@@ -367,6 +367,123 @@ public class A12HotelAndes
 	}
 
 	/* ****************************************************************
+	 * 			Métodos para manejar USUARIO_SISTEMA
+	 *****************************************************************/
+	
+	public UsuarioSistema adicionarUsuarioSistema(String nombre, Long rol) {
+		log.info ("Adicionando usuarioSistema: " + nombre);
+        UsuarioSistema usuarioSistema = pp.adicionarUsuarioSistema ( nombre,  rol);
+        log.info ("Adicionando usuarioSistema: " + usuarioSistema);
+        return usuarioSistema;
+	}
+	
+	public long eliminarUsuarioSistemaPorNombre (String nombre)
+	{
+        log.info ("Eliminando usuarioSistema por nombre: " + nombre);
+        long resp = pp.eliminarUsuarioSistemaPorNombre (nombre);
+        log.info ("Eliminando usuarioSistema: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	
+	public long eliminarUsuarioSistemaPorId (long idUsuarioSistema)
+	{
+        log.info ("Eliminando usuarioSistema por id: " + idUsuarioSistema);
+        long resp = pp.eliminarUsuarioSistemaPorId (idUsuarioSistema);
+        log.info ("Eliminando usuarioSistema: " + resp);
+        return resp;
+	}
+	
+	
+	public long cambiarNombreUsuarioSistema(Long idUsuarioSistema, String nombre) {
+		log.info ("Actualizando usuarioSistema por id: " + idUsuarioSistema);
+        long resp = pp.cambiarNombreUsuarioSistema(idUsuarioSistema, nombre);
+        log.info ("Actualizado usuarioSistema: " + resp);
+        return resp;
+	}
+	
+	
+	public List<UsuarioSistema> darUsuariosSistema()
+	{
+        log.info ("Listando UsuarioSistemaes");
+        List<UsuarioSistema> usuarioSistemaes = pp.darUsuariosSistema ();	
+        log.info ("Listando UsuarioSistemaes: " + usuarioSistemaes.size() + " usuarioSistemaes existentes");
+        return usuarioSistemaes;
+	}
+
+	
+	public List<VOUsuarioSistema> darVOUsuarioSistemas ()
+	{
+		log.info ("Generando los VO de UsuarioSistemas");
+		List<VOUsuarioSistema> voUsuarioSistemaes = new LinkedList<VOUsuarioSistema> ();
+		for (UsuarioSistema usuarioSistema: pp.darUsuariosSistema ())
+		{
+			voUsuarioSistemaes.add (usuarioSistema);
+		}
+		log.info ("Generando los VO de UsuarioSistemaes: " + voUsuarioSistemaes.size () + " usuarioSistemaes existentes");
+		return voUsuarioSistemaes;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar RESERVA_HABITACION
+	 *****************************************************************/
+	
+	public ReservaHabitacion adicionarReservaHabitacion(Long idHabitacion, Integer numDocCliente, String tipoDocCliente, Integer periodo,
+			String completada) {
+		log.info ("Adicionando ReservaHabitacion: ");
+        ReservaHabitacion ReservaHabitacion = pp.adicionarReservaHabitacion ( idHabitacion,  numDocCliente,  tipoDocCliente,  periodo,
+    			completada);
+        log.info ("Adicionando ReservaHabitacion: " + ReservaHabitacion);
+        return ReservaHabitacion;
+	}
+	
+	
+	
+	public long eliminarReservaHabitacionPorId (long idReservaHabitacion)
+	{
+        log.info ("Eliminando ReservaHabitacion por id: " + idReservaHabitacion);
+        long resp = pp.eliminarReservaHabitacionPorId (idReservaHabitacion);
+        log.info ("Eliminando ReservaHabitacion: " + resp);
+        return resp;
+	}
+	
+	
+	public long cambiarCompletadaReservaHabitacion(Long idReservaHabitacion, String completada) {
+		log.info ("Actualizando ReservaHabitacion por id: " + idReservaHabitacion);
+        long resp = pp.cambiarCompletadaReservaHabitacion(idReservaHabitacion, completada);
+        log.info ("Actualizado ReservaHabitacion: " + resp);
+        return resp;
+	}
+	
+	
+	public List<ReservaHabitacion> darReservaHabitaciones ()
+	{
+        log.info ("Listando ReservaHabitaciones");
+        List<ReservaHabitacion> ReservaHabitaciones = pp.darReservaHabitaciones ();	
+        log.info ("Listando ReservaHabitaciones: " + ReservaHabitaciones.size() + " ReservaHabitaciones existentes");
+        return ReservaHabitaciones;
+	}
+
+	
+	public List<VOReservaHabitacion> darVOReservaHabitaciones ()
+	{
+		log.info ("Generando los VO de ReservaHabitacions");
+		List<VOReservaHabitacion> voReservaHabitaciones = new LinkedList<VOReservaHabitacion> ();
+		for (ReservaHabitacion ReservaHabitacion: pp.darReservaHabitaciones ())
+		{
+			voReservaHabitaciones.add (ReservaHabitacion);
+		}
+		log.info ("Generando los VO de ReservaHabitaciones: " + voReservaHabitaciones.size () + " ReservaHabitaciones existentes");
+		return voReservaHabitaciones;
+	}
+	
+	
+	
+	
+	
+	
+	
+	/* **************************************************************** SERGIO
 	 * 			Métodos para manejar Servicio Tienda
 	 *****************************************************************/
 	
