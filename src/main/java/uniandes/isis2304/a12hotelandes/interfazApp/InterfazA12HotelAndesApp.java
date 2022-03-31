@@ -51,6 +51,7 @@ import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes;
 import uniandes.isis2304.a12hotelandes.negocio.VOCliente;
+import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOHotel;
 import uniandes.isis2304.a12hotelandes.negocio.VOTipoHabitacion;
 
@@ -263,7 +264,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
         			throw new Exception ("No se pudo crear un hotel con nombre: " + nombreHotel);
         		}
         		String resultado = "En adicionarHotel\n\n";
-        		resultado += "Tipo de bebida adicionado exitosamente: " + tb;
+        		resultado += "Hotel adicionado exitosamente: " + tb;
     			resultado += "\n Operación terminada";
     			panelDatos.actualizarInterfaz(resultado);
     		}
@@ -411,7 +412,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
         			throw new Exception ("No se pudo crear un cliente con nombre: " + nombreCliente);
         		}
         		String resultado = "En adicionarCliente\n\n";
-        		resultado += "Tipo de bebida adicionado exitosamente: " + tb;
+        		resultado += "Cliente adicionado exitosamente: " + tb;
     			resultado += "\n Operación terminada";
     			panelDatos.actualizarInterfaz(resultado);
     		}
@@ -539,7 +540,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
         			throw new Exception ("No se pudo crear un tipo habitacion con nombre: " + nombreTipoHabitacion);
         		}
         		String resultado = "En adicionarTipoHabitacion\n\n";
-        		resultado += "Tipo de bebida adicionado exitosamente: " + tb;
+        		resultado += "Tipo de habitacion adicionado exitosamente: " + tb;
     			resultado += "\n Operación terminada";
     			panelDatos.actualizarInterfaz(resultado);
     		}
@@ -632,6 +633,111 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 
     			String resultado = "En actualizar ubicacion TipoHabitacion\n\n";
     			resultado += tbCambiados + " TipoHabitacion actualizados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    /* ****************************************************************
+	 * 			CRUD de Habitacion
+	 *****************************************************************/
+    /**
+     * Adiciona un  habitacion con la información dada por el usuario
+     * Se crea una nueva tupla de Bebida en la base de datos, si un  habitacion con ese nombre no existía
+     */
+    public void adicionarHabitacion( )
+    {
+    	try 
+    	{
+    		String costoPorNoche = JOptionPane.showInputDialog (this, "Costo por noche del  habitacion?", "Adicionar  habitacion", JOptionPane.QUESTION_MESSAGE);
+    		String cuenta = JOptionPane.showInputDialog (this, "Cuenta del  habitacion?", "Adicionar  habitacion", JOptionPane.QUESTION_MESSAGE);
+    		String tipoHabitacion = JOptionPane.showInputDialog (this, "Tipo del  habitacion? (Ingrese el id)", "Adicionar  habitacion", JOptionPane.QUESTION_MESSAGE);
+    		String aprovisionamiento = JOptionPane.showInputDialog (this, "Aprovisionamiento del  habitacion?", "Adicionar  habitacion", JOptionPane.QUESTION_MESSAGE);
+    		
+    		
+    		if (costoPorNoche!= null && cuenta!= null && tipoHabitacion != null && aprovisionamiento != null)
+    		{
+        		VOHabitacion tb = a12HotelAndes.adicionarHabitacion(Integer.parseInt(costoPorNoche),  Integer.parseInt(cuenta),  Long.parseLong(tipoHabitacion),  aprovisionamiento);
+        		if (tb == null)
+        		{
+        			throw new Exception ("No se pudo crear un  habitacion: " );
+        		}
+        		String resultado = "En adicionarHabitacion\n\n";
+        		resultado += " de habitacion adicionado exitosamente: " + tb;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+
+
+    /**
+     * Borra de la base de datos el  habitacion con el identificador dado po el usuario
+     * Cuando dicho  habitacion no existe, se indica que se borraron 0 registros de la base de datos
+     */
+    public void eliminarHabitacionPorId( )
+    {
+    	try 
+    	{
+    		String idStr = JOptionPane.showInputDialog (this, "Id del  habitacion?", "Borrar  habitacion por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idStr != null)
+    		{
+    			long id = Long.valueOf (idStr);
+    			long tbEliminados = a12HotelAndes.eliminarHabitacionPorId (id);
+
+    			String resultado = "En eliminar Habitacion\n\n";
+    			resultado += tbEliminados + " Habitacion eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void cambiarAprovisionamientoHabitacion( )
+    {
+    	try 
+    	{
+    		String idHabitacion = JOptionPane.showInputDialog (this, "id del  habitacion?", "Actualizar ubicacion  habitacion por Id", JOptionPane.QUESTION_MESSAGE);
+    		String nuevoNombre = JOptionPane.showInputDialog (this, "nueva aprovisionamiento del  habitacion?", "Actualizar ubicacion  habitacion por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idHabitacion != null && nuevoNombre != null)
+    		{
+    			
+    			long tbCambiados = a12HotelAndes.cambiarAprovisionamientoHabitacion(Long.parseLong(idHabitacion), nuevoNombre);
+
+    			String resultado = "En actualizar ubicacion Habitacion\n\n";
+    			resultado += tbCambiados + " Habitacion actualizados\n";
     			resultado += "\n Operación terminada";
     			panelDatos.actualizarInterfaz(resultado);
     		}

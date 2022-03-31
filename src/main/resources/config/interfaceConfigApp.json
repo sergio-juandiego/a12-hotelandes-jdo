@@ -72,6 +72,23 @@
 				}
 			]
 		},
+		{ "menuTitle": "Habitacion",
+			"options":
+				[
+					{
+						"label": "Adicionar",
+						"event": "adicionarHabitacion"
+					},
+					{
+						"label": "Borrar por ID",
+						"event": "eliminarHabitacionPorId"
+					},
+					{
+						"label": "Cambiar descripcion",
+						"event": "cambiarAprovisionamientoHabitacion"
+					}
+				]
+			},
 		{ "menuTitle": "Mantenimiento",
 		  "options":
 			[

@@ -263,6 +263,58 @@ public class A12HotelAndes
 		return voTipoHabitaciones;
 	}
 	
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar HABITACION
+	 *****************************************************************/
+	
+	public Habitacion adicionarHabitacion(Integer costoPorNoche, Integer cuenta, Long tipoHabitacion, String aprovisionamiento) {
+		log.info ("Adicionando Habitacion: ");
+        Habitacion Habitacion = pp.adicionarHabitacion ( costoPorNoche,  cuenta,  tipoHabitacion,  aprovisionamiento);
+        log.info ("Adicionando Habitacion: " + Habitacion);
+        return Habitacion;
+	}
+	
+	
+	
+	public long eliminarHabitacionPorId (long idHabitacion)
+	{
+        log.info ("Eliminando Habitacion por id: " + idHabitacion);
+        long resp = pp.eliminarHabitacionPorId (idHabitacion);
+        log.info ("Eliminando Habitacion: " + resp);
+        return resp;
+	}
+	
+	
+	public long cambiarAprovisionamientoHabitacion(Long idHabitacion, String nuevoAprov) {
+		log.info ("Actualizando Habitacion por id: " + idHabitacion);
+        long resp = pp.cambiarAprovisionamientoHabitacion(idHabitacion, nuevoAprov);
+        log.info ("Actualizado Habitacion: " + resp);
+        return resp;
+	}
+	
+	
+	public List<Habitacion> darHabitaciones ()
+	{
+        log.info ("Listando Habitaciones");
+        List<Habitacion> Habitaciones = pp.darHabitaciones ();	
+        log.info ("Listando Habitaciones: " + Habitaciones.size() + " Habitaciones existentes");
+        return Habitaciones;
+	}
+
+	
+	public List<VOHabitacion> darVOHabitacions ()
+	{
+		log.info ("Generando los VO de Habitacions");
+		List<VOHabitacion> voHabitaciones = new LinkedList<VOHabitacion> ();
+		for (Habitacion Habitacion: pp.darHabitaciones ())
+		{
+			voHabitaciones.add (Habitacion);
+		}
+		log.info ("Generando los VO de Habitaciones: " + voHabitaciones.size () + " Habitaciones existentes");
+		return voHabitaciones;
+	}
+	
 
 	/* ****************************************************************
 	 * 			Métodos para administración
@@ -276,12 +328,6 @@ public class A12HotelAndes
         log.info ("Limpiando la BD de A12HotelAndes: Listo!");
         return borrrados;
 	}
-
-
-
-	
-
-	
 
 	
 }
