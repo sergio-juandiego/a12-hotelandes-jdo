@@ -54,6 +54,8 @@ import uniandes.isis2304.a12hotelandes.negocio.VOCliente;
 import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOHotel;
 import uniandes.isis2304.a12hotelandes.negocio.VORolesDeUsuario;
+import uniandes.isis2304.a12hotelandes.negocio.VOServicioLavadoPlanchadoEmbolado;
+import uniandes.isis2304.a12hotelandes.negocio.VOServicioSpa;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioTienda;
 import uniandes.isis2304.a12hotelandes.negocio.VOTipoHabitacion;
 
@@ -865,10 +867,6 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 	 * 			CRUD de Servicio Tienda
 	 *****************************************************************/
     
-    /**
-     * Adiciona un cliente con la información dada por el usuario
-     * Se crea una nueva tupla de tipoBebida en la base de datos, si un cliente con ese nombre no existía
-     */
     public void agregarServicioTienda( )
     {
     	try 
@@ -961,7 +959,199 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 		}
     }
     
+    /* ****************************************************************
+	 * 			CRUD de Servicio Spa
+	 *****************************************************************/
+ 
+    public void agregarSpa( )
+    {
+    	try 
+    	{
+    		String nombreSpa = JOptionPane.showInputDialog (this, "Nombre de la Spa?", "Adicionar Servicio Spa", JOptionPane.QUESTION_MESSAGE);
+    		
+    		Boolean valoresNoNulos = nombreSpa != null;
+    		
+    		if (valoresNoNulos)
+    		{
+        		VOServicioSpa sT = a12HotelAndes.agregarServicioSpa(nombreSpa);
+        		if (sT == null)
+        		{
+        			throw new Exception ("No se pudo crear la Spa con nombre: " + nombreSpa);
+        		}
+        		String resultado = "En agregar Spa\n\n";
+        		resultado += "Spa agregado exitosamente: " + sT;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
     
+    
+    public void eliminarServicioSpaPorNombre( )
+    {
+    	try 
+    	{
+    		String nombre = JOptionPane.showInputDialog (this, "Nombre de la Spa?", "Borrar Spa por Nombre", JOptionPane.QUESTION_MESSAGE);
+    		if (nombre != null)
+    		{
+    			
+    			long tbEliminados = a12HotelAndes.eliminarServicioSpaPorNombre (nombre);
+
+    			String resultado = "En eliminar Servicio Spa\n\n";
+    			resultado += tbEliminados + " Spa eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void eliminarSpaPorId( )
+    {
+    	try 
+    	{
+    		String idServicioStr = JOptionPane.showInputDialog (this, "Id de la Spa?", "Borrar Spa por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idServicioStr != null)
+    		{
+    			long idServicio = Long.valueOf (idServicioStr);
+    			long stEliminado = a12HotelAndes.eliminarServicioSpaPorId (idServicio);
+
+    			String resultado = "En eliminar ServicioSpa\n\n";
+    			resultado += stEliminado + " ServicioSpa eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    /* ****************************************************************
+	 * 			CRUD de Servicio LPE
+	 *****************************************************************/
+    /*
+    public void agregarLPE( )
+    {
+    	try 
+    	{
+    		String idReservastr = JOptionPane.showInputDialog (this, "idReserva?", "Adicionar Servicio LPE", JOptionPane.QUESTION_MESSAGE);
+    		String tipoPrenda = JOptionPane.showInputDialog (this, "tipo prenda?", "Adicionar Servicio LPE", JOptionPane.QUESTION_MESSAGE);
+    		String numPrendasstr = JOptionPane.showInputDialog (this, "numero de prendas?", "Adicionar Servicio LPE", JOptionPane.QUESTION_MESSAGE);
+    		Boolean valoresNoNulos = idReservastr != null && tipoPrenda != null && numPrendasstr != null;
+    		
+    		if (valoresNoNulos)
+    		{
+    			long idReserva = Long.valueOf (idReservastr);
+    			int numPrendas = Integer.valueOf(numPrendasstr);
+        		VOServicioLavadoPlanchadoEmbolado sT = a12HotelAndes.agregarServicioLPE(idReserva,tipoPrenda,numPrendas);
+        		if (sT == null)
+        		{
+        			throw new Exception ("No se pudo crear la Spa con nombre: " + nombreSpa);
+        		}
+        		String resultado = "En agregar Spa\n\n";
+        		resultado += "Spa agregado exitosamente: " + sT;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void eliminarServicioSpaPorNombre( )
+    {
+    	try 
+    	{
+    		String nombre = JOptionPane.showInputDialog (this, "Nombre de la Spa?", "Borrar Spa por Nombre", JOptionPane.QUESTION_MESSAGE);
+    		if (nombre != null)
+    		{
+    			
+    			long tbEliminados = a12HotelAndes.eliminarServicioSpaPorNombre (nombre);
+
+    			String resultado = "En eliminar Servicio Spa\n\n";
+    			resultado += tbEliminados + " Spa eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void eliminarSpaPorId( )
+    {
+    	try 
+    	{
+    		String idServicioStr = JOptionPane.showInputDialog (this, "Id de la Spa?", "Borrar Spa por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idServicioStr != null)
+    		{
+    			long idServicio = Long.valueOf (idServicioStr);
+    			long stEliminado = a12HotelAndes.eliminarServicioSpaPorId (idServicio);
+
+    			String resultado = "En eliminar ServicioSpa\n\n";
+    			resultado += stEliminado + " ServicioSpa eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    */
     
 	/* ****************************************************************
 	 * 			Métodos administrativos

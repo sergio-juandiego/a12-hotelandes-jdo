@@ -16,10 +16,23 @@ public class ServicioTienda implements VOServicioTienda {
 		return nombre;
 	}
 	
+	@Override
 	public String getTipoDeTienda() {
 		return tipoDeTienda;
 	}
 	
+	public void setIdServicio(Long idServicio) {
+		this.idServicio = idServicio;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setTipoDeTienda(String tipoDeTienda) {
+		this.tipoDeTienda = tipoDeTienda;
+	}
+
 	public ServicioTienda() {
 		super();
 		this.idServicio = 0L;

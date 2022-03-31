@@ -36,7 +36,7 @@ private final static String SQL = PersistenciaA12HotelAndes.SQL;
 	
 	public long eliminarServicioTiendaPorId (PersistenceManager pm, long idServicio)
 	{
-        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicioTienda() + " WHERE id = ?");
+        Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicioTienda() + " WHERE idServicio = ?");
         q.setParameters(idServicio);
         return (long) q.executeUnique();
 	}
@@ -44,7 +44,7 @@ private final static String SQL = PersistenciaA12HotelAndes.SQL;
 	
 	public ServicioTienda darTiendaPorId (PersistenceManager pm, long idServicio) 
 	{
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicioTienda () + " WHERE id = ?");
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicioTienda () + " WHERE idServicio = ?");
 		q.setResultClass(ServicioTienda.class);
 		q.setParameters(idServicio);
 		return (ServicioTienda) q.executeUnique();

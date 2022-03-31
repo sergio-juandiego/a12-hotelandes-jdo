@@ -36,6 +36,8 @@ import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.Habitacion;
 import uniandes.isis2304.a12hotelandes.negocio.Hotel;
 import uniandes.isis2304.a12hotelandes.negocio.RolesDeUsuario;
+import uniandes.isis2304.a12hotelandes.negocio.ServicioLPE;
+import uniandes.isis2304.a12hotelandes.negocio.ServicioSpa;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioTienda;
 import uniandes.isis2304.a12hotelandes.negocio.TipoHabitacion;
 
@@ -97,7 +99,8 @@ public class PersistenciaA12HotelAndes
 	private SQLHabitacion sqlHabitacion;
 	private SQLRolesDeUsuario sqlRolesDeUsuario;
 	private SQLServicioTienda sqlServicioTienda;
-	
+	private SQLServicioSpa sqlServicioSpa;
+	private SQLServicioLPE sqlServicioLPE;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -224,7 +227,8 @@ public class PersistenciaA12HotelAndes
 		sqlHabitacion = new SQLHabitacion(this);
 		sqlRolesDeUsuario = new SQLRolesDeUsuario(this);
 		sqlServicioTienda = new SQLServicioTienda(this);
-		
+		sqlServicioSpa = new SQLServicioSpa(this);
+		sqlServicioLPE = new SQLServicioLPE(this);
 		// TODO Crear todas las clases
 		
 		sqlUtil = new SQLUtil(this);
@@ -266,6 +270,13 @@ public class PersistenciaA12HotelAndes
 		return tablas.get(15);
 	}
 	
+	public String darTablaServicioSpa() {
+		return tablas.get(16);
+	}
+	
+	public String darTablaServicioLPE() {
+		return tablas.get(17);
+	}
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
 	 * Adiciona entradas al log de la aplicación
@@ -922,9 +933,6 @@ public class PersistenciaA12HotelAndes
         }
 	}
 	
-
-	
-
 	
 	public List<RolesDeUsuario> darRolesDeUsuarios ()
 	{
@@ -1031,10 +1039,6 @@ public class PersistenciaA12HotelAndes
         }
 	}
 	
-
-	
-
-	
 	public List<ServicioTienda> darTiendas ()
 	{
 		return sqlServicioTienda.darTiendas (pmf.getPersistenceManager());
@@ -1046,6 +1050,159 @@ public class PersistenciaA12HotelAndes
 		return sqlServicioTienda.darTiendaPorId (pmf.getPersistenceManager(), idServicioTienda);
 	}
 
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar el Servicio Spa
+	 *****************************************************************/
+	
+
+	public ServicioSpa agregarSpa(String nombre) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long idServicio = nextval(); 
+            long tuplasInsertadas = sqlServicioSpa.agregarSpa(pm, idServicio, nombre);
+            tx.commit();
+
+            log.trace ("Inserción de spa: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ServicioSpa(idServicio, nombre);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public long eliminarSpaPorNombre (String nombreSpa) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlServicioSpa.eliminarSpaPorNombre(pm, nombreSpa);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	public long eliminarSpaPorId (long idServicio) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlServicioSpa.eliminarSpaPorId (pm, idServicio);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public List<ServicioSpa> darSpas ()
+	{
+		return sqlServicioSpa.darSpas (pmf.getPersistenceManager());
+	}
+
+	
+	public ServicioSpa darServicioSpaPorId (long idServicio)
+	{
+		return sqlServicioSpa.darSpaPorId (pmf.getPersistenceManager(), idServicio);
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar el Servicio LPE
+	 *****************************************************************/
+	
+
+	public ServicioLPE agregarLPE(Long idReserva, String tipoPrenda, Integer numPrendas) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long idServicio = nextval();
+            long tuplasInsertadas = sqlServicioLPE.agregarLPE(pm, idServicio, idReserva, tipoPrenda, numPrendas);
+            tx.commit();
+
+            log.trace ("Inserción de servicio LPE: " + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ServicioLPE(idServicio, idReserva, tipoPrenda, numPrendas);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public List<ServicioLPE> darLPEs ()
+	{
+		return sqlServicioLPE.darLPEs (pmf.getPersistenceManager());
+	}
+
+	
+	public ServicioLPE darServicioLPEPorId (long idServicio,long idReserva)
+	{
+		return sqlServicioLPE.darLPEPorId (pmf.getPersistenceManager(), idServicio,idReserva);
+	}
+	
+	public List<ServicioLPE> darLPEsPorTipoNumPrendas (String tipoPrenda, Integer numPrendas){
+		return sqlServicioLPE.darLPEsPorTipoNumPrendas(pmf.getPersistenceManager(), tipoPrenda, numPrendas);
+	}
 	
 	
 	/**

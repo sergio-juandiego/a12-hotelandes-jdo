@@ -364,8 +364,7 @@ public class A12HotelAndes
 		log.info ("Generando los VO de RolesDeUsuarioes: " + voRolesDeUsuarioes.size () + " tipoHabitaciones existentes");
 		return voRolesDeUsuarioes;
 	}
-	
-	
+
 	/* ****************************************************************
 	 * 			Métodos para manejar Servicio Tienda
 	 *****************************************************************/
@@ -379,9 +378,9 @@ public class A12HotelAndes
 	
 	public long eliminarServicioTiendaPorNombre (String nombre)
 	{
-        log.info ("Eliminando tipoHabitacion por nombre: " + nombre);
+        log.info ("Eliminando ServicioTienda por nombre: " + nombre);
         long resp = pp.eliminarRolesDeUsuarioPorNombre (nombre);
-        log.info ("Eliminando tipoHabitacion: " + resp + " tuplas eliminadas");
+        log.info ("Eliminando tienda: " + resp + " tuplas eliminadas");
         return resp;
 	}
 	
@@ -415,7 +414,88 @@ public class A12HotelAndes
 		log.info ("Generando los VO de RolesDeUsuarioes: " + voServiciosTienda.size () + " tipoHabitaciones existentes");
 		return voServiciosTienda;
 	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar Servicio Spa
+	 *****************************************************************/
+	
+	public ServicioSpa agregarServicioSpa(String nombre) {
+		log.info ("Agregando ServicioSpa: " + nombre);
+        ServicioSpa Spa = pp.agregarSpa (nombre);
+        log.info ("Agregando Spa: " + Spa);
+        return Spa;
+	} // TODO CAMBIAR atributos
+	
+	public long eliminarServicioSpaPorNombre (String nombre)
+	{
+        log.info ("Eliminando ServicioSpa por nombre: " + nombre);
+        long resp = pp.eliminarRolesDeUsuarioPorNombre (nombre);
+        log.info ("Eliminando Spa: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	
+	public long eliminarServicioSpaPorId (long idServicioSpa)
+	{
+        log.info ("Eliminando Servicio Spa por id: " + idServicioSpa);
+        long resp = pp.eliminarSpaPorId (idServicioSpa);
+        log.info ("Eliminando servicio Spa: " + resp);
+        return resp;
+	}
 
+	
+	public List<ServicioSpa> darSpas ()
+	{
+        log.info ("Listando Servicios Spa");
+        List<ServicioSpa> serviciosSpa = pp.darSpas ();	
+        log.info ("Listando RolesDeUsuarioes: " + serviciosSpa.size() + " tipoHabitaciones existentes");
+        return serviciosSpa;
+	}
+
+	
+	public List<VOServicioSpa> darVOServiciosSpa()
+	{
+		log.info ("Generando los VO de Servicios Spa");
+		List<VOServicioSpa> voServiciosSpa = new LinkedList<VOServicioSpa> ();
+		for (ServicioSpa servicioSpa: pp.darSpas ())
+		{
+			voServiciosSpa.add(servicioSpa);
+		}
+		log.info ("Generando los VO de RolesDeUsuarioes: " + voServiciosSpa.size () + " tipoHabitaciones existentes");
+		return voServiciosSpa;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar Servicio LPE
+	 *****************************************************************/
+	
+	public ServicioLPE agregarServicioLPE(Long idReserva, String tipoPrenda, Integer numPrendas) {
+		log.info ("Agregando ServicioLPE a la reserva: " + idReserva);
+        ServicioLPE LPE = pp.agregarLPE (idReserva, tipoPrenda, numPrendas);
+        log.info ("Agregando lavado planchado embolado: " + LPE);
+        return LPE;
+	} // TODO CAMBIAR atributos
+	
+	public List<ServicioLPE> darLPEs ()
+	{
+        log.info ("Listando Servicios Spa");
+        List<ServicioLPE> serviciosLPE = pp.darLPEs ();	
+        log.info ("Listando LPEs: " + serviciosLPE.size());
+        return serviciosLPE;
+	}
+
+	
+	public List<VOServicioLavadoPlanchadoEmbolado> darVOServiciosLPE()
+	{
+		log.info ("Generando los VO de Servicios Spa");
+		List<VOServicioLavadoPlanchadoEmbolado> voServiciosLPE = new LinkedList<VOServicioLavadoPlanchadoEmbolado> ();
+		for (ServicioLPE servicioLPE: pp.darLPEs ())
+		{
+			voServiciosLPE.add(servicioLPE);
+		}
+		log.info ("Generando los VO de LPEs: " + voServiciosLPE.size ());
+		return voServiciosLPE;
+	}
 	
 	/* ****************************************************************
 	 * 			Métodos para administración
