@@ -167,14 +167,6 @@ public class A12HotelAndes
 	}
 	
 	
-	public long eliminarClientePorId (long idCliente)
-	{
-        log.info ("Eliminando cliente por id: " + idCliente);
-        long resp = pp.eliminarClientePorId (idCliente);
-        log.info ("Eliminando cliente: " + resp);
-        return resp;
-	}
-	
 	public long eliminarClientePorNumDoc (Integer numDoc)
 	{
         log.info ("Eliminando cliente por nombre: " + numDoc);

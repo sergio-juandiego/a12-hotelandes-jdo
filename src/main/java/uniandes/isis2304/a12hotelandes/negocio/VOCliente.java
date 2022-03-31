@@ -4,8 +4,6 @@ import java.sql.Date;
 
 public interface VOCliente {
 
-	Long getId();
-
 	String getNombre();
 
 	Integer getNumDoc();

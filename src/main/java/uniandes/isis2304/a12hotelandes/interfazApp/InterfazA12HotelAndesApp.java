@@ -393,58 +393,25 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     		
     		String entradaConca = anioEntrada+ "-" + mesEntrada+"-"+diaEntrada;
     		Date diaEntradaDate = Date.valueOf(entradaConca);
-    		System.out.println(diaEntradaDate);
     		
-    		String diaSalida = JOptionPane.showInputDialog (this, "Día de entrada del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String diaSalida = JOptionPane.showInputDialog (this, "Día de salida del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
     		String mesSalida = JOptionPane.showInputDialog (this, "Mes de salida del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
     		String anioSalida = JOptionPane.showInputDialog (this, "Año de salida del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
     		
     		String salidaConca = anioSalida+ "-" + mesSalida+"-"+diaSalida;
     		Date diaSalidaDate = Date.valueOf(salidaConca);
     		
-    		if (nombreCliente != null && numDoc != null && diaEntrada != null && diaSalida != null)
+    		Boolean valoresNoNulos = nombreCliente != null && numDoc != null && diaEntrada != null && diaSalida != null && tipoDoc != null;
+    		
+    		if (valoresNoNulos)
     		{
         		VOCliente tb = a12HotelAndes.adicionarCliente(nombreCliente, tipoDoc, Integer.parseInt(numDoc), diaEntradaDate, diaSalidaDate);
-        		System.out.println(tb);
         		if (tb == null)
         		{
         			throw new Exception ("No se pudo crear un cliente con nombre: " + nombreCliente);
         		}
         		String resultado = "En adicionarCliente\n\n";
         		resultado += "Tipo de bebida adicionado exitosamente: " + tb;
-    			resultado += "\n Operación terminada";
-    			panelDatos.actualizarInterfaz(resultado);
-    		}
-    		else
-    		{
-    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-    		}
-		} 
-    	catch (Exception e) 
-    	{
-//			e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-    }
-
-
-    /**
-     * Borra de la base de datos el cliente con el identificador dado po el usuario
-     * Cuando dicho cliente no existe, se indica que se borraron 0 registros de la base de datos
-     */
-    public void eliminarClientePorId( )
-    {
-    	try 
-    	{
-    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del cliente?", "Borrar cliente por Id", JOptionPane.QUESTION_MESSAGE);
-    		if (idTipoStr != null)
-    		{
-    			long idTipo = Long.valueOf (idTipoStr);
-    			long tbEliminados = a12HotelAndes.eliminarClientePorId (idTipo);
-
-    			String resultado = "En eliminar Cliente\n\n";
-    			resultado += tbEliminados + " Cliente eliminados\n";
     			resultado += "\n Operación terminada";
     			panelDatos.actualizarInterfaz(resultado);
     		}

@@ -411,15 +411,13 @@ public class PersistenciaA12HotelAndes
         try
         {
         	tx.begin();
-            long idCliente = nextval(); 
-            System.out.println(idCliente);
-            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, idCliente, tipoDoc, nombreCliente, numDoc, diaEntrada, diaSalida);
+            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, tipoDoc, nombreCliente, numDoc, diaEntrada, diaSalida);
             System.out.println(tuplasInsertadas);
             tx.commit();
 
             log.trace ("Inserción de Cliente: " + nombreCliente + ": " + tuplasInsertadas + " tuplas insertadas");
 
-            return new Cliente (idCliente,  nombreCliente,  tipoDoc,  numDoc,  diaEntrada,  diaSalida);
+            return new Cliente (nombreCliente,  tipoDoc,  numDoc,  diaEntrada,  diaSalida);
         }
         catch (Exception e)
         {
@@ -465,35 +463,6 @@ public class PersistenciaA12HotelAndes
         }
 	}
 
-	
-	public long eliminarClientePorId (long idCliente) 
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long resp = sqlCliente.eliminarClientePorId (pm, idCliente);
-            tx.commit();
-
-            return resp;
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-            return -1;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
-	
 
 	public long eliminarClientePorNumDoc(Integer numDoc) {
 		PersistenceManager pm = pmf.getPersistenceManager();

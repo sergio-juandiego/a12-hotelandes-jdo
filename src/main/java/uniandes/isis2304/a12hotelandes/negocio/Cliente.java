@@ -3,21 +3,14 @@ package uniandes.isis2304.a12hotelandes.negocio;
 import java.sql.Date;
 
 public class Cliente implements VOCliente {
-	
-	public Long id;
+
 	public String nombre;
 	public String tipoDoc;
 	public Integer numDoc;
 	public Date diaEntrada;
 	public Date diaSalida;
 	
-	@Override
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 	@Override
 	public String getNombre() {
 		return nombre;
@@ -55,16 +48,14 @@ public class Cliente implements VOCliente {
 	}
 	public Cliente() {
 		super();
-		this.id = 0L;
 		this.nombre = "";
 		this.tipoDoc = "";
 		this.numDoc = 0;
 		this.diaEntrada = new Date (0);
 		this.diaSalida = new Date (0);
 	}
-	public Cliente(Long id, String nombre, String tipoDoc, Integer numDoc, Date diaEntrada, Date diaSalida) {
+	public Cliente(String nombre, String tipoDoc, Integer numDoc, Date diaEntrada, Date diaSalida) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.tipoDoc = tipoDoc;
 		this.numDoc = numDoc;
@@ -73,8 +64,8 @@ public class Cliente implements VOCliente {
 	}
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nombre=" + nombre + ", numDoc=" + numDoc + ", diaEntrada=" + diaEntrada
-				+ ", diaSalida=" + diaSalida + "]";
+		return "Cliente [nombre=" + nombre + ", tipoDoc=" + tipoDoc + ", numDoc=" + numDoc + ", diaEntrada="
+				+ diaEntrada + ", diaSalida=" + diaSalida + "]";
 	}
 	
 	
