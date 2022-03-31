@@ -1,0 +1,146 @@
+{
+	"title": "Aplicación transaccional de Parranderos Uniandes",
+	"frameH": 600,
+	"frameW": 800,
+	"bannerPath": "./src/main/resources/config/logo.png",
+	"menuBar":
+	[
+		{ "menuTitle": "Hotel",
+		  "options":
+			[
+				{
+					"label": "Adicionar",
+					"event": "adicionarHotel"
+				},
+				{
+					"label": "Borrar por nombre",
+					"event": "eliminarHotelPorNombre"
+				},
+				{
+					"label": "Borrar por Id",
+					"event": "eliminarHotelPorId"
+				},
+				{
+					"label": "Actualizar ubicacion",
+					"event": "cambiarUbicacionHotel"
+				}
+			]
+		},
+		{ "menuTitle": "Cliente",
+			"options":
+			  [
+				  {
+					  "label": "Adicionar",
+					  "event": "adicionarCliente"
+				  },
+				  {
+					  "label": "Borrar por ID",
+					  "event": "eliminarClientePorId"
+				  },
+				  {
+					  "label": "Borrar por nombre",
+					  "event": "eliminarClientePorNombre"
+				  },
+				  {
+					  "label": "Borrar por numero de documento",
+					  "event": "eliminarClientePorNumDoc"
+				  },
+				  {
+					  "label": "Cambiar nombre cliente",
+					  "event": "cambiarNombreCliente"
+				  }
+			  ]
+		  },
+		{ "menuTitle": "Tipo Habitacion",
+		"options":
+			[
+				{
+					"label": "Adicionar",
+					"event": "adicionarTipoHabitacion"
+				},
+				{
+					"label": "Borrar por ID",
+					"event": "eliminarTipoHabitacionPorId"
+				},
+				{
+					"label": "Borrar por nombre",
+					"event": "eliminarTipoHabitacionPorNombre"
+				},
+				{
+					"label": "Cambiar descripcion",
+					"event": "cambiarDescripcionTipoHabitacion"
+				}
+			]
+		},
+		{ "menuTitle": "Habitacion",
+			"options":
+				[
+					{
+						"label": "Adicionar",
+						"event": "adicionarHabitacion"
+					},
+					{
+						"label": "Borrar por ID",
+						"event": "eliminarHabitacionPorId"
+					},
+					{
+						"label": "Cambiar descripcion",
+						"event": "cambiarAprovisionamientoHabitacion"
+					}
+				]
+			},
+		{ "menuTitle": "RolesDeUsuario",
+			"options":
+				[
+					{
+						"label": "Adicionar",
+						"event": "adicionarRolesDeUsuario"
+					},
+					{
+						"label": "Borrar por ID",
+						"event": "eliminarRolesDeUsuarioPorId"
+					},
+					{
+						"label": "Borrar por Nombre",
+						"event": "eliminarRolesDeUsuarioPorNombre"
+					}
+				]
+			},
+		{ "menuTitle": "Mantenimiento",
+		  "options":
+			[
+				{
+					"label": "Mostrar log Parranderos",
+					"event": "mostrarLogParranderos"
+				},
+				{
+					"label": "Mostrar log datanucleus",
+					"event": "mostrarLogDatanuecleus"
+				},
+				{
+					"label": "Limpiar log de parranderos",
+					"event": "limpiarLogParranderos"
+				},
+				{
+					"label": "Limpiar log de datanucleus",
+					"event": "limpiarLogDatanucleus"
+				},
+				{
+					"label": "Limpiar Base de Datos",
+					"event": "limpiarBD"
+				}
+			]
+		},			
+		{ "menuTitle": "Acerca de ...",
+		  "options":
+			[
+				{
+					"label": "Acerca de ...",
+					"event": "acercaDe"
+				}
+			]
+		}		
+		
+	]
+}
+	

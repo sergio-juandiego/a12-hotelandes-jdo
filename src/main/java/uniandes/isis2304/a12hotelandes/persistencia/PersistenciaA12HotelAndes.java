@@ -36,6 +36,7 @@ import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.Habitacion;
 import uniandes.isis2304.a12hotelandes.negocio.Hotel;
 import uniandes.isis2304.a12hotelandes.negocio.RolesDeUsuario;
+import uniandes.isis2304.a12hotelandes.negocio.ServicioTienda;
 import uniandes.isis2304.a12hotelandes.negocio.TipoHabitacion;
 
 /**
@@ -95,6 +96,7 @@ public class PersistenciaA12HotelAndes
 	private SQLTipoHabitacion sqlTipoHabitacion;
 	private SQLHabitacion sqlHabitacion;
 	private SQLRolesDeUsuario sqlRolesDeUsuario;
+	private SQLServicioTienda sqlServicioTienda;
 	
 	
 	/* ****************************************************************
@@ -221,7 +223,7 @@ public class PersistenciaA12HotelAndes
 		sqlTipoHabitacion = new SQLTipoHabitacion(this);
 		sqlHabitacion = new SQLHabitacion(this);
 		sqlRolesDeUsuario = new SQLRolesDeUsuario(this);
-		
+		sqlServicioTienda = new SQLServicioTienda(this);
 		
 		// TODO Crear todas las clases
 		
@@ -259,7 +261,10 @@ public class PersistenciaA12HotelAndes
 		return tablas.get(5);
 	}
 
-
+	
+	public String darTablaServicioTienda() {
+		return tablas.get(15);
+	}
 	
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
@@ -932,6 +937,117 @@ public class PersistenciaA12HotelAndes
 		return sqlRolesDeUsuario.darRolesDeUsuarioPorId (pmf.getPersistenceManager(), idRolesDeUsuario);
 	}
 
+	
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar el Servicio Tienda
+	 *****************************************************************/
+	
+
+	public ServicioTienda agregarServicioTienda(String nombre, String tipoDeTienda) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long idServicio = nextval(); 
+            long tuplasInsertadas = sqlServicioTienda.agregarServicioTienda(pm, idServicio, nombre, tipoDeTienda);
+            tx.commit();
+
+            log.trace ("Inserción de tienda: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ServicioTienda(idServicio, nombre, tipoDeTienda);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public long eliminarServicioTiendaPorNombre (String nombreTienda) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlServicioTienda.eliminarServicioTiendaPorNombre(pm, nombreTienda);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	public long eliminarServicioTiendaPorId (long idServicioTienda) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp = sqlServicioTienda.eliminarServicioTiendaPorId (pm, idServicioTienda);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+
+	
+
+	
+	public List<ServicioTienda> darTiendas ()
+	{
+		return sqlServicioTienda.darTiendas (pmf.getPersistenceManager());
+	}
+
+	
+	public ServicioTienda darServicioTiendaPorId (long idServicioTienda)
+	{
+		return sqlServicioTienda.darTiendaPorId (pmf.getPersistenceManager(), idServicioTienda);
+	}
+
+	
+	
 	/**
 	 * Elimina todas las tuplas de todas las tablas de la base de datos de Parranderos
 	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 
@@ -966,8 +1082,5 @@ public class PersistenciaA12HotelAndes
         }
 		
 	}
-
-	
-	
 
  }

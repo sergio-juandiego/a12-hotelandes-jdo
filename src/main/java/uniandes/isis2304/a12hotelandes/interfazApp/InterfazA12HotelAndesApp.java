@@ -54,6 +54,7 @@ import uniandes.isis2304.a12hotelandes.negocio.VOCliente;
 import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOHotel;
 import uniandes.isis2304.a12hotelandes.negocio.VORolesDeUsuario;
+import uniandes.isis2304.a12hotelandes.negocio.VOServicioTienda;
 import uniandes.isis2304.a12hotelandes.negocio.VOTipoHabitacion;
 
 /**
@@ -767,7 +768,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     {
     	try 
     	{
-    		String nombreRolesDeUsuario = JOptionPane.showInputDialog (this, "Nombre del roles de usuario?", "Adicionar roles de usuario", JOptionPane.QUESTION_MESSAGE);
+    		String nombreRolesDeUsuario = JOptionPane.showInputDialog (this, "Nombre del rol de usuario?", "Adicionar roles de usuario", JOptionPane.QUESTION_MESSAGE);
     		
     		
     		if (nombreRolesDeUsuario!= null)
@@ -858,6 +859,110 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     }
     
 
+    
+    
+    /* ****************************************************************
+	 * 			CRUD de Servicio Tienda
+	 *****************************************************************/
+    
+    /**
+     * Adiciona un cliente con la información dada por el usuario
+     * Se crea una nueva tupla de tipoBebida en la base de datos, si un cliente con ese nombre no existía
+     */
+    public void agregarServicioTienda( )
+    {
+    	try 
+    	{
+    		String nombreTienda = JOptionPane.showInputDialog (this, "Nombre de la tienda?", "Adicionar Servicio Tienda", JOptionPane.QUESTION_MESSAGE);
+    		String tipoDeTienda = JOptionPane.showInputDialog (this, "Tipo de tienda?", "Adicionar Servicio Tienda", JOptionPane.QUESTION_MESSAGE);
+    		
+    		Boolean valoresNoNulos = nombreTienda != null && tipoDeTienda != null;
+    		
+    		if (valoresNoNulos)
+    		{
+        		VOServicioTienda sT = a12HotelAndes.agregarServicioTienda(nombreTienda, tipoDeTienda);
+        		if (sT == null)
+        		{
+        			throw new Exception ("No se pudo crear la tienda con nombre: " + nombreTienda);
+        		}
+        		String resultado = "En agregarTienda\n\n";
+        		resultado += "Tienda agregada exitosamente: " + sT;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void eliminarServicioTiendaPorNombre( )
+    {
+    	try 
+    	{
+    		String nombre = JOptionPane.showInputDialog (this, "Nombre de la tienda?", "Borrar tienda por Nombre", JOptionPane.QUESTION_MESSAGE);
+    		if (nombre != null)
+    		{
+    			
+    			long tbEliminados = a12HotelAndes.eliminarServicioTiendaPorNombre (nombre);
+
+    			String resultado = "En eliminar Servicio Tienda\n\n";
+    			resultado += tbEliminados + " Tienda eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    public void eliminarTiendaPorId( )
+    {
+    	try 
+    	{
+    		String idServicioStr = JOptionPane.showInputDialog (this, "Id de la Tienda?", "Borrar tienda por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idServicioStr != null)
+    		{
+    			long idServicio = Long.valueOf (idServicioStr);
+    			long stEliminado = a12HotelAndes.eliminarServicioTiendaPorId (idServicio);
+
+    			String resultado = "En eliminar ServicioTienda\n\n";
+    			resultado += stEliminado + " Serviciotienda eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
+    
+    
+    
 	/* ****************************************************************
 	 * 			Métodos administrativos
 	 *****************************************************************/

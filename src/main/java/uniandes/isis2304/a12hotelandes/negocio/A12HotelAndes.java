@@ -303,7 +303,7 @@ public class A12HotelAndes
 	}
 
 	
-	public List<VOHabitacion> darVOHabitacions ()
+	public List<VOHabitacion> darVOHabitaciones ()
 	{
 		log.info ("Generando los VO de Habitacions");
 		List<VOHabitacion> voHabitaciones = new LinkedList<VOHabitacion> ();
@@ -364,7 +364,59 @@ public class A12HotelAndes
 		log.info ("Generando los VO de RolesDeUsuarioes: " + voRolesDeUsuarioes.size () + " tipoHabitaciones existentes");
 		return voRolesDeUsuarioes;
 	}
+	
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar Servicio Tienda
+	 *****************************************************************/
+	
+	public ServicioTienda agregarServicioTienda(String nombre, String tipoDeTienda) {
+		log.info ("Agregando ServicioTienda: " + nombre);
+        ServicioTienda tienda = pp.agregarServicioTienda (nombre,tipoDeTienda);
+        log.info ("Agregando Tienda: " + tienda);
+        return tienda;
+	} // TODO CAMBIAR atributos
+	
+	public long eliminarServicioTiendaPorNombre (String nombre)
+	{
+        log.info ("Eliminando tipoHabitacion por nombre: " + nombre);
+        long resp = pp.eliminarRolesDeUsuarioPorNombre (nombre);
+        log.info ("Eliminando tipoHabitacion: " + resp + " tuplas eliminadas");
+        return resp;
+	}
+	
+	
+	public long eliminarServicioTiendaPorId (long idServicioTienda)
+	{
+        log.info ("Eliminando Servicio Tienda por id: " + idServicioTienda);
+        long resp = pp.eliminarServicioTiendaPorId (idServicioTienda);
+        log.info ("Eliminando servicio tienda: " + resp);
+        return resp;
+	}
 
+	
+	public List<ServicioTienda> darTiendas ()
+	{
+        log.info ("Listando Servicios Tienda");
+        List<ServicioTienda> serviciosTienda = pp.darTiendas ();	
+        log.info ("Listando RolesDeUsuarioes: " + serviciosTienda.size() + " tipoHabitaciones existentes");
+        return serviciosTienda;
+	}
+
+	
+	public List<VOServicioTienda> darVOServiciosTienda()
+	{
+		log.info ("Generando los VO de Servicios tienda");
+		List<VOServicioTienda> voServiciosTienda = new LinkedList<VOServicioTienda> ();
+		for (ServicioTienda servicioTienda: pp.darTiendas ())
+		{
+			voServiciosTienda.add(servicioTienda);
+		}
+		log.info ("Generando los VO de RolesDeUsuarioes: " + voServiciosTienda.size () + " tipoHabitaciones existentes");
+		return voServiciosTienda;
+	}
+
+	
 	/* ****************************************************************
 	 * 			Métodos para administración
 	 *****************************************************************/
