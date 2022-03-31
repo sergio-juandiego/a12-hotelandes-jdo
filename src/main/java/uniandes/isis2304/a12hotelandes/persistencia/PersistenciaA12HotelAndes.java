@@ -220,6 +220,9 @@ public class PersistenciaA12HotelAndes
 		sqlCliente = new SQLCliente(this);
 		sqlTipoHabitacion = new SQLTipoHabitacion(this);
 		sqlHabitacion = new SQLHabitacion(this);
+		sqlRolesDeUsuario = new SQLRolesDeUsuario(this);
+		
+		
 		// TODO Crear todas las clases
 		
 		sqlUtil = new SQLUtil(this);
@@ -448,7 +451,7 @@ public class PersistenciaA12HotelAndes
         try
         {
         	tx.begin();
-            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, tipoDoc, nombreCliente, numDoc, diaEntrada, diaSalida);
+            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, nombreCliente, tipoDoc, numDoc, diaEntrada, diaSalida);
             tx.commit();
 
             log.trace ("Inserción de Cliente: " + nombreCliente + ": " + tuplasInsertadas + " tuplas insertadas");
@@ -591,7 +594,7 @@ public class PersistenciaA12HotelAndes
 
             log.trace ("Inserción de TipoHabitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-            return new TipoHabitacion ();
+            return new TipoHabitacion (idTipoHabitacion, nombre, descripcion);
         }
         catch (Exception e)
         {
@@ -732,7 +735,7 @@ public class PersistenciaA12HotelAndes
 
             log.trace ("Inserción de Habitacion de tipo: " + tipoHabitacion + ": " + tuplasInsertadas + " tuplas insertadas");
 
-            return new Habitacion ();
+            return new Habitacion (idHabitacion,  costoPorNoche,  cuenta,  tipoHabitacion,  aprovisionamiento);
         }
         catch (Exception e)
         {
@@ -839,11 +842,11 @@ public class PersistenciaA12HotelAndes
 
             log.trace ("Inserción de RolesDeUsuario: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-            return new RolesDeUsuario ();
+            return new RolesDeUsuario(idRolesDeUsuario, nombre);
         }
         catch (Exception e)
         {
-//        	e.printStackTrace();
+        	e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
         	return null;
         }

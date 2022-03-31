@@ -89,6 +89,23 @@
 					}
 				]
 			},
+		{ "menuTitle": "RolesDeUsuario",
+			"options":
+				[
+					{
+						"label": "Adicionar",
+						"event": "adicionarRolesDeUsuario"
+					},
+					{
+						"label": "Borrar por ID",
+						"event": "eliminarRolesDeUsuarioPorId"
+					},
+					{
+						"label": "Borrar por Nombre",
+						"event": "eliminarRolesDeUsuarioPorNombre"
+					}
+				]
+			},
 		{ "menuTitle": "Mantenimiento",
 		  "options":
 			[

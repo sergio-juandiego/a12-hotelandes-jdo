@@ -675,7 +675,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
         			throw new Exception ("No se pudo crear un  habitacion: " );
         		}
         		String resultado = "En adicionarHabitacion\n\n";
-        		resultado += " de habitacion adicionado exitosamente: " + tb;
+        		resultado += "Habitacion adicionado exitosamente: " + tb;
     			resultado += "\n Operación terminada";
     			panelDatos.actualizarInterfaz(resultado);
     		}
@@ -768,10 +768,9 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     	try 
     	{
     		String nombreRolesDeUsuario = JOptionPane.showInputDialog (this, "Nombre del roles de usuario?", "Adicionar roles de usuario", JOptionPane.QUESTION_MESSAGE);
-    		String descripcion= JOptionPane.showInputDialog (this, "Descripcion del roles de usuario?", "Adicionar roles de usuario", JOptionPane.QUESTION_MESSAGE);
     		
     		
-    		if (nombreRolesDeUsuario!= null && descripcion!= null)
+    		if (nombreRolesDeUsuario!= null)
     		{
         		VORolesDeUsuario tb = a12HotelAndes.adicionarRolesDeUsuario(nombreRolesDeUsuario);
         		if (tb == null)
@@ -779,7 +778,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
         			throw new Exception ("No se pudo crear un roles de usuario con nombre: " + nombreRolesDeUsuario);
         		}
         		String resultado = "En adicionarRolesDeUsuario\n\n";
-        		resultado += "Tipo de habitacion adicionado exitosamente: " + tb;
+        		resultado += "Rol de usuario adicionado exitosamente: " + tb;
     			resultado += "\n Operación terminada";
     			panelDatos.actualizarInterfaz(resultado);
     		}
