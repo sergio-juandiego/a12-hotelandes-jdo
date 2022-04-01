@@ -3,6 +3,8 @@ package uniandes.isis2304.a12hotelandes.persistencia;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.isis2304.a12hotelandes.negocio.Servicio;
+
 public class SQLServicio {
 	private final static String SQL = PersistenciaA12HotelAndes.SQL;
 	
@@ -19,5 +21,13 @@ public class SQLServicio {
         q.setParameters(id, horarioServicio, capacidad, costo);
         return (long) q.executeUnique();
 		
+	}
+	
+	public Servicio darServicioPorId (PersistenceManager pm, long idServicio) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicio () + " WHERE id = ?");
+		q.setResultClass(Servicio.class);
+		q.setParameters(idServicio);
+		return (Servicio) q.executeUnique();
 	}
 }
