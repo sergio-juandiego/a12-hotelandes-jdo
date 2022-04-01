@@ -564,9 +564,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar Servicio Tienda
 	 *****************************************************************/
 	
-	public ServicioTienda agregarServicioTienda(String nombre, String tipoDeTienda) {
+	public ServicioTienda agregarServicioTienda(Long idServicio, String nombre, String tipoDeTienda) {
 		log.info ("Agregando ServicioTienda: " + nombre);
-        ServicioTienda tienda = pp.agregarServicioTienda (nombre,tipoDeTienda);
+        ServicioTienda tienda = pp.agregarServicioTienda (idServicio, nombre,tipoDeTienda);
         log.info ("Agregando Tienda: " + tienda);
         return tienda;
 	} // TODO CAMBIAR atributos
@@ -614,9 +614,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar Servicio Spa
 	 *****************************************************************/
 	
-	public ServicioSpa agregarServicioSpa(String nombre) {
+	public ServicioSpa agregarServicioSpa(Long idServicio, String nombre) {
 		log.info ("Agregando ServicioSpa: " + nombre);
-        ServicioSpa Spa = pp.agregarSpa (nombre);
+        ServicioSpa Spa = pp.agregarSpa (idServicio, nombre);
         log.info ("Agregando Spa: " + Spa);
         return Spa;
 	} // TODO CAMBIAR atributos

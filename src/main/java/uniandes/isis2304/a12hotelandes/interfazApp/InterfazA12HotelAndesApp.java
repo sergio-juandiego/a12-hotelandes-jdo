@@ -1422,14 +1422,16 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     {
     	try 
     	{
+    		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
     		String nombreTienda = JOptionPane.showInputDialog (this, "Nombre de la tienda?", "Adicionar Servicio Tienda", JOptionPane.QUESTION_MESSAGE);
     		String tipoDeTienda = JOptionPane.showInputDialog (this, "Tipo de tienda?", "Adicionar Servicio Tienda", JOptionPane.QUESTION_MESSAGE);
     		
-    		Boolean valoresNoNulos = nombreTienda != null && tipoDeTienda != null;
+    		Boolean valoresNoNulos = nombreTienda != null && tipoDeTienda != null && idServicioStr != null;
     		
     		if (valoresNoNulos)
     		{
-        		VOServicioTienda sT = a12HotelAndes.agregarServicioTienda(nombreTienda, tipoDeTienda);
+    			long idServicio = Long.valueOf(idServicioStr);
+        		VOServicioTienda sT = a12HotelAndes.agregarServicioTienda(idServicio,nombreTienda, tipoDeTienda);
         		if (sT == null)
         		{
         			throw new Exception ("No se pudo crear la tienda con nombre: " + nombreTienda);
@@ -1518,13 +1520,15 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     {
     	try 
     	{
+    		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
     		String nombreSpa = JOptionPane.showInputDialog (this, "Nombre de la Spa?", "Adicionar Servicio Spa", JOptionPane.QUESTION_MESSAGE);
     		
-    		Boolean valoresNoNulos = nombreSpa != null;
+    		Boolean valoresNoNulos = nombreSpa != null && idServicioStr!=null;
     		
     		if (valoresNoNulos)
     		{
-        		VOServicioSpa sT = a12HotelAndes.agregarServicioSpa(nombreSpa);
+    			long idServicio = Long.valueOf(idServicioStr);
+        		VOServicioSpa sT = a12HotelAndes.agregarServicioSpa(idServicio,nombreSpa);
         		if (sT == null)
         		{
         			throw new Exception ("No se pudo crear el Spa con nombre: " + nombreSpa);

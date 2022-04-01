@@ -119,11 +119,10 @@ public class PersistenciaA12HotelAndes
 	private SQLServicioBar sqlServicioBar;
 	private SQLServicioRestaurante sqlServicioRestaurante;
 	private SQLServicioSupermercado sqlServicioSupermercado;
-	
-	
 	private SQLServicioTienda sqlServicioTienda;
 	private SQLServicioSpa sqlServicioSpa;
 	private SQLServicioLPE sqlServicioLPE;
+	private SQLServicioPrestamoUtensilios sqlServicioPU;
 
 
 	
@@ -261,15 +260,11 @@ public class PersistenciaA12HotelAndes
 		sqlServicioInternet = new SQLServicioInternet(this);
 		sqlServicioBar = new SQLServicioBar(this);
 		sqlServicioRestaurante = new SQLServicioRestaurante(this);
-		sqlServicioSupermercado = new SQLServicioSupermercado(this);
-		
-		
-		
-		
-		
+		sqlServicioSupermercado = new SQLServicioSupermercado(this);	
 		sqlServicioTienda = new SQLServicioTienda(this);
 		sqlServicioSpa = new SQLServicioSpa(this);
 		sqlServicioLPE = new SQLServicioLPE(this);
+		sqlServicioPU = new SQLServicioPrestamoUtensilios(this);
 		// TODO Crear todas las clases
 		
 		sqlUtil = new SQLUtil(this);
@@ -343,9 +338,6 @@ public class PersistenciaA12HotelAndes
 	public String darTablaServicioSupermercado() {
 		return tablas.get(15);
 	}
-
-
-
 	public String darTablaServicioTienda() {
 		return tablas.get(16);
 	}
@@ -357,6 +349,38 @@ public class PersistenciaA12HotelAndes
 	public String darTablaServicioLPE() {
 		return tablas.get(18);
 	}
+	public String darTablaServicioPrestamoUtensilios() {
+		return tablas.get(19);
+	}
+	public String darTablaSalonReuniones() {
+		return tablas.get(20);
+	}
+	public String darTablaSalonConferencias() {
+		return tablas.get(21);
+	}
+	public String darTablaProducto() {
+		return tablas.get(22);
+	}
+	public String darTablaConsumoServicio() {
+		return tablas.get(23);
+	}
+	public String darTablaPlanDeConsumo() {
+		return tablas.get(24);
+	}
+	public String darTablaTiempoCompartido() {
+		return tablas.get(25);
+	}
+	public String darTablaTodoIncluido() {
+		return tablas.get(26);
+	}
+	public String darTablaProductosTodoIncluido() {
+		return tablas.get(27);
+	}
+	public String darTablaPromocionParticular() {
+		return tablas.get(28);
+	}
+	
+	
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
 	 * Adiciona entradas al log de la aplicación
@@ -1540,13 +1564,12 @@ public class PersistenciaA12HotelAndes
 	 *****************************************************************/
 	
 
-	public ServicioTienda agregarServicioTienda(String nombre, String tipoDeTienda) {
+	public ServicioTienda agregarServicioTienda(Long idServicio, String nombre, String tipoDeTienda) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
         	tx.begin();
-            long idServicio = nextval(); 
             long tuplasInsertadas = sqlServicioTienda.agregarServicioTienda(pm, idServicio, nombre, tipoDeTienda);
             tx.commit();
 
@@ -1644,13 +1667,12 @@ public class PersistenciaA12HotelAndes
 	 *****************************************************************/
 	
 
-	public ServicioSpa agregarSpa(String nombre) {
+	public ServicioSpa agregarSpa(Long idServicio, String nombre) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
         	tx.begin();
-            long idServicio = nextval(); 
             long tuplasInsertadas = sqlServicioSpa.agregarSpa(pm, idServicio, nombre);
             tx.commit();
 
