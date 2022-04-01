@@ -133,8 +133,24 @@
 			"options":
 			[
 				{
-					"label":"Agregar Serv1",
-					"event":"a"
+					"label":"Agregar Servicio Padre",
+					"event":"adicionarServicio"
+				},
+				{
+					"label":"Agregar Piscina",
+					"event":"adicionarServicioPiscina"
+				},
+				{
+					"label":"Agregar Gimnasio",
+					"event":"adicionarServicioGimnasio"
+				},
+				{
+					"label":"Agregar Internet",
+					"event":"adicionarServicioInternet"
+				},
+				{
+					"label":"Agregar Bar",
+					"event":"adicionarServicioBar"
 				}
 			]
 		},

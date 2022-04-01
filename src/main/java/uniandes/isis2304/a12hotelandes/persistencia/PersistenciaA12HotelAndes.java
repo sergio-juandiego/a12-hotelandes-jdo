@@ -40,7 +40,11 @@ import uniandes.isis2304.a12hotelandes.negocio.ReservaHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.ReservaServicio;
 import uniandes.isis2304.a12hotelandes.negocio.RolesDeUsuario;
 import uniandes.isis2304.a12hotelandes.negocio.Servicio;
+import uniandes.isis2304.a12hotelandes.negocio.ServicioBar;
+import uniandes.isis2304.a12hotelandes.negocio.ServicioGimnasio;
+import uniandes.isis2304.a12hotelandes.negocio.ServicioInternet;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioLPE;
+import uniandes.isis2304.a12hotelandes.negocio.ServicioPiscina;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioSpa;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioTienda;
 import uniandes.isis2304.a12hotelandes.negocio.TipoHabitacion;
@@ -107,6 +111,10 @@ public class PersistenciaA12HotelAndes
 	private SQLReservaHabitacion sqlReservaHabitacion;
 	private SQLServicio sqlServicio;
 	private SQLReservaServicio sqlReservaServicio;
+	private SQLServicioPiscina sqlServicioPiscina;
+	private SQLServicioGimnasio sqlServicioGimnasio;
+	private SQLServicioInternet sqlServicioInternet;
+	private SQLServicioBar sqlServicioBar;
 	
 	
 	private SQLServicioTienda sqlServicioTienda;
@@ -244,6 +252,10 @@ public class PersistenciaA12HotelAndes
 		sqlReservaHabitacion = new SQLReservaHabitacion(this);
 		sqlServicio = new SQLServicio(this);
 		sqlReservaServicio = new SQLReservaServicio(this);
+		sqlServicioPiscina = new SQLServicioPiscina(this);
+		sqlServicioGimnasio = new SQLServicioGimnasio(this);
+		sqlServicioInternet = new SQLServicioInternet(this);
+		sqlServicioBar = new SQLServicioBar(this);
 		
 		
 		
@@ -303,18 +315,41 @@ public class PersistenciaA12HotelAndes
 	public String darTablaReservaServicio() {
 		return tablas.get(9);
 	}
+	
+	public String darTablaServicioPiscina() {
+		return tablas.get(10);
+	}
+	
+	public String darTablaServicioGimnasio() {
+		return tablas.get(11);
+	}
+	
+	public String darTablaServicioInternet() {
+		return tablas.get(12);
+	}
+	public String darTablaServicioBar() {
+		// TODO Auto-generated method stub
+		return tablas.get(13);
+	}
+	public String darTablaServicioRestaurante() {
+		return tablas.get(14);
+	}
+	public String darTablaServicioSupermercado() {
+		return tablas.get(15);
+	}
+
 
 
 	public String darTablaServicioTienda() {
-		return tablas.get(15);
-	}
-	
-	public String darTablaServicioSpa() {
 		return tablas.get(16);
 	}
 	
-	public String darTablaServicioLPE() {
+	public String darTablaServicioSpa() {
 		return tablas.get(17);
+	}
+	
+	public String darTablaServicioLPE() {
+		return tablas.get(18);
 	}
 	/**
 	 * Transacción para el generador de secuencia de Parranderos
@@ -1243,7 +1278,7 @@ public class PersistenciaA12HotelAndes
         try
         {
         	tx.begin();
-            long idServicio = nextval(); 
+        	long idServicio = nextval();
             long tuplasInsertadas = sqlServicio.adicionarServicio(pm,  idServicio,  horarioServicio,  capacidad,  costo);
             tx.commit();
 
@@ -1266,6 +1301,129 @@ public class PersistenciaA12HotelAndes
             pm.close();
         }
 	}
+	
+	public Servicio darServicioPorId (long idServicio)
+	{
+		return sqlServicio.darServicioPorId (pmf.getPersistenceManager(), idServicio);
+	}
+	
+	public ServicioPiscina adicionarServicioPiscina(Long idServicio, String nombre) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlServicioPiscina.adicionarServicioPiscina(pm,  idServicio, nombre);
+            tx.commit();
+
+            log.trace ("Inserción de ServicioPiscina: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ServicioPiscina (idServicio, nombre);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public ServicioGimnasio adicionarServicioGimnasio(Long idServicio, String nombre) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlServicioGimnasio.adicionarServicioGimnasio(pm,  idServicio, nombre);
+            tx.commit();
+
+            log.trace ("Inserción de ServicioGimnasio: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ServicioGimnasio (idServicio, nombre);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public ServicioInternet adicionarServicioInternet(Long idServicio, Long idReserva, Integer numeroDiasUso) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlServicioInternet.adicionarServicioInternet(pm, idServicio, idReserva, numeroDiasUso);
+            tx.commit();
+
+            log.trace ("Inserción de ServicioInternet: " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ServicioInternet ( idServicio,  idReserva,  numeroDiasUso);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public ServicioBar adicionarServicioBar(Long idServicio, String nombre) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlServicioBar.adicionarServicioBar(pm,  idServicio, nombre);
+            tx.commit();
+
+            log.trace ("Inserción de ServicioBar: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ServicioBar (idServicio, nombre);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	
 
 	
 	
@@ -1607,6 +1765,15 @@ public class PersistenciaA12HotelAndes
         }
 		
 	}
+
+	
+
+	
+
+	
+	
+
+	
 	
 
  }

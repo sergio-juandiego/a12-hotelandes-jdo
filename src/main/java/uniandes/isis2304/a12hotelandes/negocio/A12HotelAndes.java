@@ -500,6 +500,45 @@ public class A12HotelAndes
 	}
 	
 	
+	/* ****************************************************************
+	 * 			Métodos para manejar SERVICIO_PISCINA
+	 *****************************************************************/
+	public ServicioPiscina adicionarServicioPiscina(Long idServicio, String nombre) {
+		log.info ("Adicionando Servicio: ");
+		ServicioPiscina ServicioPiscina = pp.adicionarServicioPiscina (idServicio, nombre);
+        log.info ("Adicionando Servicio: " + ServicioPiscina);
+        return ServicioPiscina;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar SERVICIO_GIMNASIO
+	 *****************************************************************/
+	public ServicioGimnasio adicionarServicioGimnasio(Long idServicio, String nombre) {
+		log.info ("Adicionando Servicio: ");
+		ServicioGimnasio ServicioGimnasio = pp.adicionarServicioGimnasio (idServicio, nombre);
+        log.info ("Adicionando Servicio: " + ServicioGimnasio);
+        return ServicioGimnasio;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar SERVICIO_INTERNET
+	 *****************************************************************/
+	public ServicioInternet adicionarServicioInternet(Long idServicio, Long idReserva, Integer numeroDiasUso) {
+		log.info ("Adicionando Servicio: ");
+		ServicioInternet ServicioInternet = pp.adicionarServicioInternet(idServicio, idReserva, numeroDiasUso);
+        log.info ("Adicionando Servicio: " + ServicioInternet);
+        return ServicioInternet;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar SERVICIO_BAR
+	 *****************************************************************/
+	public ServicioBar adicionarServicioBar(Long idServicio, String nombre) {
+		log.info ("Adicionando Servicio: ");
+		ServicioBar ServicioBar = pp.adicionarServicioBar (idServicio, nombre);
+        log.info ("Adicionando Servicio: " + ServicioBar);
+        return ServicioBar;
+	}
 	
 	
 	/* **************************************************************** SERGIO
@@ -646,6 +685,10 @@ public class A12HotelAndes
         log.info ("Limpiando la BD de A12HotelAndes: Listo!");
         return borrrados;
 	}
+
+
+
+	
 
 	
 }
