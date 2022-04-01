@@ -664,9 +664,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar Servicio LPE
 	 *****************************************************************/
 	
-	public ServicioLPE agregarServicioLPE(Long idReserva, String tipoPrenda, Integer numPrendas) {
-		log.info ("Agregando ServicioLPE a la reserva: " + idReserva);
-        ServicioLPE LPE = pp.agregarLPE (idReserva, tipoPrenda, numPrendas);
+	public ServicioLPE agregarServicioLPE(Long idServicio, Long idReserva, String tipoPrenda, Integer numPrendas) {
+		log.info ("Agregando ServicioLPE "+idServicio+" a la reserva: " + idReserva);
+        ServicioLPE LPE = pp.agregarLPE (idServicio,idReserva, tipoPrenda, numPrendas);
         log.info ("Agregando lavado planchado embolado: " + LPE);
         return LPE;
 	} // TODO CAMBIAR atributos

@@ -140,3 +140,6 @@ ORA-00001: unique constraint (ISIS2304A27202210.HTA_SERVICIO_PK) violated
 09:35:20,937 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
 09:35:20,937 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
 09:35:20,954 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+10:11:47,976 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+10:11:47,977 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+10:11:47,992 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD

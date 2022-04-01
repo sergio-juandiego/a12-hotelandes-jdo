@@ -1747,13 +1747,12 @@ public class PersistenciaA12HotelAndes
 	 *****************************************************************/
 	
 
-	public ServicioLPE agregarLPE(Long idReserva, String tipoPrenda, Integer numPrendas) {
+	public ServicioLPE agregarLPE(Long idServicio, Long idReserva, String tipoPrenda, Integer numPrendas) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
         	tx.begin();
-            long idServicio = nextval();
             long tuplasInsertadas = sqlServicioLPE.agregarLPE(pm, idServicio, idReserva, tipoPrenda, numPrendas);
             tx.commit();
 

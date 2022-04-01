@@ -159,6 +159,18 @@
 				{
 					"label":"Agregar Supermercado",
 					"event":"adicionarServicioSupermercado"
+				},
+				{
+					"label":"Agregar Tienda",
+					"event":"agregarServicioTienda"
+				},
+				{
+					"label":"Agregar Spa",
+					"event":"agregarSpa"
+				},
+				{
+					"label":"Servicio Lavado Planchado Embolado",
+					"event":"agregarLPE"
 				}
 			]
 		},
