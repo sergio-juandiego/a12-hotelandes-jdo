@@ -56,6 +56,7 @@ import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOHotel;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VORolesDeUsuario;
+import uniandes.isis2304.a12hotelandes.negocio.VOServicio;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioLavadoPlanchadoEmbolado;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioSpa;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioTienda;
@@ -191,7 +192,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     	if ( guiConfig == null )
     	{
     		log.info ( "Se aplica configuración por defecto" );			
-			titulo = "Parranderos APP Default";
+			titulo = "HotelAndes APP Default";
 			alto = 300;
 			ancho = 500;
     	}
@@ -1109,7 +1110,51 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
        }
     
     
-    
+       /* ****************************************************************
+      	 * 			Adicion de servicios
+      	 *****************************************************************/
+          /**
+           * Adiciona un tipo habitacion con la información dada por el usuario
+           * Se crea una nueva tupla de tipoBebida en la base de datos, si un tipo habitacion con ese nombre no existía
+           */
+          public void adicionarServicio( )
+          {
+          	try 
+          	{
+          		String horarioServicio = JOptionPane.showInputDialog (this, "Horario de servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+          		String capacidadStr = JOptionPane.showInputDialog (this, "Capacidad de servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+          		String costoStr = JOptionPane.showInputDialog (this, "Costo de servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+          		Integer capacidad = Integer.parseInt(capacidadStr);
+          		Integer costo = Integer.parseInt(costoStr);
+          		
+          		
+          		if (horarioServicio != null && capacidad!= null && costo != null)
+          		{
+              		VOServicio tb = a12HotelAndes.adicionarServicio(horarioServicio, capacidad, costo);
+              		if (tb == null)
+              		{
+              			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
+              		}
+              		String resultado = "En adicionarServicio\n\n";
+              		resultado += "Tipo de habitacion adicionado exitosamente: " + tb;
+          			resultado += "\n Operación terminada";
+          			panelDatos.actualizarInterfaz(resultado);
+          		}
+          		else
+          		{
+          			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+          		}
+      		} 
+          	catch (Exception e) 
+          	{
+//      			e.printStackTrace();
+      			String resultado = generarMensajeError(e);
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+          }
+
+
+       
     
     
     

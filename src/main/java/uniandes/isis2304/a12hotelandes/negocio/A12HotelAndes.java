@@ -478,7 +478,26 @@ public class A12HotelAndes
 	}
 	
 	
+	/* ****************************************************************
+	 * 			Métodos para manejar SERVICIO
+	 *****************************************************************/
+	public Servicio adicionarServicio(String horarioServicio, Integer capacidad, Integer costo) {
+		log.info ("Adicionando Servicio: ");
+        Servicio Servicio = pp.adicionarServicio (horarioServicio, capacidad, costo);
+        log.info ("Adicionando Servicio: " + Servicio);
+        return Servicio;
+	}
 	
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar RESERVA SERVICIO
+	 *****************************************************************/
+	public ReservaServicio adicionarReservaServicio(Long idServicio, Integer periodo) {
+		log.info ("Adicionando Servicio: ");
+        ReservaServicio ReservaServicio = pp.adicionarReservaServicio (idServicio, periodo);
+        log.info ("Adicionando Servicio: " + ReservaServicio);
+        return ReservaServicio;
+	}
 	
 	
 	

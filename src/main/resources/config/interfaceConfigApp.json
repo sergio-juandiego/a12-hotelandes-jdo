@@ -1,7 +1,7 @@
 {
 	"title": "Aplicación transaccional de HotelAndes",
 	"frameH": 400,
-	"frameW": 1400,
+	"frameW": 700,
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
@@ -26,7 +26,7 @@
 				}
 			]
 		},
-		{ "menuTitle": "Cliente",
+		{ "menuTitle": "Clientes",
 			"options":
 			  [
 				  {
@@ -51,91 +51,43 @@
 				  }
 			  ]
 		  },
-		{ "menuTitle": "Tipo Habitacion",
-		"options":
-			[
-				{
-					"label": "Adicionar",
-					"event": "adicionarTipoHabitacion"
-				},
-				{
-					"label": "Borrar por ID",
-					"event": "eliminarTipoHabitacionPorId"
-				},
-				{
-					"label": "Borrar por nombre",
-					"event": "eliminarTipoHabitacionPorNombre"
-				},
-				{
-					"label": "Cambiar descripcion",
-					"event": "cambiarDescripcionTipoHabitacion"
-				}
-			]
-		},
 		{ "menuTitle": "Habitacion",
 			"options":
 				[
 					{
-						"label": "Adicionar",
+						"label": "Adicionar tipo de habitacion",
+						"event": "adicionarTipoHabitacion"
+					},
+					{
+						"label": "Borrar tipo de habitacion por ID",
+						"event": "eliminarTipoHabitacionPorId"
+					},
+					{
+						"label": "Borrar tipo de habitacion por nombre",
+						"event": "eliminarTipoHabitacionPorNombre"
+					},
+					{
+						"label": "Cambiar tipo de habitacion descripcion",
+						"event": "cambiarDescripcionTipoHabitacion"
+					},
+					{
+						"label": "Adicionar habitacion",
 						"event": "adicionarHabitacion"
 					},
 					{
-						"label": "Borrar por ID",
+						"label": "Borrar habitacion por ID",
 						"event": "eliminarHabitacionPorId"
 					},
 					{
-						"label": "Cambiar descripcion",
+						"label": "Cambiar descripcion habitacion",
 						"event": "cambiarAprovisionamientoHabitacion"
-					}
-				]
-			},
-		{ "menuTitle": "Roles De Usuario",
-			"options":
-				[
-					{
-						"label": "Adicionar",
-						"event": "adicionarRolesDeUsuario"
 					},
 					{
-						"label": "Borrar por ID",
-						"event": "eliminarRolesDeUsuarioPorId"
+						"label": "Hacer una reserva",
+						"event":"adicionarReservaHabitacion"
 					},
 					{
-						"label": "Borrar por Nombre",
-						"event": "eliminarRolesDeUsuarioPorNombre"
-					}
-				]
-			},
-		{ "menuTitle": "Usuario Sistema",
-			"options":
-				[
-					{
-						"label": "Adicionar",
-						"event": "adicionarUsuarioSistema"
-					},
-					{
-						"label": "Borrar por ID",
-						"event": "eliminarUsuarioSistemaPorId"
-					},
-					{
-						"label": "Borrar por Nombre",
-						"event": "eliminarUsuarioSistemaPorNombre"
-					},
-					{
-						"label": "Cambiar nombre por ID",
-						"event": "cambiarNombreUsuarioSistema"
-					}
-				]
-			},
-		{ "menuTitle": "Reserva Habitacion",
-			"options":
-				[
-					{
-						"label": "Adicionar",
-						"event": "adicionarReservaHabitacion"
-					},
-					{
-						"label": "Borrar por ID",
+						"label": "Borrar reserva por ID",
 						"event": "eliminarReservaHabitacionPorId"
 					},
 					{
@@ -144,6 +96,48 @@
 					}
 				]
 			},
+		{ "menuTitle": "Usuario Sistema",
+			"options":
+				[
+					{
+						"label": "Adicionar usuario",
+						"event": "adicionarUsuarioSistema"
+					},
+					{
+						"label": "Borrar usuario por ID",
+						"event": "eliminarUsuarioSistemaPorId"
+					},
+					{
+						"label": "Borrar usuario por Nombre",
+						"event": "eliminarUsuarioSistemaPorNombre"
+					},
+					{
+						"label": "Cambiar nombre usuario por ID",
+						"event": "cambiarNombreUsuarioSistema"
+					},
+					{
+						"label": "Adicionar roles",
+						"event": "adicionarRolesDeUsuario"
+					},
+					{
+						"label": "Borrar roles por ID",
+						"event": "eliminarRolesDeUsuarioPorId"
+					},
+					{
+						"label": "Borrar roles por Nombre",
+						"event": "eliminarRolesDeUsuarioPorNombre"
+					}
+				]
+			},
+		{ "menuTitle": "Servicios",
+			"options":
+			[
+				{
+					"label":"Agregar Serv1",
+					"event":"a"
+				}
+			]
+		},
 		{ "menuTitle": "Mantenimiento",
 		  "options":
 			[
