@@ -540,6 +540,25 @@ public class A12HotelAndes
         return ServicioBar;
 	}
 	
+	/* ****************************************************************
+	 * 			Métodos para manejar SERVICIO_Restaurante
+	 *****************************************************************/
+	public ServicioRestaurante adicionarServicioRestaurante(Long idServicio, String nombre, Integer capacidad, String estilo) {
+		log.info ("Adicionando Servicio: ");
+		ServicioRestaurante ServicioRestaurante = pp.adicionarServicioRestaurante (idServicio, nombre, capacidad, estilo);
+        log.info ("Adicionando Servicio: " + ServicioRestaurante);
+        return ServicioRestaurante;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar SERVICIO_SUPERMERCADO
+	 *****************************************************************/
+	public ServicioSupermercado adicionarServicioSupermercado(Long idServicio, String nombre) {
+		log.info ("Adicionando Servicio: ");
+		ServicioSupermercado ServicioSupermercado = pp.adicionarServicioSupermercado (idServicio, nombre);
+        log.info ("Adicionando Servicio: " + ServicioSupermercado);
+        return ServicioSupermercado;
+	}
 	
 	/* **************************************************************** SERGIO
 	 * 			Métodos para manejar Servicio Tienda
@@ -685,6 +704,7 @@ public class A12HotelAndes
         log.info ("Limpiando la BD de A12HotelAndes: Listo!");
         return borrrados;
 	}
+
 
 
 
