@@ -147,6 +147,15 @@
 				{
 					"label":"Agregar Internet",
 					"event":"adicionarServicioInternet"
+				},
+				{
+					"label":"Agregar Bar",
+					"event":"adicionarServicioBar"
+				}
+				,
+				{
+					"label":"Agregar Restaurante",
+					"event":"adicionarServicioRestaurante"
 				}
 			]
 		},

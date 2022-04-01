@@ -58,10 +58,13 @@ import uniandes.isis2304.a12hotelandes.negocio.VOReservaHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VORolesDeUsuario;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicio;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioBar;
+import uniandes.isis2304.a12hotelandes.negocio.VOServicioGimnasio;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioInternet;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioLavadoPlanchadoEmbolado;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioPiscina;
+import uniandes.isis2304.a12hotelandes.negocio.VOServicioRestaurante;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioSpa;
+import uniandes.isis2304.a12hotelandes.negocio.VOServicioSupermercado;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioTienda;
 import uniandes.isis2304.a12hotelandes.negocio.VOTipoHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOUsuarioSistema;
@@ -1189,6 +1192,39 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
         			panelDatos.actualizarInterfaz(resultado);
         		}
             }
+          public void adicionarServicioGimnasio( )
+          {
+            	try 
+            	{
+            		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+            		String nombre = JOptionPane.showInputDialog (this, "nombre del gimnasio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+            		Long idServicio = Long.parseLong(idServicioStr);
+            		
+            		
+            		if (nombre != null && idServicio!= null)
+            		{
+                		VOServicioGimnasio tb = a12HotelAndes.adicionarServicioGimnasio(idServicio, nombre);
+                		if (tb == null)
+                		{
+                			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
+                		}
+                		String resultado = "En adicionarServicioGimnasio\n\n";
+                		resultado += "ServicioGimnasio exitosamente: " + tb;
+            			resultado += "\n Operación terminada";
+            			panelDatos.actualizarInterfaz(resultado);
+            		}
+            		else
+            		{
+            			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            		}
+        		} 
+            	catch (Exception e) 
+            	{
+//            			e.printStackTrace();
+        			String resultado = generarMensajeError(e);
+        			panelDatos.actualizarInterfaz(resultado);
+        		}
+            }
           
           public void adicionarServicioInternet( )
           {
@@ -1231,7 +1267,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
             	try 
             	{
             		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
-            		String nombre = JOptionPane.showInputDialog (this, "nombre del gimnasio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+            		String nombre = JOptionPane.showInputDialog (this, "nombre del bar?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
             		Long idServicio = Long.parseLong(idServicioStr);
             		
             		
@@ -1259,8 +1295,76 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
         			panelDatos.actualizarInterfaz(resultado);
         		}
             }
-       
           
+          public void adicionarServicioRestaurante( )
+          {
+            	try 
+            	{
+            		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+            		String nombre = JOptionPane.showInputDialog (this, "nombre del restaurante?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+            		String capacidad = JOptionPane.showInputDialog (this, "capacidad del restaurante?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+            		String estilo = JOptionPane.showInputDialog (this, "estilo del restaurante?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+            		Long idServicio = Long.parseLong(idServicioStr);
+            		
+            		
+            		if (nombre != null && idServicio!= null)
+            		{
+                		VOServicioRestaurante tb = a12HotelAndes.adicionarServicioRestaurante(idServicio, nombre, Integer.parseInt(capacidad), estilo);
+                		if (tb == null)
+                		{
+                			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
+                		}
+                		String resultado = "En adicionarServicioRestaurante\n\n";
+                		resultado += "ServicioRestaurante exitosamente: " + tb;
+            			resultado += "\n Operación terminada";
+            			panelDatos.actualizarInterfaz(resultado);
+            		}
+            		else
+            		{
+            			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            		}
+        		} 
+            	catch (Exception e) 
+            	{
+//            			e.printStackTrace();
+        			String resultado = generarMensajeError(e);
+        			panelDatos.actualizarInterfaz(resultado);
+        		}
+            }
+       
+          public void adicionarServicioSupermercado( )
+          {
+            	try 
+            	{
+            		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+            		String nombre = JOptionPane.showInputDialog (this, "nombre del supermercado?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+            		Long idServicio = Long.parseLong(idServicioStr);
+            		
+            		
+            		if (nombre != null && idServicio!= null)
+            		{
+                		VOServicioSupermercado tb = a12HotelAndes.adicionarServicioSupermercado(idServicio, nombre);
+                		if (tb == null)
+                		{
+                			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
+                		}
+                		String resultado = "En adicionarServicioSupermercado\n\n";
+                		resultado += "ServicioSupermercado exitosamente: " + tb;
+            			resultado += "\n Operación terminada";
+            			panelDatos.actualizarInterfaz(resultado);
+            		}
+            		else
+            		{
+            			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+            		}
+        		} 
+            	catch (Exception e) 
+            	{
+//            			e.printStackTrace();
+        			String resultado = generarMensajeError(e);
+        			panelDatos.actualizarInterfaz(resultado);
+        		}
+            }
           
     
   

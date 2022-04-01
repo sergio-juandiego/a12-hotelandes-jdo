@@ -45,7 +45,9 @@ import uniandes.isis2304.a12hotelandes.negocio.ServicioGimnasio;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioInternet;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioLPE;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioPiscina;
+import uniandes.isis2304.a12hotelandes.negocio.ServicioRestaurante;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioSpa;
+import uniandes.isis2304.a12hotelandes.negocio.ServicioSupermercado;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioTienda;
 import uniandes.isis2304.a12hotelandes.negocio.TipoHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.UsuarioSistema;
@@ -115,6 +117,8 @@ public class PersistenciaA12HotelAndes
 	private SQLServicioGimnasio sqlServicioGimnasio;
 	private SQLServicioInternet sqlServicioInternet;
 	private SQLServicioBar sqlServicioBar;
+	private SQLServicioRestaurante sqlServicioRestaurante;
+	private SQLServicioSupermercado sqlServicioSupermercado;
 	
 	
 	private SQLServicioTienda sqlServicioTienda;
@@ -256,6 +260,8 @@ public class PersistenciaA12HotelAndes
 		sqlServicioGimnasio = new SQLServicioGimnasio(this);
 		sqlServicioInternet = new SQLServicioInternet(this);
 		sqlServicioBar = new SQLServicioBar(this);
+		sqlServicioRestaurante = new SQLServicioRestaurante(this);
+		sqlServicioSupermercado = new SQLServicioSupermercado(this);
 		
 		
 		
@@ -1423,7 +1429,63 @@ public class PersistenciaA12HotelAndes
         }
 	}
 	
+	public ServicioRestaurante adicionarServicioRestaurante(Long idServicio, String nombre, Integer capacidad, String estilo) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlServicioRestaurante.adicionarServicioRestaurante(pm, idServicio, nombre, capacidad, estilo);
+            tx.commit();
+
+            log.trace ("Inserción de ServicioRestaurante: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ServicioRestaurante (idServicio, nombre, capacidad, estilo);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
 	
+	public ServicioSupermercado adicionarServicioSupermercado(Long idServicio, String nombre) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlServicioSupermercado.adicionarServicioSupermercado(pm,  idServicio, nombre);
+            tx.commit();
+
+            log.trace ("Inserción de ServicioSupermercado: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ServicioSupermercado (idServicio, nombre);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
 
 	
 	
