@@ -51,12 +51,6 @@
 				  }
 			  ]
 		  },
-		{ "menuTitle": "Tipo Habitacion",
-		"options":
-			[
-				
-			]
-		},
 		{ "menuTitle": "Habitacion",
 			"options":
 				[

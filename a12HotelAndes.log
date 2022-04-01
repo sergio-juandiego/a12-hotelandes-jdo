@@ -75,3 +75,15 @@ ORA-02290: check constraint (ISIS2304A27202210.HTA_RESERVA_COMPLETADA_Y_N) viola
 18:22:27,153 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
 18:22:27,154 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
 18:22:27,212 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+20:45:57,129 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+20:45:57,130 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+20:45:57,181 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+21:04:44,492 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+21:04:44,493 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+21:04:44,522 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+21:05:03,252 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+21:05:03,253 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+21:05:03,280 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+21:07:06,249 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+21:07:06,250 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+21:07:06,280 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD

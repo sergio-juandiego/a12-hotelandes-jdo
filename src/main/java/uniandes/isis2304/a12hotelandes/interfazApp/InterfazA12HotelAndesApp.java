@@ -1111,7 +1111,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     
     
        /* ****************************************************************
-      	 * 			CRUD de Servicio
+      	 * 			Adicion de servicios
       	 *****************************************************************/
           /**
            * Adiciona un tipo habitacion con la información dada por el usuario
