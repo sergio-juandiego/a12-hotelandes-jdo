@@ -37,7 +37,9 @@ import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.Habitacion;
 import uniandes.isis2304.a12hotelandes.negocio.Hotel;
 import uniandes.isis2304.a12hotelandes.negocio.ReservaHabitacion;
+import uniandes.isis2304.a12hotelandes.negocio.ReservaServicio;
 import uniandes.isis2304.a12hotelandes.negocio.RolesDeUsuario;
+import uniandes.isis2304.a12hotelandes.negocio.Servicio;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioLPE;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioSpa;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioTienda;
@@ -103,12 +105,14 @@ public class PersistenciaA12HotelAndes
 	private SQLRolesDeUsuario sqlRolesDeUsuario;
 	private SQLUsuarioSistema sqlUsuarioSistema;
 	private SQLReservaHabitacion sqlReservaHabitacion;
-	
+	private SQLServicio sqlServicio;
+	private SQLReservaServicio sqlReservaServicio;
 	
 	
 	private SQLServicioTienda sqlServicioTienda;
 	private SQLServicioSpa sqlServicioSpa;
 	private SQLServicioLPE sqlServicioLPE;
+
 
 	
 	/* ****************************************************************
@@ -139,8 +143,8 @@ public class PersistenciaA12HotelAndes
 		tablas.add ("HTA_SERVICIO_GIMNASIO"); //11
 		tablas.add ("HTA_SERVICIO_INTERNET");
 		tablas.add ("HTA_SERVICIO_BAR"); //13
-		tablas.add ("HTA_SERVICIO_RESTAURANTE");
-		tablas.add ("HTA_SERVICIO_SUPERMERCADO");
+		tablas.add ("HTA_SERVICIO_RESTAURANTE"); //14
+		tablas.add ("HTA_SERVICIO_SUPERMERCADO"); //15
 		tablas.add ("HTA_SERVICIO_TIENDA");
 		tablas.add ("HTA_SERVICIO_SPA");
 		tablas.add ("HTA_SERVICIO_LAVADO_PLANCHADO_EMBOLADO");
@@ -238,6 +242,8 @@ public class PersistenciaA12HotelAndes
 		sqlRolesDeUsuario = new SQLRolesDeUsuario(this);
 		sqlUsuarioSistema = new SQLUsuarioSistema(this);
 		sqlReservaHabitacion = new SQLReservaHabitacion(this);
+		sqlServicio = new SQLServicio(this);
+		sqlReservaServicio = new SQLReservaServicio(this);
 		
 		
 		
@@ -289,8 +295,16 @@ public class PersistenciaA12HotelAndes
 	public String darTablaReservaHabitacion() {
 		return tablas.get(7);
 	}
-
 	
+	public String darTablaServicio() {
+		return tablas.get(8);
+	}
+
+	public String darTablaReservaServicio() {
+		return tablas.get(9);
+	}
+
+
 	public String darTablaServicioTienda() {
 		return tablas.get(15);
 	}
@@ -1218,7 +1232,78 @@ public class PersistenciaA12HotelAndes
 		return sqlReservaHabitacion.darReservaHabitacionPorId (pmf.getPersistenceManager(), idReservaHabitacion);
 	}
 	
+	/* ****************************************************************
+	 * 			Métodos para manejar los Servicios
+	 *****************************************************************/
 	
+
+	public Servicio adicionarServicio (String horarioServicio, Integer capacidad, Integer costo)  {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long idServicio = nextval(); 
+            long tuplasInsertadas = sqlServicio.adicionarServicio(pm,  idServicio,  horarioServicio,  capacidad,  costo);
+            tx.commit();
+
+            log.trace ("Inserción de Servicio: " + idServicio + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new Servicio (idServicio,  horarioServicio,  capacidad,  costo);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
+	
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los Reserva Servicio
+	 *****************************************************************/
+	
+	public ReservaServicio adicionarReservaServicio(Long idServicio, Integer periodo) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long idReservaServicio = nextval(); 
+            long tuplasInsertadas = sqlReservaServicio.adicionarReservaServicio(pm,  idReservaServicio, idServicio, periodo);
+            tx.commit();
+
+            log.trace ("Inserción de ReservaServicio: " + idReservaServicio + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ReservaServicio (idReservaServicio, idServicio, periodo);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
 	
 	
 	
@@ -1522,8 +1607,6 @@ public class PersistenciaA12HotelAndes
         }
 		
 	}
-
-
 	
 
  }
