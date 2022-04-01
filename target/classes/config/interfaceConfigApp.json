@@ -151,11 +151,14 @@
 				{
 					"label":"Agregar Bar",
 					"event":"adicionarServicioBar"
-				}
-				,
+				},
 				{
 					"label":"Agregar Restaurante",
 					"event":"adicionarServicioRestaurante"
+				},
+				{
+					"label":"Agregar Supermercado",
+					"event":"adicionarServicioSupermercado"
 				}
 			]
 		},
