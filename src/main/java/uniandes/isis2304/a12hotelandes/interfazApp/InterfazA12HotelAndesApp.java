@@ -62,6 +62,7 @@ import uniandes.isis2304.a12hotelandes.negocio.VOProducto;
 import uniandes.isis2304.a12hotelandes.negocio.VOProductoTodoIncluido;
 import uniandes.isis2304.a12hotelandes.negocio.VOPromocionParticular;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaHabitacion;
+import uniandes.isis2304.a12hotelandes.negocio.VOReservaServicio;
 import uniandes.isis2304.a12hotelandes.negocio.VORolesDeUsuario;
 import uniandes.isis2304.a12hotelandes.negocio.VOSalonConferencias;
 import uniandes.isis2304.a12hotelandes.negocio.VOSalonReuniones;
@@ -1155,6 +1156,44 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
               		}
               		String resultado = "En adicionarServicio\n\n";
               		resultado += "Servicio adicionado exitosamente: " + tb;
+          			resultado += "\n Operación terminada";
+          			panelDatos.actualizarInterfaz(resultado);
+          		}
+          		else
+          		{
+          			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+          		}
+      		} 
+          	catch (Exception e) 
+          	{
+//      			e.printStackTrace();
+      			String resultado = generarMensajeError(e);
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+          }
+          
+          /**
+           * Adiciona un tipo habitacion con la información dada por el usuario
+           * Se crea una nueva tupla de tipoBebida en la base de datos, si un tipo habitacion con ese nombre no existía
+           */
+          public void adicionarReservaServicio( )
+          {
+          	try 
+          	{
+          		String idServicio = JOptionPane.showInputDialog (this, "ID servicio?", "Adicionar reserva servicio", JOptionPane.QUESTION_MESSAGE);
+          		String periodo = JOptionPane.showInputDialog (this, "Periodo de la reserva?", "Adicionar reserva servicio", JOptionPane.QUESTION_MESSAGE);
+          		
+          		
+          		
+          		if (idServicio!= null && periodo != null)
+          		{
+              		VOReservaServicio tb = a12HotelAndes.adicionarReservaServicio(Long.parseLong(idServicio), Integer.parseInt(periodo));
+              		if (tb == null)
+              		{
+              			throw new Exception ("No se pudo crear un reserva para la habitacion con id: " + idServicio);
+              		}
+              		String resultado = "En adicionarReservaServicio\n\n";
+              		resultado += "Reserva de habitacion adicionado exitosamente: " + tb;
           			resultado += "\n Operación terminada";
           			panelDatos.actualizarInterfaz(resultado);
           		}
