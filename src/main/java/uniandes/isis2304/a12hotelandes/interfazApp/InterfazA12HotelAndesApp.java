@@ -415,25 +415,25 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     		String nombreCliente = JOptionPane.showInputDialog (this, "Nombre del cliente?", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
     		String tipoDoc = JOptionPane.showInputDialog (this, "Tipo de documento del cliente?", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
     		String numDoc = JOptionPane.showInputDialog (this, "Numero documento del cliente?", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		String diaEntrada = JOptionPane.showInputDialog (this, "Día de entrada del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		String mesEntrada = JOptionPane.showInputDialog (this, "Mes de entrada del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		String anioEntrada = JOptionPane.showInputDialog (this, "Año de entrada del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		//String diaEntrada = JOptionPane.showInputDialog (this, "Día de entrada del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		//String mesEntrada = JOptionPane.showInputDialog (this, "Mes de entrada del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		//String anioEntrada = JOptionPane.showInputDialog (this, "Año de entrada del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
     		
-    		String entradaConca = anioEntrada+ "-" + mesEntrada+"-"+diaEntrada;
-    		Date diaEntradaDate = Date.valueOf(entradaConca);
+    		//String entradaConca = anioEntrada+ "-" + mesEntrada+"-"+diaEntrada;
+    		//Date diaEntradaDate = Date.valueOf(entradaConca);
     		
-    		String diaSalida = JOptionPane.showInputDialog (this, "Día de salida del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		String mesSalida = JOptionPane.showInputDialog (this, "Mes de salida del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		String anioSalida = JOptionPane.showInputDialog (this, "Año de salida del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		//String diaSalida = JOptionPane.showInputDialog (this, "Día de salida del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		//String mesSalida = JOptionPane.showInputDialog (this, "Mes de salida del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		//String anioSalida = JOptionPane.showInputDialog (this, "Año de salida del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
     		
-    		String salidaConca = anioSalida+ "-" + mesSalida+"-"+diaSalida;
-    		Date diaSalidaDate = Date.valueOf(salidaConca);
+    		//String salidaConca = anioSalida+ "-" + mesSalida+"-"+diaSalida;
+    		//Date diaSalidaDate = Date.valueOf(salidaConca);
     		
-    		Boolean valoresNoNulos = nombreCliente != null && numDoc != null && diaEntrada != null && diaSalida != null && tipoDoc != null;
+    		Boolean valoresNoNulos = nombreCliente != null && numDoc != null && tipoDoc != null;
     		
     		if (valoresNoNulos)
     		{
-        		VOCliente tb = a12HotelAndes.adicionarCliente(nombreCliente, tipoDoc, Integer.parseInt(numDoc), diaEntradaDate, diaSalidaDate);
+        		VOCliente tb = a12HotelAndes.adicionarCliente(nombreCliente, tipoDoc, Integer.parseInt(numDoc));
         		if (tb == null)
         		{
         			throw new Exception ("No se pudo crear un cliente con nombre: " + nombreCliente);

@@ -152,9 +152,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar CLIENTE
 	 *****************************************************************/
 	
-	public Cliente adicionarCliente(String nombreCliente, String tipoDoc, Integer numDoc, Date diaEntrada, Date diaSalida) {
+	public Cliente adicionarCliente(String nombreCliente, String tipoDoc, Integer numDoc) {
 		log.info ("Adicionando cliente: " + nombreCliente);
-        Cliente cliente = pp.adicionarCliente ( nombreCliente, tipoDoc, numDoc,  diaEntrada,  diaSalida);
+        Cliente cliente = pp.adicionarCliente ( nombreCliente, tipoDoc, numDoc);
         log.info ("Adicionando cliente: " + cliente);
         return cliente;
 	}
