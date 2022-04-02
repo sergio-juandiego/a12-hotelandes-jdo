@@ -4,11 +4,11 @@ public interface VOServicio {
 
 	Long getId();
 
-	String getHorarioServicio();
+	Integer getHoraInicio();
+
+	Integer getHoraFin();
 
 	Integer getCapacidad();
-
-	Integer getCosto();
 
 	String toString();
 

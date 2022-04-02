@@ -7,6 +7,8 @@ public interface VOServicioInternet {
 	Long getIdReserva();
 
 	Integer getNumeroDiasUso();
+	
+	Integer getCosto();
 
 	String toString();
 

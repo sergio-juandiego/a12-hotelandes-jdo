@@ -4,6 +4,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import uniandes.isis2304.a12hotelandes.negocio.Servicio;
+import uniandes.isis2304.a12hotelandes.negocio.VOServicio;
 
 public class SQLServicio {
 	private final static String SQL = PersistenciaA12HotelAndes.SQL;
@@ -15,19 +16,18 @@ public class SQLServicio {
 		this.pp = pp;
 	}
 	
-	public long adicionarServicio(PersistenceManager pm, Long id, String horarioServicio, Integer capacidad, Integer costo)
+	public long adicionarServicio(PersistenceManager pm, Long id, Integer horaInicio, Integer horaFin, Integer capacidad)
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicio () + "(id, horarioservicio, capacidad, costo) values (?, ?, ?, ?)");
-        q.setParameters(id, horarioServicio, capacidad, costo);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicio () + "(id, horainicio, horafin, capacidad) values (?, ?, ?, ?)");
+        q.setParameters(id, horaInicio, horaFin, capacidad);
         return (long) q.executeUnique();
-		
 	}
 	
-	public Servicio darServicioPorId (PersistenceManager pm, long idServicio) 
+	public VOServicio darServicioPorId (PersistenceManager pm, long idServicio) 
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaServicio () + " WHERE id = ?");
 		q.setResultClass(Servicio.class);
 		q.setParameters(idServicio);
-		return (Servicio) q.executeUnique();
+		return (VOServicio) q.executeUnique();
 	}
 }

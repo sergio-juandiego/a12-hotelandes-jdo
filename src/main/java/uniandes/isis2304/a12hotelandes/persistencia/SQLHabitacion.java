@@ -18,10 +18,10 @@ public class SQLHabitacion {
 		this.pp = pp;
 	}
 	
-	public long adicionarHabitacion (PersistenceManager pm, long idHabitacion, Integer costoPorNoche, Integer cuenta, Long tipoHabitacion, String aprovisionamiento) 
+	public long adicionarHabitacion (PersistenceManager pm, long idHabitacion, Integer costoPorNoche, Long tipoHabitacion, String aprovisionamiento) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHabitacion () + "(id, costopornoche, cuenta, tipohabitacion, aprovisionamiento) values (?, ?, ?, ?, ?)");
-        q.setParameters( idHabitacion,  costoPorNoche,  cuenta,  tipoHabitacion,  aprovisionamiento);
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHabitacion () + "(id, costopornoche, tipohabitacion, aprovisionamiento) values (?, ?, ?, ?)");
+        q.setParameters( idHabitacion,  costoPorNoche, tipoHabitacion,  aprovisionamiento);
         return (long) q.executeUnique();
 	}
 	

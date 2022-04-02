@@ -5,6 +5,7 @@ public class SalonConferencias implements VOSalonConferencias {
 	private Long idServicio;
 	private Long idReserva;
 	private Integer horasUso;
+	private Integer costo;
 	@Override
 	public Long getIdServicio() {
 		return idServicio;
@@ -26,11 +27,19 @@ public class SalonConferencias implements VOSalonConferencias {
 	public void setHorasUso(Integer horasUso) {
 		this.horasUso = horasUso;
 	}
-	public SalonConferencias(Long idServicio, Long idReserva, Integer horasUso) {
+	@Override
+	public Integer getCosto() {
+		return costo;
+	}
+	public void setCosto(Integer costo) {
+		this.costo = costo;
+	}
+	public SalonConferencias(Long idServicio, Long idReserva, Integer horasUso, Integer costo) {
 		super();
 		this.idServicio = idServicio;
 		this.idReserva = idReserva;
 		this.horasUso = horasUso;
+		this.costo = costo;
 	}
 	
 	public SalonConferencias() {
@@ -38,12 +47,13 @@ public class SalonConferencias implements VOSalonConferencias {
 		this.idServicio = 0L;
 		this.idReserva = 0L;
 		this.horasUso = 0;
+		this.costo = 0;
 	}
+	
 	@Override
 	public String toString() {
 		return "SalonConferencias [idServicio=" + idServicio + ", idReserva=" + idReserva + ", horasUso=" + horasUso
-				+ "]";
+				+ ", costo=" + costo + "]";
 	}	
-	
 	
 }

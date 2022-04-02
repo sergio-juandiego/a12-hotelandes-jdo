@@ -7,6 +7,8 @@ public interface VOSalonReuniones {
 	Long getIdReserva();
 
 	Integer getHorasUso();
+	
+	Integer getCostoBase();
 
 	Integer getCostoAdicional();
 	

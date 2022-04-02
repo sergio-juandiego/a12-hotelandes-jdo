@@ -6,8 +6,6 @@ public interface VOHabitacion {
 
 	Integer getCostoPorNoche();
 
-	Integer getCuenta();
-
 	Long getTipoHabitacion();
 
 	String getAprovisionamiento();

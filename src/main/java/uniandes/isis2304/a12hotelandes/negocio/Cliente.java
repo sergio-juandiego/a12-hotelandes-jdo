@@ -1,7 +1,5 @@
 package uniandes.isis2304.a12hotelandes.negocio;
 
-import java.sql.Date;
-
 public class Cliente implements VOCliente {
 
 	public String nombre;

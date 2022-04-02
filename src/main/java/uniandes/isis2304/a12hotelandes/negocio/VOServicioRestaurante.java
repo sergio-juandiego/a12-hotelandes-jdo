@@ -6,8 +6,6 @@ public interface VOServicioRestaurante {
 
 	String getNombre();
 
-	Integer getCapacidad();
-
 	String getEstilo();
 
 	String toString();

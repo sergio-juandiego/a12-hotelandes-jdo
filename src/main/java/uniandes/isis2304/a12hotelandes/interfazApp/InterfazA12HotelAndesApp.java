@@ -415,19 +415,6 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     		String nombreCliente = JOptionPane.showInputDialog (this, "Nombre del cliente?", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
     		String tipoDoc = JOptionPane.showInputDialog (this, "Tipo de documento del cliente?", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
     		String numDoc = JOptionPane.showInputDialog (this, "Numero documento del cliente?", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		//String diaEntrada = JOptionPane.showInputDialog (this, "Día de entrada del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		//String mesEntrada = JOptionPane.showInputDialog (this, "Mes de entrada del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		//String anioEntrada = JOptionPane.showInputDialog (this, "Año de entrada del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		
-    		//String entradaConca = anioEntrada+ "-" + mesEntrada+"-"+diaEntrada;
-    		//Date diaEntradaDate = Date.valueOf(entradaConca);
-    		
-    		//String diaSalida = JOptionPane.showInputDialog (this, "Día de salida del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		//String mesSalida = JOptionPane.showInputDialog (this, "Mes de salida del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		//String anioSalida = JOptionPane.showInputDialog (this, "Año de salida del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		
-    		//String salidaConca = anioSalida+ "-" + mesSalida+"-"+diaSalida;
-    		//Date diaSalidaDate = Date.valueOf(salidaConca);
     		
     		Boolean valoresNoNulos = nombreCliente != null && numDoc != null && tipoDoc != null;
     		
@@ -688,14 +675,13 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     	try 
     	{
     		String costoPorNoche = JOptionPane.showInputDialog (this, "Costo por noche del  habitacion?", "Adicionar  habitacion", JOptionPane.QUESTION_MESSAGE);
-    		String cuenta = JOptionPane.showInputDialog (this, "Cuenta del  habitacion?", "Adicionar  habitacion", JOptionPane.QUESTION_MESSAGE);
     		String tipoHabitacion = JOptionPane.showInputDialog (this, "Tipo del  habitacion? (Ingrese el id)", "Adicionar  habitacion", JOptionPane.QUESTION_MESSAGE);
     		String aprovisionamiento = JOptionPane.showInputDialog (this, "Aprovisionamiento del  habitacion?", "Adicionar  habitacion", JOptionPane.QUESTION_MESSAGE);
     		
     		
-    		if (costoPorNoche!= null && cuenta!= null && tipoHabitacion != null && aprovisionamiento != null)
+    		if (costoPorNoche!= null && tipoHabitacion != null && aprovisionamiento != null)
     		{
-        		VOHabitacion tb = a12HotelAndes.adicionarHabitacion(Integer.parseInt(costoPorNoche),  Integer.parseInt(cuenta),  Long.parseLong(tipoHabitacion),  aprovisionamiento);
+        		VOHabitacion tb = a12HotelAndes.adicionarHabitacion(Integer.parseInt(costoPorNoche), Long.parseLong(tipoHabitacion),  aprovisionamiento);
         		if (tb == null)
         		{
         			throw new Exception ("No se pudo crear un  habitacion: " );
@@ -1030,17 +1016,33 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
        {
        	try 
        	{
-       		String idHabitacion = JOptionPane.showInputDialog (this, "ID habitacion?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
-       		String numDocCliente = JOptionPane.showInputDialog (this, "Numero documento cliente?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
+       		String idHabitacionStr = JOptionPane.showInputDialog (this, "ID habitacion?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
+       		String numDocClienteStr = JOptionPane.showInputDialog (this, "Numero documento cliente?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
        		String tipoDocCliente = JOptionPane.showInputDialog (this, "Tipo documento cliente? (CC,TI,CE)", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
-       		String periodo = JOptionPane.showInputDialog (this, "Periodo de la reserva?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
        		
+       		String diaEntrada = JOptionPane.showInputDialog (this, "Día de entrada del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String mesEntrada = JOptionPane.showInputDialog (this, "Mes de entrada del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String anioEntrada = JOptionPane.showInputDialog (this, "Año de entrada del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		
+    		String entradaConca = anioEntrada+ "-" + mesEntrada+"-"+diaEntrada;
+    		Date diaEntradaDate = Date.valueOf(entradaConca);
+    		
+    		String diaSalida = JOptionPane.showInputDialog (this, "Día de salida del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String mesSalida = JOptionPane.showInputDialog (this, "Mes de salida del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String anioSalida = JOptionPane.showInputDialog (this, "Año de salida del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		
+    		String salidaConca = anioSalida+ "-" + mesSalida+"-"+diaSalida;
+    		Date diaSalidaDate = Date.valueOf(salidaConca);
+    		
+       		String completada = JOptionPane.showInputDialog (this, "La reserva fue completada?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
+       		String cuentaStr = JOptionPane.showInputDialog (this, "Cuanto será cargado a la habitacion?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
        		
-       		
-       		if (idHabitacion!= null && numDocCliente!= null && tipoDocCliente!= null && periodo != null)
+       		if (idHabitacionStr!= null && numDocClienteStr!= null && tipoDocCliente!= null && diaEntradaDate!=null && diaSalidaDate != null && completada != null && cuentaStr != null)
        		{
-           		VOReservaHabitacion tb = a12HotelAndes.adicionarReservaHabitacion(Long.parseLong(idHabitacion), Integer.parseInt(numDocCliente), tipoDocCliente, Integer.parseInt(periodo),
-           				"N");
+       			long idHabitacion = Long.valueOf(idHabitacionStr);
+       			int numDocCliente = Integer.valueOf(numDocClienteStr);
+       			int cuenta = Integer.valueOf(cuentaStr);
+           		VOReservaHabitacion tb = a12HotelAndes.adicionarReservaHabitacion(idHabitacion,numDocCliente,tipoDocCliente,diaEntradaDate,diaSalidaDate,completada,cuenta);
            		if (tb == null)
            		{
            			throw new Exception ("No se pudo crear un reserva para la habitacion con id: " + idHabitacion);
@@ -1140,16 +1142,17 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
           {
           	try 
           	{
-          		String horarioServicio = JOptionPane.showInputDialog (this, "Horario de servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+          		String horaInicioStr= JOptionPane.showInputDialog (this, "Hora de inicio del servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+          		String horaFinStr= JOptionPane.showInputDialog (this, "Hora de finalizacion del servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
           		String capacidadStr = JOptionPane.showInputDialog (this, "Capacidad de servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
-          		String costoStr = JOptionPane.showInputDialog (this, "Costo de servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
-          		Integer capacidad = Integer.parseInt(capacidadStr);
-          		Integer costo = Integer.parseInt(costoStr);
           		
           		
-          		if (horarioServicio != null && capacidad!= null && costo != null)
+          		if (horaInicioStr!= null && horaFinStr !=null && capacidadStr!= null )
           		{
-              		VOServicio tb = a12HotelAndes.adicionarServicio(horarioServicio, capacidad, costo);
+          			int horaInicio = Integer.valueOf(horaInicioStr);
+          			int horaFin = Integer.valueOf(horaFinStr);
+          			Integer capacidad = Integer.parseInt(capacidadStr);
+              		VOServicio tb = a12HotelAndes.adicionarServicio(horaInicio, horaFin, capacidad);
               		if (tb == null)
               		{
               			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
@@ -1284,13 +1287,14 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
             		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
             		String idReservaStr = JOptionPane.showInputDialog (this, "id de reserva padre?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
             		String numDiasUso = JOptionPane.showInputDialog (this, "numero de dias de uso?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+            		String costoStr = JOptionPane.showInputDialog (this, "costo del internet?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
             		Long idServicio = Long.parseLong(idServicioStr);
             		Long idReserva = Long.parseLong(idReservaStr);
             		
             		
             		if (numDiasUso != null && idServicio!= null)
             		{
-                		VOServicioInternet tb = a12HotelAndes.adicionarServicioInternet(idServicio, idReserva, Integer.parseInt(numDiasUso));
+                		VOServicioInternet tb = a12HotelAndes.adicionarServicioInternet(idServicio, idReserva, Integer.parseInt(numDiasUso), Integer.parseInt(costoStr));
                 		if (tb == null)
                 		{
                 			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
@@ -1353,14 +1357,13 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
             	{
             		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
             		String nombre = JOptionPane.showInputDialog (this, "nombre del restaurante?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
-            		String capacidad = JOptionPane.showInputDialog (this, "capacidad del restaurante?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
             		String estilo = JOptionPane.showInputDialog (this, "estilo del restaurante?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
             		Long idServicio = Long.parseLong(idServicioStr);
             		
             		
             		if (nombre != null && idServicio!= null)
             		{
-                		VOServicioRestaurante tb = a12HotelAndes.adicionarServicioRestaurante(idServicio, nombre, Integer.parseInt(capacidad), estilo);
+                		VOServicioRestaurante tb = a12HotelAndes.adicionarServicioRestaurante(idServicio, nombre, estilo);
                 		if (tb == null)
                 		{
                 			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
@@ -1694,15 +1697,17 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
       		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
       		String idReservaStr = JOptionPane.showInputDialog (this, "id de la reserva asociada?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
       		String horasUsoStr = JOptionPane.showInputDialog (this, "horas uso?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		String costoBaseStr = JOptionPane.showInputDialog (this, "costo base del salon?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
       		String costoAdicionalStr = JOptionPane.showInputDialog (this, "costo Adicional?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
       		
-      		if (idServicioStr != null && idReservaStr!= null && horasUsoStr != null && costoAdicionalStr!=null)
+      		if (idServicioStr != null && idReservaStr!= null && horasUsoStr != null && costoBaseStr != null && costoAdicionalStr!=null)
       		{
       			long idServicio = Long.valueOf(idServicioStr);
       			long idReserva = Long.valueOf(idReservaStr);
       			int horasUso = Integer.valueOf(horasUsoStr);
+      			int costoBase = Integer.valueOf(costoBaseStr);
       			int costoAdicional = Integer.valueOf(costoAdicionalStr);
-          		VOSalonReuniones tb = a12HotelAndes.agregarSalonReuniones(idServicio,idReserva,horasUso,costoAdicional);
+          		VOSalonReuniones tb = a12HotelAndes.agregarSalonReuniones(idServicio,idReserva,horasUso,costoBase,costoAdicional);
           		if (tb == null)
           		{
           			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
@@ -1732,13 +1737,15 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
       		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
       		String idReservaStr = JOptionPane.showInputDialog (this, "id de la reserva asociada?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
       		String horasUsoStr = JOptionPane.showInputDialog (this, "horas uso?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		String costoStr = JOptionPane.showInputDialog (this, "costo del salon de conferencias?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
       		
       		if (idServicioStr != null && idReservaStr!= null && horasUsoStr != null )
       		{
       			long idServicio = Long.valueOf(idServicioStr);
       			long idReserva = Long.valueOf(idReservaStr);
       			int horasUso = Integer.valueOf(horasUsoStr);
-          		VOSalonConferencias tb = a12HotelAndes.agregarSalonConferencias(idServicio,idReserva,horasUso);
+      			int costo = Integer.valueOf(costoStr);
+          		VOSalonConferencias tb = a12HotelAndes.agregarSalonConferencias(idServicio,idReserva,horasUso,costo);
           		if (tb == null)
           		{
           			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
@@ -2044,6 +2051,45 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
   			panelDatos.actualizarInterfaz(resultado);
   		}
       }
+    
+    /* ****************************************************************
+	 * 			Métodos de consulta
+	 *****************************************************************/
+    
+    public void consultarIngresosPorHabitacion()
+    {
+      	try 
+      	{
+      		String idPlanDeConsumoStr = JOptionPane.showInputDialog (this, "id del Plan de Consumo?", "Agregar Promocion Particular", JOptionPane.QUESTION_MESSAGE);
+      		String descripcion = JOptionPane.showInputDialog (this, "Descripcion de la Promocion Particular?", "Agregar Promocion Particular", JOptionPane.QUESTION_MESSAGE);
+      		
+      		
+      		if (idPlanDeConsumoStr != null && descripcion != null )
+      		{
+      			long idPlanDeConsumo = Long.valueOf(idPlanDeConsumoStr);
+          		VOPromocionParticular tb = a12HotelAndes.agregarPromocionParticular(idPlanDeConsumo,descripcion);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear una promocion particular con los parámetros especificados");
+          		}
+          		String resultado = "En agregarPromocionParticular\n\n";
+          		resultado += "PromocionParticular agregado exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
     
 	/* ****************************************************************
 	 * 			Métodos administrativos

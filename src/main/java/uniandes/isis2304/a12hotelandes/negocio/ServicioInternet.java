@@ -5,6 +5,7 @@ public class ServicioInternet implements VOServicioInternet {
 	public Long idServicio;
 	public Long idReserva;
 	public Integer numeroDiasUso;
+	public Integer costo;
 	@Override
 	public Long getIdServicio() {
 		return idServicio;
@@ -23,6 +24,13 @@ public class ServicioInternet implements VOServicioInternet {
 	public Integer getNumeroDiasUso() {
 		return numeroDiasUso;
 	}
+	@Override
+	public Integer getCosto() {
+		return costo;
+	}
+	public void setCosto(Integer costo) {
+		this.costo = costo;
+	}
 	public void setNumeroDiasUso(Integer numeroDiasUso) {
 		this.numeroDiasUso = numeroDiasUso;
 	}
@@ -31,19 +39,19 @@ public class ServicioInternet implements VOServicioInternet {
 		this.idServicio = 0L;
 		this.idReserva = 0L;
 		this.numeroDiasUso = 0;
+		this.costo = 0;
 	}
 	public ServicioInternet(Long idServicio, Long idReserva, Integer numeroDiasUso) {
 		super();
 		this.idServicio = idServicio;
 		this.idReserva = idReserva;
 		this.numeroDiasUso = numeroDiasUso;
+		this.costo = costo;
 	}
 	@Override
 	public String toString() {
 		return "ServicioInternet [idServicio=" + idServicio + ", idReserva=" + idReserva + ", numeroDiasUso="
-				+ numeroDiasUso + "]";
-	}
-	
-	
+				+ numeroDiasUso + ", costo=" + costo + "]";
+	}	
 
 }

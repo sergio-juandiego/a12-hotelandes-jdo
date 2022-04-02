@@ -4,7 +4,6 @@ public class Habitacion implements VOHabitacion {
 	
 	public Long id;
 	public Integer costoPorNoche;
-	public Integer cuenta;
 	public Long tipoHabitacion;
 	public String aprovisionamiento;
 	@Override
@@ -22,13 +21,6 @@ public class Habitacion implements VOHabitacion {
 		this.costoPorNoche = costoPorNoche;
 	}
 	@Override
-	public Integer getCuenta() {
-		return cuenta;
-	}
-	public void setCuenta(Integer cuenta) {
-		this.cuenta = cuenta;
-	}
-	@Override
 	public Long getTipoHabitacion() {
 		return tipoHabitacion;
 	}
@@ -42,28 +34,26 @@ public class Habitacion implements VOHabitacion {
 	public void setAprovisionamiento(String aprovisionamiento) {
 		this.aprovisionamiento = aprovisionamiento;
 	}
-	@Override
-	public String toString() {
-		return "Habitacion [id=" + id + ", costoPorNoche=" + costoPorNoche + ", cuenta=" + cuenta + ", tipoHabitacion="
-				+ tipoHabitacion + ", aprovisionamiento=" + aprovisionamiento + "]";
-	}
-	
+
 	public Habitacion() {
 		super();
 		this.id = 0L;
 		this.costoPorNoche = 0;
-		this.cuenta = 0;
 		this.tipoHabitacion = 0L;
 		this.aprovisionamiento = "";
 	}
 	
-	public Habitacion(Long id, Integer costoPorNoche, Integer cuenta, Long tipoHabitacion, String aprovisionamiento) {
+	public Habitacion(Long id, Integer costoPorNoche, Long tipoHabitacion, String aprovisionamiento) {
 		super();
 		this.id = id;
 		this.costoPorNoche = costoPorNoche;
-		this.cuenta = cuenta;
 		this.tipoHabitacion = tipoHabitacion;
 		this.aprovisionamiento = aprovisionamiento;
+	}
+	@Override
+	public String toString() {
+		return "Habitacion [id=" + id + ", costoPorNoche=" + costoPorNoche + ", tipoHabitacion=" + tipoHabitacion
+				+ ", aprovisionamiento=" + aprovisionamiento + "]";
 	}
 	
 	

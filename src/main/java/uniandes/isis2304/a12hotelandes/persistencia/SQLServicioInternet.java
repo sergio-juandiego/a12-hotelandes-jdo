@@ -13,9 +13,9 @@ public class SQLServicioInternet {
 		this.pp = pp;
 	}
 	
-	public long adicionarServicioInternet(PersistenceManager pm, Long idServicio, Long idReserva, Integer numeroDiasUso)
+	public long adicionarServicioInternet(PersistenceManager pm, Long idServicio, Long idReserva, Integer numeroDiasUso, Integer costo)
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioInternet () + "(idservicio, idreserva, numerodiasuso) values (?, ?, ?)");
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioInternet () + "(idservicio, idreserva, numerodiasuso, costo) values (?, ?, ?, ?)");
         q.setParameters(idServicio, idReserva, numeroDiasUso);
         return (long) q.executeUnique();
 		

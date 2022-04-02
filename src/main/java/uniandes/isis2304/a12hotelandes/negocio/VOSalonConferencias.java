@@ -8,6 +8,8 @@ public interface VOSalonConferencias {
 
 	Integer getHorasUso();
 	
+	Integer getCosto();
+	
 	String toString();
 
 }

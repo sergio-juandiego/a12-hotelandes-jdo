@@ -14,10 +14,10 @@ private final static String SQL = PersistenciaA12HotelAndes.SQL;
 		this.pp = pp;
 	}
 	
-	public long agregarSalonConferencias(PersistenceManager pm, Long idServicio, Long idReserva, Integer horasUso)
+	public long agregarSalonConferencias(PersistenceManager pm, Long idServicio, Long idReserva, Integer horasUso, Integer costo)
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaSalonConferencias() + "(idservicio, idreserva, horas_uso) values (?, ?, ?)");
-        q.setParameters(idServicio, idReserva,horasUso);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaSalonConferencias() + "(idservicio, idreserva, horas_uso, costo) values (?, ?, ?, ?)");
+        q.setParameters(idServicio, idReserva,horasUso, costo);
         return (long) q.executeUnique();
 		
 	}

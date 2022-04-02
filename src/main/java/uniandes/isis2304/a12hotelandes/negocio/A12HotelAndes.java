@@ -269,9 +269,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar HABITACION
 	 *****************************************************************/
 	
-	public Habitacion adicionarHabitacion(Integer costoPorNoche, Integer cuenta, Long tipoHabitacion, String aprovisionamiento) {
+	public Habitacion adicionarHabitacion(Integer costoPorNoche, Long tipoHabitacion, String aprovisionamiento) {
 		log.info ("Adicionando Habitacion: ");
-        Habitacion Habitacion = pp.adicionarHabitacion ( costoPorNoche,  cuenta,  tipoHabitacion,  aprovisionamiento);
+        Habitacion Habitacion = pp.adicionarHabitacion ( costoPorNoche,  tipoHabitacion,  aprovisionamiento);
         log.info ("Adicionando Habitacion: " + Habitacion);
         return Habitacion;
 	}
@@ -428,11 +428,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar RESERVA_HABITACION
 	 *****************************************************************/
 	
-	public ReservaHabitacion adicionarReservaHabitacion(Long idHabitacion, Integer numDocCliente, String tipoDocCliente, Integer periodo,
-			String completada) {
+	public VOReservaHabitacion adicionarReservaHabitacion(Long idHabitacion, Integer numDocCliente, String tipoDocCliente,Date diaEntrada, Date diaSalida, String completada, Integer cuenta) {
 		log.info ("Adicionando ReservaHabitacion: ");
-        ReservaHabitacion ReservaHabitacion = pp.adicionarReservaHabitacion ( idHabitacion,  numDocCliente,  tipoDocCliente,  periodo,
-    			completada);
+        VOReservaHabitacion ReservaHabitacion = pp.adicionarReservaHabitacion ( idHabitacion,  numDocCliente,  tipoDocCliente,  diaEntrada, diaSalida, completada, cuenta);
         log.info ("Adicionando ReservaHabitacion: " + ReservaHabitacion);
         return ReservaHabitacion;
 	}
@@ -469,7 +467,7 @@ public class A12HotelAndes
 	{
 		log.info ("Generando los VO de ReservaHabitacions");
 		List<VOReservaHabitacion> voReservaHabitaciones = new LinkedList<VOReservaHabitacion> ();
-		for (ReservaHabitacion ReservaHabitacion: pp.darReservaHabitaciones ())
+		for (VOReservaHabitacion ReservaHabitacion: pp.darReservaHabitaciones ())
 		{
 			voReservaHabitaciones.add (ReservaHabitacion);
 		}
@@ -481,9 +479,9 @@ public class A12HotelAndes
 	/* ****************************************************************
 	 * 			Métodos para manejar SERVICIO
 	 *****************************************************************/
-	public Servicio adicionarServicio(String horarioServicio, Integer capacidad, Integer costo) {
+	public VOServicio adicionarServicio(Integer horaInicio, Integer horaFin, Integer capacidad) {
 		log.info ("Adicionando Servicio: ");
-        Servicio Servicio = pp.adicionarServicio (horarioServicio, capacidad, costo);
+        VOServicio Servicio = pp.adicionarServicio (horaInicio, horaFin, capacidad);
         log.info ("Adicionando Servicio: " + Servicio);
         return Servicio;
 	}
@@ -523,9 +521,9 @@ public class A12HotelAndes
 	/* ****************************************************************
 	 * 			Métodos para manejar SERVICIO_INTERNET
 	 *****************************************************************/
-	public ServicioInternet adicionarServicioInternet(Long idServicio, Long idReserva, Integer numeroDiasUso) {
+	public ServicioInternet adicionarServicioInternet(Long idServicio, Long idReserva, Integer numeroDiasUso, Integer costo) {
 		log.info ("Adicionando Servicio: ");
-		ServicioInternet ServicioInternet = pp.adicionarServicioInternet(idServicio, idReserva, numeroDiasUso);
+		ServicioInternet ServicioInternet = pp.adicionarServicioInternet(idServicio, idReserva, numeroDiasUso, costo);
         log.info ("Adicionando Servicio: " + ServicioInternet);
         return ServicioInternet;
 	}
@@ -543,9 +541,9 @@ public class A12HotelAndes
 	/* ****************************************************************
 	 * 			Métodos para manejar SERVICIO_Restaurante
 	 *****************************************************************/
-	public ServicioRestaurante adicionarServicioRestaurante(Long idServicio, String nombre, Integer capacidad, String estilo) {
+	public ServicioRestaurante adicionarServicioRestaurante(Long idServicio, String nombre, String estilo) {
 		log.info ("Adicionando Servicio: ");
-		ServicioRestaurante ServicioRestaurante = pp.adicionarServicioRestaurante (idServicio, nombre, capacidad, estilo);
+		ServicioRestaurante ServicioRestaurante = pp.adicionarServicioRestaurante (idServicio, nombre,estilo);
         log.info ("Adicionando Servicio: " + ServicioRestaurante);
         return ServicioRestaurante;
 	}
@@ -707,9 +705,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar Servicio Salon de Reuniones
 	 *****************************************************************/
 	
-	public SalonReuniones agregarSalonReuniones(Long idServicio, Long idReserva, Integer horasUso, Integer costoAdicional) {
+	public SalonReuniones agregarSalonReuniones(Long idServicio, Long idReserva, Integer horasUso, Integer costoBase, Integer costoAdicional) {
 		log.info ("Agregando Servicio: ");
-		SalonReuniones salonReuniones = pp.agregarSalonReuniones(idServicio,idReserva,horasUso,costoAdicional);
+		SalonReuniones salonReuniones = pp.agregarSalonReuniones(idServicio,idReserva,horasUso,costoBase,costoAdicional);
         log.info ("Agregando Servicio: " + salonReuniones);
         return salonReuniones;
 	}
@@ -718,9 +716,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar Servicio Salon de Conferencias
 	 *****************************************************************/
 	
-	public SalonConferencias agregarSalonConferencias(Long idServicio, Long idReserva, Integer horasUso) {
+	public SalonConferencias agregarSalonConferencias(Long idServicio, Long idReserva, Integer horasUso, Integer costo) {
 		log.info ("Agregando Servicio: ");
-		SalonConferencias salonConferencias = pp.agregarSalonConferencias(idServicio,idReserva,horasUso);
+		SalonConferencias salonConferencias = pp.agregarSalonConferencias(idServicio,idReserva,horasUso, costo);
         log.info ("Agregando Servicio: " + salonConferencias);
         return salonConferencias;
 	}
