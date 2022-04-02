@@ -23,10 +23,10 @@ public class SQLCliente {
 	// CRUD
 	
 
-	public long adicionarCliente (PersistenceManager pm, String nombre, String tipoDoc, Integer numDoc, Date diaEntrada, Date diaSalida) 
+	public long adicionarCliente (PersistenceManager pm, String nombre, String tipoDoc, Integer numDoc) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCliente () + "(nombre, numdoc, tipodoc, diaentrada, diasalida) values (?, ?, ?, ?, ?)");
-		q.setParameters(nombre, numDoc, tipoDoc, diaEntrada, diaSalida);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaCliente () + "(nombre, numdoc, tipodoc) values (?, ?, ?)");
+		q.setParameters(nombre, numDoc, tipoDoc);
 		return (long) q.executeUnique();
 	}
 	

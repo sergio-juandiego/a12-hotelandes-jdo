@@ -598,18 +598,18 @@ public class PersistenciaA12HotelAndes
 	 *****************************************************************/
 	
 
-	public Cliente adicionarCliente(String nombreCliente, String tipoDoc, Integer numDoc, Date diaEntrada, Date diaSalida) {
+	public Cliente adicionarCliente(String nombreCliente, String tipoDoc, Integer numDoc) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
         	tx.begin();
-            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, nombreCliente, tipoDoc, numDoc, diaEntrada, diaSalida);
+            long tuplasInsertadas = sqlCliente.adicionarCliente(pm, nombreCliente, tipoDoc, numDoc);
             tx.commit();
 
             log.trace ("Inserción de Cliente: " + nombreCliente + ": " + tuplasInsertadas + " tuplas insertadas");
 
-            return new Cliente (nombreCliente,  tipoDoc,  numDoc,  diaEntrada,  diaSalida);
+            return new Cliente (nombreCliente,  tipoDoc,  numDoc);
         }
         catch (Exception e)
         {

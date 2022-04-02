@@ -7,8 +7,6 @@ public class Cliente implements VOCliente {
 	public String nombre;
 	public String tipoDoc;
 	public Integer numDoc;
-	public Date diaEntrada;
-	public Date diaSalida;
 	
 	
 	@Override
@@ -32,42 +30,24 @@ public class Cliente implements VOCliente {
 	public void setNumDoc(Integer numDoc) {
 		this.numDoc = numDoc;
 	}
-	@Override
-	public Date getDiaEntrada() {
-		return diaEntrada;
-	}
-	public void setDiaEntrada(Date diaEntrada) {
-		this.diaEntrada = diaEntrada;
-	}
-	@Override
-	public Date getDiaSalida() {
-		return diaSalida;
-	}
-	public void setDiaSalida(Date diaSalida) {
-		this.diaSalida = diaSalida;
-	}
 	public Cliente() {
 		super();
 		this.nombre = "";
 		this.tipoDoc = "";
 		this.numDoc = 0;
-		this.diaEntrada = new Date (0);
-		this.diaSalida = new Date (0);
 	}
-	public Cliente(String nombre, String tipoDoc, Integer numDoc, Date diaEntrada, Date diaSalida) {
+	public Cliente(String nombre, String tipoDoc, Integer numDoc) {
 		super();
 		this.nombre = nombre;
 		this.tipoDoc = tipoDoc;
 		this.numDoc = numDoc;
-		this.diaEntrada = diaEntrada;
-		this.diaSalida = diaSalida;
-	}
-	@Override
-	public String toString() {
-		return "Cliente [nombre=" + nombre + ", tipoDoc=" + tipoDoc + ", numDoc=" + numDoc + ", diaEntrada="
-				+ diaEntrada + ", diaSalida=" + diaSalida + "]";
 	}
 	
+	@Override
+	public String toString() {
+		return "Cliente [nombre=" + nombre + ", tipoDoc=" + tipoDoc + ", numDoc=" + numDoc + "]";
+	}
+
 	
 
 }

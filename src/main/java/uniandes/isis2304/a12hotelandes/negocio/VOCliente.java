@@ -8,10 +8,6 @@ public interface VOCliente {
 
 	Integer getNumDoc();
 
-	Date getDiaEntrada();
-
-	Date getDiaSalida();
-
 	String toString();
 	
 	String getTipoDoc();
