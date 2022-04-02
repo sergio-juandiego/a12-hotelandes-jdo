@@ -137,6 +137,10 @@
 					"event":"adicionarServicio"
 				},
 				{
+					"label":"Agregar Reserva Servicio",
+					"event":"adicionarReservaServicio"
+				},
+				{
 					"label":"Agregar Piscina",
 					"event":"adicionarServicioPiscina"
 				},
