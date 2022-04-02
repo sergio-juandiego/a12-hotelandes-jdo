@@ -51,22 +51,34 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes;
+import uniandes.isis2304.a12hotelandes.negocio.PromocionParticular;
 import uniandes.isis2304.a12hotelandes.negocio.VOCliente;
+import uniandes.isis2304.a12hotelandes.negocio.VOConsumoServicio;
 import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOHotel;
+import uniandes.isis2304.a12hotelandes.negocio.VOLargaEstadia;
+import uniandes.isis2304.a12hotelandes.negocio.VOPlanDeConsumo;
+import uniandes.isis2304.a12hotelandes.negocio.VOProducto;
+import uniandes.isis2304.a12hotelandes.negocio.VOProductoTodoIncluido;
+import uniandes.isis2304.a12hotelandes.negocio.VOPromocionParticular;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VORolesDeUsuario;
+import uniandes.isis2304.a12hotelandes.negocio.VOSalonConferencias;
+import uniandes.isis2304.a12hotelandes.negocio.VOSalonReuniones;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicio;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioBar;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioGimnasio;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioInternet;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioLavadoPlanchadoEmbolado;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioPiscina;
+import uniandes.isis2304.a12hotelandes.negocio.VOServicioPrestamoUtensilios;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioRestaurante;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioSpa;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioSupermercado;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioTienda;
+import uniandes.isis2304.a12hotelandes.negocio.VOTiempoCompartido;
 import uniandes.isis2304.a12hotelandes.negocio.VOTipoHabitacion;
+import uniandes.isis2304.a12hotelandes.negocio.VOTodoIncluido;
 import uniandes.isis2304.a12hotelandes.negocio.VOUsuarioSistema;
 
 /**
@@ -1366,52 +1378,6 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
         		}
             }
           
-          
-          public void agregarLPE( )
-          {
-          	try 
-          	{
-          		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
-          		String idReservaStr = JOptionPane.showInputDialog (this, "idReserva?", "Adicionar Servicio LPE", JOptionPane.QUESTION_MESSAGE);
-          		String tipoPrenda = JOptionPane.showInputDialog (this, "tipo prenda?", "Adicionar Servicio LPE", JOptionPane.QUESTION_MESSAGE);
-          		String numPrendasStr = JOptionPane.showInputDialog (this, "numero de prendas?", "Adicionar Servicio LPE", JOptionPane.QUESTION_MESSAGE);
-          		Boolean valoresNoNulos = idReservaStr != null && tipoPrenda != null && numPrendasStr != null && idServicioStr!=null;
-          		
-          		if (valoresNoNulos)
-          		{
-          			long idServicio = Long.valueOf(idServicioStr);
-          			long idReserva = Long.valueOf (idReservaStr);
-          			int numPrendas = Integer.valueOf(numPrendasStr);
-              		VOServicioLavadoPlanchadoEmbolado sT = a12HotelAndes.agregarServicioLPE(idServicio,idReserva,tipoPrenda,numPrendas);
-              		if (sT == null)
-              		{
-              			throw new Exception ("No se pudo crear el servicio Lavado Planchado Embolado con id: " +idServicioStr );
-              		}
-              		String resultado = "En agregar Servicio LPE\n\n";
-              		resultado += "Servicio LPE agregado exitosamente: " + sT;
-          			resultado += "\n Operación terminada";
-          			panelDatos.actualizarInterfaz(resultado);
-          		}
-          		else
-          		{
-          			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-          		}
-      		} 
-          	catch (Exception e) 
-          	{
-//      			e.printStackTrace();
-      			String resultado = generarMensajeError(e);
-      			panelDatos.actualizarInterfaz(resultado);
-      		}
-          }    
-          
-    
-  
-    
-    
-    
-    
-
     // LAS DE SERGIO
     
     /* ****************************************************************
@@ -1608,6 +1574,437 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
     }
+    
+    public void agregarLPE( )
+    {
+    	try 
+    	{
+    		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+    		String idReservaStr = JOptionPane.showInputDialog (this, "idReserva?", "Adicionar Servicio LPE", JOptionPane.QUESTION_MESSAGE);
+    		String tipoPrenda = JOptionPane.showInputDialog (this, "tipo prenda?", "Adicionar Servicio LPE", JOptionPane.QUESTION_MESSAGE);
+    		String numPrendasStr = JOptionPane.showInputDialog (this, "numero de prendas?", "Adicionar Servicio LPE", JOptionPane.QUESTION_MESSAGE);
+    		Boolean valoresNoNulos = idReservaStr != null && tipoPrenda != null && numPrendasStr != null && idServicioStr!=null;
+    		
+    		if (valoresNoNulos)
+    		{
+    			long idServicio = Long.valueOf(idServicioStr);
+    			long idReserva = Long.valueOf (idReservaStr);
+    			int numPrendas = Integer.valueOf(numPrendasStr);
+        		VOServicioLavadoPlanchadoEmbolado sT = a12HotelAndes.agregarServicioLPE(idServicio,idReserva,tipoPrenda,numPrendas);
+        		if (sT == null)
+        		{
+        			throw new Exception ("No se pudo crear el servicio Lavado Planchado Embolado con id: " +idServicioStr );
+        		}
+        		String resultado = "En agregar Servicio LPE\n\n";
+        		resultado += "Servicio LPE agregado exitosamente: " + sT;
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    } 
+    public void agregarServicioPU( )
+    {
+      	try 
+      	{
+      		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		String idReservaStr = JOptionPane.showInputDialog (this, "id de la reserva asociada?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		String recargaPMUStr = JOptionPane.showInputDialog (this, "recarga por mal uso?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		
+      		if (idServicioStr != null && idReservaStr!= null && recargaPMUStr != null)
+      		{
+      			long idServicio = Long.valueOf(idServicioStr);
+      			long idReserva = Long.valueOf(idReservaStr);
+      			int recargaPMU = Integer.valueOf(recargaPMUStr);
+          		VOServicioPrestamoUtensilios tb = a12HotelAndes.agregarServicioPrestamoUtensilios(idServicio,idReserva,recargaPMU);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
+          		}
+          		String resultado = "En adicionarServicioPrestamoUtensilios\n\n";
+          		resultado += "ServicioPrestamoUtensilios exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
+    public void agregarSalonReuniones( )
+    {
+      	try 
+      	{
+      		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		String idReservaStr = JOptionPane.showInputDialog (this, "id de la reserva asociada?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		String horasUsoStr = JOptionPane.showInputDialog (this, "horas uso?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		String costoAdicionalStr = JOptionPane.showInputDialog (this, "costo Adicional?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		
+      		if (idServicioStr != null && idReservaStr!= null && horasUsoStr != null && costoAdicionalStr!=null)
+      		{
+      			long idServicio = Long.valueOf(idServicioStr);
+      			long idReserva = Long.valueOf(idReservaStr);
+      			int horasUso = Integer.valueOf(horasUsoStr);
+      			int costoAdicional = Integer.valueOf(costoAdicionalStr);
+          		VOSalonReuniones tb = a12HotelAndes.agregarSalonReuniones(idServicio,idReserva,horasUso,costoAdicional);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
+          		}
+          		String resultado = "En adicionarSalonReuniones\n\n";
+          		resultado += "SalonReuniones agregado exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
+    public void agregarSalonConferencias( )
+    {
+      	try 
+      	{
+      		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		String idReservaStr = JOptionPane.showInputDialog (this, "id de la reserva asociada?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		String horasUsoStr = JOptionPane.showInputDialog (this, "horas uso?", "Agregar servicio", JOptionPane.QUESTION_MESSAGE);
+      		
+      		if (idServicioStr != null && idReservaStr!= null && horasUsoStr != null )
+      		{
+      			long idServicio = Long.valueOf(idServicioStr);
+      			long idReserva = Long.valueOf(idReservaStr);
+      			int horasUso = Integer.valueOf(horasUsoStr);
+          		VOSalonConferencias tb = a12HotelAndes.agregarSalonConferencias(idServicio,idReserva,horasUso);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
+          		}
+          		String resultado = "En adicionarSalonConferencias\n\n";
+          		resultado += "SalonConferencias agregado exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
+    public void agregarProducto( )
+    {
+      	try 
+      	{
+      		String idServicioStr = JOptionPane.showInputDialog (this, "id de servicio padre?", "Agregar producto", JOptionPane.QUESTION_MESSAGE);
+      		String costoStr = JOptionPane.showInputDialog (this, "Qué costo tendrá este producto?", "Agregar producto", JOptionPane.QUESTION_MESSAGE);
+      		
+      		if (idServicioStr != null && costoStr != null )
+      		{
+      			long idServicio = Long.valueOf(idServicioStr);
+      			int costo = Integer.valueOf(costoStr);
+          		VOProducto tb = a12HotelAndes.agregarProducto(idServicio,costo);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear un producto con los parámetros especificados");
+          		}
+          		String resultado = "En agregarProducto\n\n";
+          		resultado += "Producto agregado exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
+    public void agregarConsumoServicio( )
+    {
+      	try 
+      	{
+      		String idReservaStr = JOptionPane.showInputDialog (this, "id de la reserva?", "Agregar Consumo de Servicio", JOptionPane.QUESTION_MESSAGE);
+      		String idServicioStr = JOptionPane.showInputDialog (this, "id del servicio?", "Agregar Consumo de Servicio", JOptionPane.QUESTION_MESSAGE);
+      		String idProductoStr = JOptionPane.showInputDialog (this, "id del producto?", "Agregar Consumo de Servicio", JOptionPane.QUESTION_MESSAGE);
+      		String cantidadStr = JOptionPane.showInputDialog (this, "Qué costo tendrá este producto?", "Agregar Consumo de Servicio", JOptionPane.QUESTION_MESSAGE);
+      		
+      		if (idReservaStr != null && idServicioStr != null && idProductoStr!=null && cantidadStr != null )
+      		{
+      			long idReserva = Long.valueOf(idReservaStr);
+      			long idServicio = Long.valueOf(idServicioStr);
+      			long idProducto = Long.valueOf(idProductoStr);
+      			int cantidad = Integer.valueOf(cantidadStr);
+          		VOConsumoServicio tb = a12HotelAndes.agregarConsumoServicio(idReserva,idServicio,idProducto,cantidad);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear el consumo de servicio con los parámetros especificados");
+          		}
+          		String resultado = "En agregar Consumo de Servicio\n\n";
+          		resultado += "Consumo de Servicio agregado exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
+    public void agregarPlanDeConsumo( )
+    {
+      	try 
+      	{
+      		String tipo = JOptionPane.showInputDialog (this, "tipo de Plan De Consumo?", "Agregar Plan De Consumo", JOptionPane.QUESTION_MESSAGE);
+      		
+      		if (tipo != null )
+      		{
+          		VOPlanDeConsumo tb = a12HotelAndes.agregarPlanDeConsumo(tipo);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear un Plan De Consumo con los parámetros especificados");
+          		}
+          		String resultado = "En agregarPlanDeConsumo\n\n";
+          		resultado += "PlanDeConsumo agregado exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
+    public void agregarLargaEstadia()
+    {
+      	try 
+      	{
+      		String idPlanDeConsumoStr = JOptionPane.showInputDialog (this, "id del Plan de Consumo?", "Agregar LargaEstadia", JOptionPane.QUESTION_MESSAGE);
+      		String descuentoStr = JOptionPane.showInputDialog (this, "cuanto descuento se agrega?", "Agregar LargaEstadia", JOptionPane.QUESTION_MESSAGE);
+      		String idHotelStr = JOptionPane.showInputDialog (this, "id del Hotel?", "Agregar LargaEstadia", JOptionPane.QUESTION_MESSAGE);
+      		String tiempoEstadia = JOptionPane.showInputDialog (this, "Cuanto es el tiempo minimo de estadia?", "Agregar LargaEstadia", JOptionPane.QUESTION_MESSAGE);
+      		
+      		if (idPlanDeConsumoStr != null && descuentoStr != null && idHotelStr!=null && tiempoEstadia != null )
+      		{
+      			long idPlanDeConsumo = Long.valueOf(idPlanDeConsumoStr);
+      			double descuento = Double.valueOf(descuentoStr);
+      			long idHotel = Long.valueOf(idHotelStr);
+          		VOLargaEstadia tb = a12HotelAndes.agregarLargaEstadia(idPlanDeConsumo,descuento,idHotel,tiempoEstadia);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear un plan de Larga Estadia con los parámetros especificados");
+          		}
+          		String resultado = "En agregarLargaEstadia\n\n";
+          		resultado += "LargaEstadia agregada exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
+    public void agregarTiempoCompartido()
+    {
+      	try 
+      	{
+      		String idPlanDeConsumoStr = JOptionPane.showInputDialog (this, "id del Plan de Consumo?", "Agregar LargaEstadia", JOptionPane.QUESTION_MESSAGE);
+      		String idServicioAsociadoStr = JOptionPane.showInputDialog (this, "id del Hotel?", "Agregar LargaEstadia", JOptionPane.QUESTION_MESSAGE);
+      		
+      		if (idPlanDeConsumoStr != null && idServicioAsociadoStr != null )
+      		{
+      			long idPlanDeConsumo = Long.valueOf(idPlanDeConsumoStr);
+      			long idServicioAsociado = Long.valueOf(idServicioAsociadoStr);
+          		VOTiempoCompartido tb = a12HotelAndes.agregarTiempoCompartido(idPlanDeConsumo,idServicioAsociado);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear un plan de Tiempo Compartido con los parámetros especificados");
+          		}
+          		String resultado = "En agregarTiempoCompartido\n\n";
+          		resultado += "TiempoCompartido agregado exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
+    public void agregarTodoIncluido()
+    {
+      	try 
+      	{
+      		String idPlanDeConsumoStr = JOptionPane.showInputDialog (this, "id del Plan de Consumo?", "Agregar Plan Todo Incluido", JOptionPane.QUESTION_MESSAGE);
+      		String idServicioAsociadoStr = JOptionPane.showInputDialog (this, "id del Servicio?", "Agregar Plan Todo Incluido", JOptionPane.QUESTION_MESSAGE);
+      		String idReservaStr = JOptionPane.showInputDialog (this, "id de la reserva?", "Agregar Plan Todo Incluido", JOptionPane.QUESTION_MESSAGE);
+      		String costoStr = JOptionPane.showInputDialog (this, "cuanto es el costo fijo?", "Agregar Plan Todo Incluido", JOptionPane.QUESTION_MESSAGE);
+      		
+      		
+      		if (idPlanDeConsumoStr != null && idServicioAsociadoStr != null && idReservaStr != null && costoStr != null )
+      		{
+      			long idPlanDeConsumo = Long.valueOf(idPlanDeConsumoStr);
+      			long idServicioAsociado = Long.valueOf(idServicioAsociadoStr);
+      			long idReserva = Long.valueOf(idReservaStr);
+      			int costo = Integer.valueOf(costoStr);
+          		VOTodoIncluido tb = a12HotelAndes.agregarTodoIncluido(idPlanDeConsumo,idServicioAsociado,idReserva,costo);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear un plan de Todo Incluido con los parámetros especificados");
+          		}
+          		String resultado = "En agregarTodoIncluido\n\n";
+          		resultado += "TodoIncluido agregado exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
+    public void agregarProductoTodoIncluido()
+    {
+      	try 
+      	{
+      		String idPlanDeConsumoStr = JOptionPane.showInputDialog (this, "id del Plan de Consumo?", "Agregar Producto de  Plan Todo Incluido", JOptionPane.QUESTION_MESSAGE);
+      		String idProductoAsociadoStr = JOptionPane.showInputDialog (this, "id del Hotel?", "Agregar Producto de Plan Todo Incluido", JOptionPane.QUESTION_MESSAGE);
+      		String descuentoStr = JOptionPane.showInputDialog (this, "id del Plan Todo Incluido?", "Agregar Producto de Plan Todo Incluido", JOptionPane.QUESTION_MESSAGE);
+      		
+      		
+      		if (idPlanDeConsumoStr != null && idProductoAsociadoStr != null && descuentoStr != null)
+      		{
+      			long idPlanDeConsumo = Long.valueOf(idPlanDeConsumoStr);
+      			long idProductoAsociado = Long.valueOf(idProductoAsociadoStr);
+      			double descuento = Long.valueOf(descuentoStr);
+          		VOProductoTodoIncluido tb = a12HotelAndes.agregarProductoTodoIncluido(idPlanDeConsumo,idProductoAsociado,descuento);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear un producto de plan de Todo Incluido con los parámetros especificados");
+          		}
+          		String resultado = "En agregarProductoTodoIncluido\n\n";
+          		resultado += "ProductoTodoIncluido agregado exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
+    public void agregarPromocionParticular()
+    {
+      	try 
+      	{
+      		String idPlanDeConsumoStr = JOptionPane.showInputDialog (this, "id del Plan de Consumo?", "Agregar Promocion Particular", JOptionPane.QUESTION_MESSAGE);
+      		String descripcion = JOptionPane.showInputDialog (this, "Descripcion de la Promocion Particular?", "Agregar Promocion Particular", JOptionPane.QUESTION_MESSAGE);
+      		
+      		
+      		if (idPlanDeConsumoStr != null && descripcion != null )
+      		{
+      			long idPlanDeConsumo = Long.valueOf(idPlanDeConsumoStr);
+          		VOPromocionParticular tb = a12HotelAndes.agregarPromocionParticular(idPlanDeConsumo,descripcion);
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear una promocion particular con los parámetros especificados");
+          		}
+          		String resultado = "En agregarPromocionParticular\n\n";
+          		resultado += "PromocionParticular agregado exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
     
 	/* ****************************************************************
 	 * 			Métodos administrativos

@@ -14,7 +14,7 @@ public class SQLServicioPrestamoUtensilios {
 		this.pp = pp;
 	}
 	
-	public long adicionarServicioPrestamosUtensilios(PersistenceManager pm, Long idServicio, Long idReserva, Integer recargoPorMalUso)
+	public long agregarServicioPrestamoUtensilios(PersistenceManager pm, Long idServicio, Long idReserva, Integer recargoPorMalUso)
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioPrestamoUtensilios() + "(idservicio, idreserva, recargoPorMalUso) values (?, ?, ?)");
         q.setParameters(idServicio, idReserva, recargoPorMalUso);

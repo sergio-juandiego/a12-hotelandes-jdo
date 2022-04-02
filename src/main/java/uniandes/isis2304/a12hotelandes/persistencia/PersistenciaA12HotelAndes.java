@@ -34,23 +34,35 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import uniandes.isis2304.a12hotelandes.negocio.Cliente;
+import uniandes.isis2304.a12hotelandes.negocio.ConsumoServicio;
 import uniandes.isis2304.a12hotelandes.negocio.Habitacion;
 import uniandes.isis2304.a12hotelandes.negocio.Hotel;
+import uniandes.isis2304.a12hotelandes.negocio.LargaEstadia;
+import uniandes.isis2304.a12hotelandes.negocio.PlanDeConsumo;
+import uniandes.isis2304.a12hotelandes.negocio.Producto;
+import uniandes.isis2304.a12hotelandes.negocio.ProductoTodoIncluido;
+import uniandes.isis2304.a12hotelandes.negocio.PromocionParticular;
 import uniandes.isis2304.a12hotelandes.negocio.ReservaHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.ReservaServicio;
 import uniandes.isis2304.a12hotelandes.negocio.RolesDeUsuario;
+import uniandes.isis2304.a12hotelandes.negocio.SalonConferencias;
+import uniandes.isis2304.a12hotelandes.negocio.SalonReuniones;
 import uniandes.isis2304.a12hotelandes.negocio.Servicio;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioBar;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioGimnasio;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioInternet;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioLPE;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioPiscina;
+import uniandes.isis2304.a12hotelandes.negocio.ServicioPrestamoUtensilios;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioRestaurante;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioSpa;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioSupermercado;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioTienda;
+import uniandes.isis2304.a12hotelandes.negocio.TiempoCompartido;
 import uniandes.isis2304.a12hotelandes.negocio.TipoHabitacion;
+import uniandes.isis2304.a12hotelandes.negocio.TodoIncluido;
 import uniandes.isis2304.a12hotelandes.negocio.UsuarioSistema;
+import uniandes.isis2304.a12hotelandes.negocio.VOPromocionParticular;
 
 /**
  * Clase para el manejador de persistencia del proyecto Parranderos
@@ -123,8 +135,16 @@ public class PersistenciaA12HotelAndes
 	private SQLServicioSpa sqlServicioSpa;
 	private SQLServicioLPE sqlServicioLPE;
 	private SQLServicioPrestamoUtensilios sqlServicioPU;
-
-
+	private SQLSalonReuniones sqlSalonReuniones;
+	private SQLSalonConferencias sqlSalonConferencias;
+	private SQLProducto sqlProducto;
+	private SQLConsumoServicio sqlConsumoServicio;
+	private SQLPlanDeConsumo sqlPlanDeConsumo;
+	private SQLLargaEstadia sqlLargaEstadia;
+	private SQLTiempoCompartido sqlTiempoCompartido;
+	private SQLTodoIncluido sqlTodoIncluido;
+	private SQLProductoTodoIncluido sqlProductoTodoIncluido;
+	private SQLPromocionParticular sqlPromocionParticular;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -265,6 +285,16 @@ public class PersistenciaA12HotelAndes
 		sqlServicioSpa = new SQLServicioSpa(this);
 		sqlServicioLPE = new SQLServicioLPE(this);
 		sqlServicioPU = new SQLServicioPrestamoUtensilios(this);
+		sqlSalonReuniones = new SQLSalonReuniones(this );
+		sqlSalonConferencias = new SQLSalonConferencias(this);
+		sqlProducto = new SQLProducto(this);
+		sqlConsumoServicio = new SQLConsumoServicio(this);
+		sqlPlanDeConsumo = new SQLPlanDeConsumo(this);
+		sqlLargaEstadia = new SQLLargaEstadia(this);
+		sqlTiempoCompartido = new SQLTiempoCompartido(this);
+		sqlTodoIncluido = new SQLTodoIncluido(this);
+		sqlProductoTodoIncluido = new SQLProductoTodoIncluido(this);
+		sqlPromocionParticular = new SQLPromocionParticular(this);
 		// TODO Crear todas las clases
 		
 		sqlUtil = new SQLUtil(this);
@@ -367,17 +397,20 @@ public class PersistenciaA12HotelAndes
 	public String darTablaPlanDeConsumo() {
 		return tablas.get(24);
 	}
-	public String darTablaTiempoCompartido() {
+	public String darTablaLargaEstadia() {
 		return tablas.get(25);
 	}
-	public String darTablaTodoIncluido() {
+	public String darTablaTiempoCompartido() {
 		return tablas.get(26);
 	}
-	public String darTablaProductosTodoIncluido() {
+	public String darTablaTodoIncluido() {
 		return tablas.get(27);
 	}
-	public String darTablaPromocionParticular() {
+	public String darTablaProductoTodoIncluido() {
 		return tablas.get(28);
+	}
+	public String darTablaPromocionParticular() {
+		return tablas.get(29);
 	}
 	
 	
@@ -749,7 +782,7 @@ public class PersistenciaA12HotelAndes
 //        	e.printStackTrace();
         	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
             return -1;
-        }
+        } 
         finally
         {
             if (tx.isActive())
@@ -1512,8 +1545,6 @@ public class PersistenciaA12HotelAndes
 	}
 
 	
-	
-	
 	/* ****************************************************************
 	 * 			Métodos para manejar los Reserva Servicio
 	 *****************************************************************/
@@ -1813,6 +1844,327 @@ public class PersistenciaA12HotelAndes
 		return sqlServicioLPE.darLPEsPorTipoNumPrendas(pmf.getPersistenceManager(), tipoPrenda, numPrendas);
 	}
 	
+	public ServicioPrestamoUtensilios agregarServicioPU(Long idServicio, Long idReserva, Integer recargoPorMalUso) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlServicioPU.agregarServicioPrestamoUtensilios(pm,  idServicio, idReserva, recargoPorMalUso);
+            tx.commit();
+
+            log.trace ("Inserción de ServicioPrestamoUtensilios: " + idServicio + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ServicioPrestamoUtensilios (idServicio, idReserva, recargoPorMalUso);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public SalonReuniones agregarSalonReuniones(Long idServicio, Long idReserva, Integer horasUso, Integer costoAdicional) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlSalonReuniones.agregarSalonReuniones(pm,  idServicio, idReserva, horasUso, costoAdicional);
+            tx.commit();
+
+            log.trace ("Inserción de SalonReuniones: " + idServicio + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new SalonReuniones(idServicio, idReserva, horasUso, costoAdicional);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public SalonConferencias agregarSalonConferencias(Long idServicio, Long idReserva, Integer horasUso) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlSalonConferencias.agregarSalonConferencias(pm,  idServicio, idReserva, horasUso);
+            tx.commit();
+
+            log.trace ("Inserción de SalonConferencias: " + idServicio + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new SalonConferencias(idServicio, idReserva, horasUso);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public Producto agregarProducto(Long idServicio, Integer costo) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+        	long idProducto = nextval();
+            long tuplasInsertadas = sqlProducto.agregarProducto(pm,idProducto,  idServicio, costo);
+            tx.commit();
+
+            log.trace ("Inserción de Prodcuto: " +idProducto+" al servicio "+ idServicio + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new Producto(idProducto,idServicio, costo);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public ConsumoServicio agregarConsumoServicio(Long idReserva, Long idServicio, Long idProducto, Integer cantidad) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+        	long idFactura = nextval();
+            long tuplasInsertadas = sqlConsumoServicio.agregarConsumoServicio(pm,idFactura,idReserva, idServicio,idProducto, cantidad);
+            tx.commit();
+
+            log.trace ("Inserción de consumoServicio: " +idProducto+" del servicio "+ idServicio + " a la reserva "+idReserva+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ConsumoServicio(idFactura,idReserva,idServicio,idProducto, cantidad);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public PlanDeConsumo agregarPlanDeConsumo(String tipo) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+        	long id = nextval();
+            long tuplasInsertadas = sqlPlanDeConsumo.agregarPlanDeConsumo(pm,id,tipo);
+            tx.commit();
+
+            log.trace ("Inserción de PlanDeConsumo: " +id+" del tipo"+ tipo+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new PlanDeConsumo(id,tipo);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public LargaEstadia agregarLargaEstadia(Long idPlanDeConsumo, Double descuento, Long idHotel, String tiempoEstadia) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlLargaEstadia.agregarLargaEstadia(pm,idPlanDeConsumo,descuento,idHotel,tiempoEstadia);
+            tx.commit();
+
+            log.trace ("Inserción de LargaEstadia: " +idPlanDeConsumo+" del hotel "+ idHotel+"con descuento y tiempo de "+descuento+" y "+ tiempoEstadia +": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new LargaEstadia(idPlanDeConsumo,descuento,idHotel,tiempoEstadia);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public TiempoCompartido agregarTiempoCompartido(Long idPlanDeConsumo, Long idServicioAsociado) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlTiempoCompartido.agregarTiempoCompartido(pm,idPlanDeConsumo,idServicioAsociado);
+            tx.commit();
+
+            log.trace ("Inserción de TiempoCompartido: " +idPlanDeConsumo+" con el servicio "+idServicioAsociado+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new TiempoCompartido(idPlanDeConsumo,idServicioAsociado);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public TodoIncluido agregarTodoIncluido(Long idPlanDeConsumo, Long idServicioAsociado, Long idReserva, Integer costo) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlTodoIncluido.agregarTodoIncluido(pm,idPlanDeConsumo,idServicioAsociado,idReserva,costo);
+            tx.commit();
+
+            log.trace ("Inserción de TodoIncluido: " +idPlanDeConsumo+" con el servicio "+idServicioAsociado+" a la reserva "+idReserva+" por "+costo+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new TodoIncluido(idPlanDeConsumo,idServicioAsociado,idReserva,costo);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public ProductoTodoIncluido agregarProductoTodoIncluido(Long idPlanDeConsumo, Long idProductoAsociado, Double descuento) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlProductoTodoIncluido.agregarProductoTodoIncluido(pm,idPlanDeConsumo,idProductoAsociado,descuento);
+            tx.commit();
+
+            log.trace ("Inserción de ProductoTodoIncluido: " +idProductoAsociado+" al plan de consumo "+idPlanDeConsumo+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new ProductoTodoIncluido(idPlanDeConsumo,idProductoAsociado,descuento);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public VOPromocionParticular agregarPromocionParticular(Long idPlanDeConsumo, String descripcion) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlPromocionParticular.agregarPromocionParticular(pm,idPlanDeConsumo,descripcion);
+            tx.commit();
+
+            log.trace ("Inserción de PromocionParticular: " + descripcion +" al plan de consumo "+idPlanDeConsumo+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new PromocionParticular(idPlanDeConsumo,descripcion);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
 	
 	/**
 	 * Elimina todas las tuplas de todas las tablas de la base de datos de Parranderos

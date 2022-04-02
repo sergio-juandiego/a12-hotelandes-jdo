@@ -191,3 +191,53 @@ ORA-00947: no hay suficientes valores
 ORA-00947: no hay suficientes valores
 
 11:19:38,088 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando lavado planchado embolado: null
+11:24:25,246 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+11:24:25,247 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+11:24:25,269 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+11:28:11,213 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+11:28:11,213 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+11:28:11,231 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+11:29:16,775 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+11:29:16,775 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+11:29:16,793 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+11:29:52,110 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando ServicioLPE 8 a la reserva: 7
+11:29:52,243 (AWT-EventQueue-0) ERROR [uniandes.isis2304.a12hotelandes.persistencia.PersistenciaA12HotelAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO HTA_SERVICIO_LAVADO_PLANCHADO_EMBOLADO(idServicio, idReserva, tipoPrenda, numPrendas) values (?, ?, ?,?)".
+ORA-00904: "NUMPRENDAS": identificador no válido
+
+11:29:52,253 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando lavado planchado embolado: null
+11:31:07,153 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+11:31:07,153 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+11:31:07,170 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+11:31:17,825 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando ServicioLPE 8 a la reserva: 7
+11:31:17,997 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando lavado planchado embolado: Lavado Planchado Embolado[idServicio=8, asociado a la reserva: 7 por 3 de tipo Algodon]
+11:46:49,084 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+11:46:49,085 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+11:46:49,103 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+11:47:35,206 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+11:47:35,206 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+11:47:35,224 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+11:47:44,523 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+11:47:44,652 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: ServicioPrestamoUtensilios [idServicio=8, idReserva=7, recargoPorMalUso=0]
+12:13:36,709 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+12:13:36,709 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+12:13:36,730 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:21:16,989 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:21:16,990 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+17:21:17,007 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:56:45,930 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - NO se encontró un archivo de configuración válido
+17:56:49,687 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración por defecto
+17:56:49,689 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+17:56:59,142 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+17:56:59,142 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+17:56:59,158 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:49:04,235 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:49:04,235 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:49:04,253 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:49:19,068 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando Larga Estadia: 
+18:49:19,291 (AWT-EventQueue-0) ERROR [uniandes.isis2304.a12hotelandes.persistencia.PersistenciaA12HotelAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO HTA_LARGA_ESTADIA(idPlanDeConsumo,descuento, idHotel, tiempoEstadia) values (?, ?, ?,?)".
+ORA-02291: restricción de integridad (ISIS2304A16202210.FK_HTA_LARGA_ESTADIA_IDHOTEL) violada - clave principal no encontrada
+
+18:49:19,312 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando Producto: null
+20:22:46,149 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+20:22:46,149 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+20:22:46,171 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD

@@ -20,7 +20,7 @@ private final static String SQL = PersistenciaA12HotelAndes.SQL;
 	
 	public long agregarLPE(PersistenceManager pm, long idServicio, long idReserva, String tipoPrenda, Integer numPrendas) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioLPE () + "(idServicio, idReserva, tipoPrenda, numPrendas) values (?, ?, ?,?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioLPE () + "(idServicio, idReserva, tipoPrenda, numeroPrendas) values (?, ?, ?,?)");
         q.setParameters(idServicio, idReserva, tipoPrenda, numPrendas);
         return (long) q.executeUnique();
 	}

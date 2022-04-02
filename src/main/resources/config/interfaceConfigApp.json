@@ -171,6 +171,56 @@
 				{
 					"label":"Servicio Lavado Planchado Embolado",
 					"event":"agregarLPE"
+				},
+				{
+					"label":"Servicio Prestamo de Utensilios",
+					"event":"agregarServicioPU"
+				},
+				{
+					"label":"Salon Reuniones",
+					"event":"agregarSalonReuniones"
+				},
+				{
+					"label":"Salon Conferencias",
+					"event":"agregarSalonConferencias"
+				},
+				{
+					"label":"Agregar Producto a un Servicio",
+					"event":"agregarProducto"
+				},
+				{
+					"label":"Agregar Consumo de Servicio",
+					"event":"agregarConsumoServicio"
+				}
+			
+			]
+		},
+		{ "menuTitle": "Planes de Consumo",
+		  "options":
+			[
+				{
+					"label": "Agregar Plan De Consumo",
+					"event": "agregarPlanDeConsumo"
+				},
+				{
+					"label": "Agregar Plan de Larga Estadia",
+					"event": "agregarLargaEstadia"
+				},
+				{
+					"label": "Agregar Plan de Tiempo Compartido",
+					"event": "agregarTiempoCompartido"
+				},
+				{
+					"label": "Agregar Plan Todo Incluido",
+					"event": "agregarTodoIncluido"
+				},
+				{
+					"label": "Agregar Producto de Plan Todo Incluido ",
+					"event": "agregarProductoTodoIncluido"
+				},
+				{
+					"label": "Agregar Promocion Particular",
+					"event": "agregarPromocionParticular"
 				}
 			]
 		},

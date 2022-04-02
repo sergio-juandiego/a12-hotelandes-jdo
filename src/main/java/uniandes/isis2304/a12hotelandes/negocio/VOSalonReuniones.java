@@ -1,12 +1,14 @@
 package uniandes.isis2304.a12hotelandes.negocio;
 
-public interface VOServicioPrestamoUtensilios {
+public interface VOSalonReuniones {
 
 	Long getIdServicio();
 
 	Long getIdReserva();
 
-	Integer getRecargoPorMalUso();
+	Integer getHorasUso();
+
+	Integer getCostoAdicional();
 	
 	String toString();
 
