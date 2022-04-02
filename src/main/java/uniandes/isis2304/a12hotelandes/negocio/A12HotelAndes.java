@@ -564,9 +564,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar Servicio Tienda
 	 *****************************************************************/
 	
-	public ServicioTienda agregarServicioTienda(String nombre, String tipoDeTienda) {
+	public ServicioTienda agregarServicioTienda(Long idServicio, String nombre, String tipoDeTienda) {
 		log.info ("Agregando ServicioTienda: " + nombre);
-        ServicioTienda tienda = pp.agregarServicioTienda (nombre,tipoDeTienda);
+        ServicioTienda tienda = pp.agregarServicioTienda (idServicio, nombre,tipoDeTienda);
         log.info ("Agregando Tienda: " + tienda);
         return tienda;
 	} // TODO CAMBIAR atributos
@@ -614,9 +614,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar Servicio Spa
 	 *****************************************************************/
 	
-	public ServicioSpa agregarServicioSpa(String nombre) {
+	public ServicioSpa agregarServicioSpa(Long idServicio, String nombre) {
 		log.info ("Agregando ServicioSpa: " + nombre);
-        ServicioSpa Spa = pp.agregarSpa (nombre);
+        ServicioSpa Spa = pp.agregarSpa (idServicio, nombre);
         log.info ("Agregando Spa: " + Spa);
         return Spa;
 	} // TODO CAMBIAR atributos
@@ -664,9 +664,9 @@ public class A12HotelAndes
 	 * 			Métodos para manejar Servicio LPE
 	 *****************************************************************/
 	
-	public ServicioLPE agregarServicioLPE(Long idReserva, String tipoPrenda, Integer numPrendas) {
-		log.info ("Agregando ServicioLPE a la reserva: " + idReserva);
-        ServicioLPE LPE = pp.agregarLPE (idReserva, tipoPrenda, numPrendas);
+	public ServicioLPE agregarServicioLPE(Long idServicio, Long idReserva, String tipoPrenda, Integer numPrendas) {
+		log.info ("Agregando ServicioLPE "+idServicio+" a la reserva: " + idReserva);
+        ServicioLPE LPE = pp.agregarLPE (idServicio,idReserva, tipoPrenda, numPrendas);
         log.info ("Agregando lavado planchado embolado: " + LPE);
         return LPE;
 	} // TODO CAMBIAR atributos
@@ -690,6 +690,127 @@ public class A12HotelAndes
 		}
 		log.info ("Generando los VO de LPEs: " + voServiciosLPE.size ());
 		return voServiciosLPE;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar Servicio Prestamo de Utensilios
+	 *****************************************************************/
+	
+	public ServicioPrestamoUtensilios agregarServicioPrestamoUtensilios(Long idServicio, Long idReserva, Integer recargoPorMalUso) {
+		log.info ("Agregando Servicio: ");
+		ServicioPrestamoUtensilios servicioPU = pp.agregarServicioPU(idServicio,idReserva,recargoPorMalUso);
+        log.info ("Agregando Servicio: " + servicioPU);
+        return servicioPU;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar Servicio Salon de Reuniones
+	 *****************************************************************/
+	
+	public SalonReuniones agregarSalonReuniones(Long idServicio, Long idReserva, Integer horasUso, Integer costoAdicional) {
+		log.info ("Agregando Servicio: ");
+		SalonReuniones salonReuniones = pp.agregarSalonReuniones(idServicio,idReserva,horasUso,costoAdicional);
+        log.info ("Agregando Servicio: " + salonReuniones);
+        return salonReuniones;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar Servicio Salon de Conferencias
+	 *****************************************************************/
+	
+	public SalonConferencias agregarSalonConferencias(Long idServicio, Long idReserva, Integer horasUso) {
+		log.info ("Agregando Servicio: ");
+		SalonConferencias salonConferencias = pp.agregarSalonConferencias(idServicio,idReserva,horasUso);
+        log.info ("Agregando Servicio: " + salonConferencias);
+        return salonConferencias;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar Producto
+	 *****************************************************************/
+	
+	public Producto agregarProducto(Long idServicio, Integer costo) {
+		log.info ("Agregando Producto: ");
+		Producto producto = pp.agregarProducto(idServicio,costo);
+        log.info ("Agregando Producto: " + producto);
+        return producto;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los Consumos de Servicio
+	 *****************************************************************/
+	
+	public ConsumoServicio agregarConsumoServicio(Long idReserva, Long idServicio, Long idProducto, Integer cantidad) {
+		log.info ("Agregando Consumo de Servicio: ");
+		ConsumoServicio consumoServicio = pp.agregarConsumoServicio(idReserva,idServicio,idProducto,cantidad);
+        log.info ("Agregando Consumo de Servicio: " + consumoServicio);
+        return consumoServicio;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los Planes De Consumo
+	 *****************************************************************/
+	
+	public PlanDeConsumo agregarPlanDeConsumo(String tipo) {
+		log.info ("Agregando Plan De Consumo: ");
+		PlanDeConsumo planDeConsumo = pp.agregarPlanDeConsumo(tipo);
+        log.info ("Agregando Plan De Consumo: " + planDeConsumo);
+        return planDeConsumo;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los planes de Larga Estadia
+	 *****************************************************************/
+	
+	public LargaEstadia agregarLargaEstadia(Long idPlanDeConsumo, Double descuento, Long idHotel, String tiempoEstadia) {
+		log.info ("Agregando Larga Estadia: ");
+		LargaEstadia largaEstadia = pp.agregarLargaEstadia(idPlanDeConsumo,descuento,idHotel,tiempoEstadia);
+        log.info ("Agregando el Plan de Larga Estadia: " + largaEstadia);
+        return largaEstadia;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los planes de Tiempo Compartido
+	 *****************************************************************/
+	
+	public TiempoCompartido agregarTiempoCompartido(Long idPlanDeConsumo, Long idServicioAsociado) {
+		log.info ("Agregando Tiempo Compartido: ");
+		TiempoCompartido tiempoCompartido = pp.agregarTiempoCompartido(idPlanDeConsumo,idServicioAsociado);
+        log.info ("Agregando el Plan De Tiempo Compartido: " + tiempoCompartido);
+        return tiempoCompartido;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los planes de Todo Incluido
+	 *****************************************************************/
+	
+	public TodoIncluido agregarTodoIncluido(Long idPlanDeConsumo, Long idServicioAsociado, Long idReserva, Integer costo) {
+		log.info ("Agregando Tiempo Compartido: ");
+		TodoIncluido todoIncluido = pp.agregarTodoIncluido(idPlanDeConsumo,idServicioAsociado,idReserva,costo);
+        log.info ("Agregando el Plan De Tiempo Compartido: " + todoIncluido);
+        return todoIncluido;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar los productos de Todo Incluido
+	 *****************************************************************/
+	
+	public ProductoTodoIncluido agregarProductoTodoIncluido(Long idPlanDeConsumo, Long idProductoAsociado, Double descuento) {
+		log.info ("Agregando Tiempo Compartido: ");
+		ProductoTodoIncluido productoTodoIncluido = pp.agregarProductoTodoIncluido(idPlanDeConsumo,idProductoAsociado,descuento);
+        log.info ("Agregando el Plan De Tiempo Compartido: " + productoTodoIncluido);
+        return productoTodoIncluido;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar las Promociones Particulares
+	 *****************************************************************/
+	
+	public VOPromocionParticular agregarPromocionParticular(Long idPlanDeConsumo, String descripcion) {
+		log.info ("Agregando Tiempo Compartido: ");
+		VOPromocionParticular promocionParticular = pp.agregarPromocionParticular(idPlanDeConsumo,descripcion);
+        log.info ("Agregando el Plan De Tiempo Compartido: " + promocionParticular);
+        return promocionParticular;
 	}
 	
 	/* ****************************************************************

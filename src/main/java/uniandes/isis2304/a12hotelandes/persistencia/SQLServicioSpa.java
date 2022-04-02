@@ -20,7 +20,7 @@ private final static String SQL = PersistenciaA12HotelAndes.SQL;
 	
 	public long agregarSpa(PersistenceManager pm, long idServicio, String nombre) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioSpa () + "(idServicio, nombre, tipoDeSpa) values (?, ?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicioSpa () + "(idServicio, nombre) values (?, ?)");
         q.setParameters(idServicio, nombre);
         return (long) q.executeUnique();
 	}
