@@ -244,3 +244,6 @@ ORA-02291: restricción de integridad (ISIS2304A16202210.FK_HTA_LARGA_ESTADIA_ID
 12:23:55,576 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
 12:23:55,577 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
 12:23:55,607 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+13:25:13,554 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+13:25:13,555 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+13:25:13,574 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
