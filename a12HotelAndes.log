@@ -1,0 +1,6 @@
+20:50:39,712 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando hotel: probando
+20:50:39,769 (AWT-EventQueue-0) ERROR [uniandes.isis2304.a12hotelandes.persistencia.PersistenciaA12HotelAndes] - Exception : Error con la ejecucion de Query de SQL "SELECT hotelandesa12_sequence.nextval FROM DUAL".
+Conexión cerrada
+20:50:39,770 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando hotel: null
+20:50:59,770 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando hotel: DECAMERON
+20:51:00,439 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando hotel: Hotel [id=56, nombre=DECAMERON, ubicacion=PARA]

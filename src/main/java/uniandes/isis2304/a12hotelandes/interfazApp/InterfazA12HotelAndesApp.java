@@ -51,7 +51,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes;
-import uniandes.isis2304.a12hotelandes.negocio.PromocionParticular;
 import uniandes.isis2304.a12hotelandes.negocio.VOCliente;
 import uniandes.isis2304.a12hotelandes.negocio.VOConsumoServicio;
 import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
@@ -2038,14 +2037,23 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     {
       	try 
       	{
-      		String idPlanDeConsumoStr = JOptionPane.showInputDialog (this, "id del Plan de Consumo?", "Agregar Promocion Particular", JOptionPane.QUESTION_MESSAGE);
-      		String descripcion = JOptionPane.showInputDialog (this, "Descripcion de la Promocion Particular?", "Agregar Promocion Particular", JOptionPane.QUESTION_MESSAGE);
-      		
-      		
-      		if (idPlanDeConsumoStr != null && descripcion != null )
+       		String diaEntrada = JOptionPane.showInputDialog (this, "Día de inicio? (Formato dd)", "Consultar ingreso de sericios por habitacion", JOptionPane.QUESTION_MESSAGE);
+    		String mesEntrada = JOptionPane.showInputDialog (this, "Mes de inicio? (Formato mm)", "Consultar ingreso de sericios por habitacion", JOptionPane.QUESTION_MESSAGE);
+    		String anioEntrada = JOptionPane.showInputDialog (this, "Año de inicio? (Formato yyyy)", "Consultar ingreso de sericios por habitacion", JOptionPane.QUESTION_MESSAGE);
+    		
+    		String entradaConca = anioEntrada+ "-" + mesEntrada+"-"+diaEntrada;
+    		Date diaEntradaDate = Date.valueOf(entradaConca);
+    		
+    		String diaSalida = JOptionPane.showInputDialog (this, "Día de finalizacion? (Formato dd)", "Consultar ingreso de sericios por habitacion", JOptionPane.QUESTION_MESSAGE);
+    		String mesSalida = JOptionPane.showInputDialog (this, "Mes de finalizacion? (Formato mm)", "Consultar ingreso de sericios por habitacion", JOptionPane.QUESTION_MESSAGE);
+    		String anioSalida = JOptionPane.showInputDialog (this, "Año de finalizacion? (Formato yyyy)", "Consultar ingreso de sericios por habitacion", JOptionPane.QUESTION_MESSAGE);
+    		
+    		String salidaConca = anioSalida+ "-" + mesSalida+"-"+diaSalida;
+    		Date diaSalidaDate = Date.valueOf(salidaConca);
+    		
+      		if (entradaConca != null && salidaConca != null )
       		{
-      			long idPlanDeConsumo = Long.valueOf(idPlanDeConsumoStr);
-          		VOPromocionParticular tb = a12HotelAndes.agregarPromocionParticular(idPlanDeConsumo,descripcion);
+          		String tb = a12HotelAndes.consultarIngresos(diaEntradaDate,diaSalidaDate);
           		if (tb == null)
           		{
           			throw new Exception ("No se pudo crear una promocion particular con los parámetros especificados");

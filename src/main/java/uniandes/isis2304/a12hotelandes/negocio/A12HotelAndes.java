@@ -812,6 +812,17 @@ public class A12HotelAndes
 	}
 	
 	/* ****************************************************************
+	 * 			Métodos de consulta
+	 *****************************************************************/
+	
+	public String consultarIngresos(Date inicio, Date fin) {
+		log.info ("Consultando ingresos por servicios en cada habitacion");
+		String respuesta = pp.consultarIngresos(inicio,fin);
+		return "";
+	}
+	
+	
+	/* ****************************************************************
 	 * 			Métodos para administración
 	 *****************************************************************/
 

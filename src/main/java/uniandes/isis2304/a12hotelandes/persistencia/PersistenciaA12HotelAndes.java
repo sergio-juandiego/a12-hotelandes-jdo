@@ -147,6 +147,7 @@ public class PersistenciaA12HotelAndes
 	private SQLTodoIncluido sqlTodoIncluido;
 	private SQLProductoTodoIncluido sqlProductoTodoIncluido;
 	private SQLPromocionParticular sqlPromocionParticular;
+	private SQLConsultas sqlConsultas;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -297,6 +298,7 @@ public class PersistenciaA12HotelAndes
 		sqlTodoIncluido = new SQLTodoIncluido(this);
 		sqlProductoTodoIncluido = new SQLProductoTodoIncluido(this);
 		sqlPromocionParticular = new SQLPromocionParticular(this);
+		sqlConsultas = new SQLConsultas(this);
 		// TODO Crear todas las clases
 		
 		sqlUtil = new SQLUtil(this);
@@ -2151,6 +2153,40 @@ public class PersistenciaA12HotelAndes
             log.trace ("Inserción de PromocionParticular: " + descripcion +" al plan de consumo "+idPlanDeConsumo+": " + tuplasInsertadas + " tuplas insertadas");
 
             return new PromocionParticular(idPlanDeConsumo,descripcion);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos de consulta
+	 *****************************************************************/
+	
+	public String consultarIngresos(Date inicio, Date fin) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+        	//Cambiar long
+            long respuesta = sqlConsultas.consultarIngresos(pm, inicio, fin);
+            tx.commit();
+
+            log.trace ("Consultando ingresos por habitacion entre " + inicio +" y "+fin);
+
+            return "";
         }
         catch (Exception e)
         {
