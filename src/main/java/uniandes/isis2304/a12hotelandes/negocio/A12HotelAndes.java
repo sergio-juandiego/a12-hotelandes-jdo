@@ -490,9 +490,9 @@ public class A12HotelAndes
 	/* ****************************************************************
 	 * 			Métodos para manejar RESERVA SERVICIO
 	 *****************************************************************/
-	public ReservaServicio adicionarReservaServicio(Long idServicio, Integer periodo) {
+	public VOReservaServicio adicionarReservaServicio(Long idReserva, Long idServicio, Timestamp horaInicio, Timestamp horaFin) {
 		log.info ("Adicionando Servicio: ");
-        ReservaServicio ReservaServicio = pp.adicionarReservaServicio (idServicio, periodo);
+        VOReservaServicio ReservaServicio = pp.adicionarReservaServicio (idReserva,idServicio, horaInicio, horaFin);
         log.info ("Adicionando Servicio: " + ReservaServicio);
         return ReservaServicio;
 	}

@@ -16,6 +16,7 @@
 package uniandes.isis2304.a12hotelandes.persistencia;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -62,6 +63,7 @@ import uniandes.isis2304.a12hotelandes.negocio.TodoIncluido;
 import uniandes.isis2304.a12hotelandes.negocio.UsuarioSistema;
 import uniandes.isis2304.a12hotelandes.negocio.VOPromocionParticular;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaHabitacion;
+import uniandes.isis2304.a12hotelandes.negocio.VOReservaServicio;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicio;
 
 /**
@@ -1549,19 +1551,19 @@ public class PersistenciaA12HotelAndes
 	 * 			Métodos para manejar los Reserva Servicio
 	 *****************************************************************/
 	
-	public ReservaServicio adicionarReservaServicio(Long idServicio, Integer periodo) {
+	public VOReservaServicio adicionarReservaServicio(Long idReserva, Long idServicio, Timestamp horaInicio, Timestamp horaFin) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
         	tx.begin();
             long idReservaServicio = nextval(); 
-            long tuplasInsertadas = sqlReservaServicio.adicionarReservaServicio(pm,  idReservaServicio, idServicio, periodo);
+            long tuplasInsertadas = sqlReservaServicio.adicionarReservaServicio(pm,  idReservaServicio, idReserva, idServicio, horaInicio, horaFin);
             tx.commit();
 
             log.trace ("Inserción de ReservaServicio: " + idReservaServicio + ": " + tuplasInsertadas + " tuplas insertadas");
 
-            return new ReservaServicio (idReservaServicio, idServicio, periodo);
+            return new ReservaServicio (idReservaServicio, idServicio, horaInicio, horaFin);
         }
         catch (Exception e)
         {

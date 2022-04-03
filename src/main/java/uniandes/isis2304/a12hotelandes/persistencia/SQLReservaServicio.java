@@ -1,5 +1,7 @@
 package uniandes.isis2304.a12hotelandes.persistencia;
 
+import java.sql.Timestamp;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
@@ -13,10 +15,10 @@ public class SQLReservaServicio {
 		this.pp = pp;
 	}
 	
-	public long adicionarReservaServicio(PersistenceManager pm, Long id, Long idServicio, Integer periodo)
+	public long adicionarReservaServicio(PersistenceManager pm, Long id,Long idReserva, Long idServicio, Timestamp horaInicio, Timestamp horaFin)
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReservaServicio () + "(id, horarioservicio, capacidad, costo) values (?, ?, ?, ?)");
-        q.setParameters(id, idServicio, periodo);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaReservaServicio () + "(id,idreserva,idservicio,fechainicio,fechafin) values (?, ?, ?, ?,?)");
+        q.setParameters(id,idReserva, idServicio, horaInicio, horaFin);
         return (long) q.executeUnique();
 		
 	}

@@ -1020,16 +1020,16 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
        		String numDocClienteStr = JOptionPane.showInputDialog (this, "Numero documento cliente?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
        		String tipoDocCliente = JOptionPane.showInputDialog (this, "Tipo documento cliente? (CC,TI,CE)", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
        		
-       		String diaEntrada = JOptionPane.showInputDialog (this, "Día de entrada del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		String mesEntrada = JOptionPane.showInputDialog (this, "Mes de entrada del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		String anioEntrada = JOptionPane.showInputDialog (this, "Año de entrada del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+       		String diaEntrada = JOptionPane.showInputDialog (this, "Día de entrada del Reserva Habitacion? (Formato dd)", "Adicionar Reserva Habitacion", JOptionPane.QUESTION_MESSAGE);
+    		String mesEntrada = JOptionPane.showInputDialog (this, "Mes de entrada del Reserva Habitacion? (Formato mm)", "Adicionar Reserva Habitacion", JOptionPane.QUESTION_MESSAGE);
+    		String anioEntrada = JOptionPane.showInputDialog (this, "Año de entrada del Reserva Habitacion? (Formato yyyy)", "Adicionar Reserva Habitacion", JOptionPane.QUESTION_MESSAGE);
     		
     		String entradaConca = anioEntrada+ "-" + mesEntrada+"-"+diaEntrada;
     		Date diaEntradaDate = Date.valueOf(entradaConca);
     		
-    		String diaSalida = JOptionPane.showInputDialog (this, "Día de salida del cliente? (Formato dd)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		String mesSalida = JOptionPane.showInputDialog (this, "Mes de salida del cliente? (Formato mm)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
-    		String anioSalida = JOptionPane.showInputDialog (this, "Año de salida del cliente? (Formato yyyy)", "Adicionar cliente", JOptionPane.QUESTION_MESSAGE);
+    		String diaSalida = JOptionPane.showInputDialog (this, "Día de salida del Reserva Habitacion? (Formato dd)", "Adicionar Reserva Habitacion", JOptionPane.QUESTION_MESSAGE);
+    		String mesSalida = JOptionPane.showInputDialog (this, "Mes de salida del Reserva Habitacion? (Formato mm)", "Adicionar Reserva Habitacion", JOptionPane.QUESTION_MESSAGE);
+    		String anioSalida = JOptionPane.showInputDialog (this, "Año de salida del Reserva Habitacion? (Formato yyyy)", "Adicionar Reserva Habitacion", JOptionPane.QUESTION_MESSAGE);
     		
     		String salidaConca = anioSalida+ "-" + mesSalida+"-"+diaSalida;
     		Date diaSalidaDate = Date.valueOf(salidaConca);
@@ -1184,13 +1184,29 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
           	try 
           	{
           		String idServicio = JOptionPane.showInputDialog (this, "ID servicio?", "Adicionar reserva servicio", JOptionPane.QUESTION_MESSAGE);
-          		String periodo = JOptionPane.showInputDialog (this, "Periodo de la reserva?", "Adicionar reserva servicio", JOptionPane.QUESTION_MESSAGE);
+          		String idReserva = JOptionPane.showInputDialog (this, "ID de la reserva de habitacion?", "Adicionar reserva servicio", JOptionPane.QUESTION_MESSAGE);
+          		
+           		String diaEntrada = JOptionPane.showInputDialog (this, "Día de entrada del cliente? (Formato dd)", "Adicionar Reserva Servicio", JOptionPane.QUESTION_MESSAGE);
+        		String mesEntrada = JOptionPane.showInputDialog (this, "Mes de entrada del Reserva Servicio? (Formato mm)", "Adicionar Reserva Servicio", JOptionPane.QUESTION_MESSAGE);
+        		String anioEntrada = JOptionPane.showInputDialog (this, "Año de entrada del Reserva Servicio? (Formato yyyy)", "Adicionar Reserva Servicio", JOptionPane.QUESTION_MESSAGE);
+        		String horaInicio = JOptionPane.showInputDialog (this, "Hora de inicio?", "Adicionar Reserva Servicio", JOptionPane.QUESTION_MESSAGE);
+        		
+        		String entradaConca = anioEntrada+ "-" + mesEntrada+"-"+diaEntrada+" "+horaInicio+":00:00";
+        		Timestamp diaEntradaDate = Timestamp.valueOf(entradaConca);
+        		
+        		String diaSalida = JOptionPane.showInputDialog (this, "Día de salida del Reserva Servicio? (Formato dd)", "Adicionar Reserva Servicio", JOptionPane.QUESTION_MESSAGE);
+        		String mesSalida = JOptionPane.showInputDialog (this, "Mes de salida del Reserva Servicio? (Formato mm)", "Adicionar Reserva Servicio", JOptionPane.QUESTION_MESSAGE);
+        		String anioSalida = JOptionPane.showInputDialog (this, "Año de salida del Reserva Servicio? (Formato yyyy)", "Adicionar Reserva Servicio", JOptionPane.QUESTION_MESSAGE);
+        		String horaFin = JOptionPane.showInputDialog (this, "Hora de finalizacion?", "Adicionar Reserva Servicio", JOptionPane.QUESTION_MESSAGE);
+        		
+        		String salidaConca = anioSalida+ "-" + mesSalida+"-"+diaSalida+" "+horaFin+":00:00";
+        		Timestamp diaSalidaDate = Timestamp.valueOf(salidaConca);
           		
           		
           		
-          		if (idServicio!= null && periodo != null)
+          		if (idReserva != null && idServicio!= null)
           		{
-              		VOReservaServicio tb = a12HotelAndes.adicionarReservaServicio(Long.parseLong(idServicio), Integer.parseInt(periodo));
+              		VOReservaServicio tb = a12HotelAndes.adicionarReservaServicio(Long.parseLong(idReserva),Long.parseLong(idServicio), diaEntradaDate,diaSalidaDate);
               		if (tb == null)
               		{
               			throw new Exception ("No se pudo crear un reserva para la habitacion con id: " + idServicio);
@@ -1809,7 +1825,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
       		String idReservaStr = JOptionPane.showInputDialog (this, "id de la reserva?", "Agregar Consumo de Servicio", JOptionPane.QUESTION_MESSAGE);
       		String idServicioStr = JOptionPane.showInputDialog (this, "id del servicio?", "Agregar Consumo de Servicio", JOptionPane.QUESTION_MESSAGE);
       		String idProductoStr = JOptionPane.showInputDialog (this, "id del producto?", "Agregar Consumo de Servicio", JOptionPane.QUESTION_MESSAGE);
-      		String cantidadStr = JOptionPane.showInputDialog (this, "Qué costo tendrá este producto?", "Agregar Consumo de Servicio", JOptionPane.QUESTION_MESSAGE);
+      		String cantidadStr = JOptionPane.showInputDialog (this, "Cuanto fue consumido?", "Agregar Consumo de Servicio", JOptionPane.QUESTION_MESSAGE);
       		
       		if (idReservaStr != null && idServicioStr != null && idProductoStr!=null && cantidadStr != null )
       		{
