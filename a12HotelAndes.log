@@ -4,3 +4,12 @@ Conexión cerrada
 20:50:39,770 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando hotel: null
 20:50:59,770 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando hotel: DECAMERON
 20:51:00,439 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando hotel: Hotel [id=56, nombre=DECAMERON, ubicacion=PARA]
+18:22:41,406 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:22:41,406 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:22:41,431 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:23:31,922 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:23:31,922 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:23:31,941 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:24:31,601 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:24:31,601 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:24:31,620 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
