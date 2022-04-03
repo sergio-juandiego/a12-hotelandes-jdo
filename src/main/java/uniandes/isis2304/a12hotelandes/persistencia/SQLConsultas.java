@@ -66,11 +66,11 @@ private final static String SQL = PersistenciaA12HotelAndes.SQL;
 				"WHERE RH.ID = CS.IDRESERVA\r\n"
 				+ "	AND RH.NUMDOCCLIENTE = C.NUMDOC\r\n"
 				+ "	AND RH.TIPODOCCLIENTE = C.TIPODOC\r\n"
-				+ "	AND RH.DIAENTRADA > 'FECHAINICIO'\r\n"
-				+ "	AND RH.DIASALIDA < 'FECHASALIDA'\r\n"
-				+ "	AND C.TIPODOC = 'TIPODOC'\r\n"
-				+ "	AND C.NUMDOC = 'NUMDOC';;");
-        q.setParameters(inicio,fin);
+				+ "	AND RH.DIAENTRADA > ?\r\n"
+				+ "	AND RH.DIASALIDA < ?\r\n"
+				+ "	AND C.TIPODOC = ?\r\n"
+				+ "	AND C.NUMDOC = ?;;");
+        q.setParameters(inicio,fin,tipoDoc,numDoc);
         return (long) q.executeUnique();
 		
 	}
