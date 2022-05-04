@@ -54,6 +54,7 @@ import uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes;
 import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.VOCliente;
 import uniandes.isis2304.a12hotelandes.negocio.VOConsumoServicio;
+import uniandes.isis2304.a12hotelandes.negocio.VOConvencion;
 import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOHotel;
 import uniandes.isis2304.a12hotelandes.negocio.VOLargaEstadia;
@@ -2093,6 +2094,105 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
   			panelDatos.actualizarInterfaz(resultado);
   		}
       }
+    
+    
+    /* ****************************************************************
+	 * 			Métodos de convenciones
+	 *****************************************************************/
+    
+    public void agregarConvencion() //TODO agregar una convencion
+    {
+      	try 
+      	{
+      		String idPlanDeConsumoStr = JOptionPane.showInputDialog (this, "id del Plan de Consumo?", "Nueva convencion", JOptionPane.QUESTION_MESSAGE);
+      		Long idPlanDeConsumo = Long.parseLong(idPlanDeConsumoStr);
+      		
+      		String strNumAsistentes = JOptionPane.showInputDialog (this, "Numero de asistentes? (Formato dd)", "Nueva convención", JOptionPane.QUESTION_MESSAGE);
+      		Integer numAsistentes = Integer.parseInt(strNumAsistentes);
+       		
+      		String diaEntrada = JOptionPane.showInputDialog (this, "Día de inicio? (Formato dd)", "Nueva convención", JOptionPane.QUESTION_MESSAGE);
+    		String mesEntrada = JOptionPane.showInputDialog (this, "Mes de inicio? (Formato mm)", "Nueva convención", JOptionPane.QUESTION_MESSAGE);
+    		String anioEntrada = JOptionPane.showInputDialog (this, "Año de inicio? (Formato yyyy)", "Nueva convención", JOptionPane.QUESTION_MESSAGE);
+    		
+    		String entradaConca = anioEntrada+ "-" + mesEntrada+"-"+diaEntrada;
+    		Date diaEntradaDate = Date.valueOf(entradaConca);
+    		
+    		String diaSalida = JOptionPane.showInputDialog (this, "Día de finalizacion? (Formato dd)", "Nueva convención", JOptionPane.QUESTION_MESSAGE);
+    		String mesSalida = JOptionPane.showInputDialog (this, "Mes de finalizacion? (Formato mm)", "Nueva convención", JOptionPane.QUESTION_MESSAGE);
+    		String anioSalida = JOptionPane.showInputDialog (this, "Año de finalizacion? (Formato yyyy)", "Nueva convención", JOptionPane.QUESTION_MESSAGE);
+    		
+    		String salidaConca = anioSalida+ "-" + mesSalida+"-"+diaSalida;
+    		Date diaSalidaDate = Date.valueOf(salidaConca);
+    		
+      		if (entradaConca != null && salidaConca != null && strNumAsistentes != null)
+      		{
+          		VOConvencion tb = a12HotelAndes.agregarConvencion(idPlanDeConsumo, numAsistentes, diaEntradaDate, diaSalidaDate, 0, "Registrada");
+          		if (tb == null)
+          		{
+          			throw new Exception ("No se pudo crear una convencion con los parámetros especificados");
+          		}
+          		String resultado = "En Convencion\n\n";
+          		resultado += "Convencion agregado exitosamente: " + tb;
+      			resultado += "\n Operación terminada";
+      			panelDatos.actualizarInterfaz(resultado);
+      		}
+      		else
+      		{
+      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+      		}
+  		} 
+      	catch (Exception e) 
+      	{
+//      			e.printStackTrace();
+  			String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  		}
+      }
+    
+    public void reservarAlojamientoConvencion()
+    {
+    	//TODO Pasos a seguir:
+    	//1. De la lista de tipos de habitacion y cantidad revisar si si se puede hacer la reserva
+    	//2. Hacer las reservas individuales correspondientes, a nombre de una misma persona (encargadx de la convención)
+    }
+    
+    public void reservarServiciosConvencion()
+    {
+    	//TODO Pasos a seguir:
+    	//1. De la lista de servicios hacer las reservas ->
+    	//2. Hacer las reservas individuales correspondientes, a nombre de una misma persona (encargadx de la convención)
+    }
+    
+    public void cancelarReservasAlojamientoConvencion()
+    {
+    	//TODO Hacer un query que bote las reservas de esa persona y quitarlas (También se puede revisando las de la reserva)
+    }
+    
+    public void cancelarReservasServicioConvencion()
+    {
+    	//TODO Hacer un query que bote las reservas de esa persona y quitarlas (También se puede revisando las de la reserva)
+    }
+    
+    public void registrarFinConvencion()
+    {
+    	//TODO Cambiar el atributo de convencion de estado
+    }
+    
+    
+    /* ****************************************************************
+	 * 			Métodos de mantenimiento
+	 *****************************************************************/
+    
+    public void registrarMantenimiento()
+    {
+    	//TODO Sergio
+    }
+    
+    public void registrarFinMantenimiento()
+    {
+    	//TODO Sergio
+    }
+    
     
     /* ****************************************************************
 	 * 			Métodos de consulta

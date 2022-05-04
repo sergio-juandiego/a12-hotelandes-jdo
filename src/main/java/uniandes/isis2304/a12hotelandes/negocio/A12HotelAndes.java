@@ -812,6 +812,24 @@ public class A12HotelAndes
 	}
 	
 	/* ****************************************************************
+	 * 			Métodos para manejar las Convenciones
+	 *****************************************************************/
+	
+
+	//TODO Completar
+	
+	public VOConvencion agregarConvencion(Long idPlanDeConsumo, Integer numAsistentes, Date diaEntradaDate,
+			Date diaSalidaDate, Integer cuenta, String estado) {
+		log.info("Agregando convencion: ");
+		VOConvencion convencion = pp.agregarConvencion(idPlanDeConsumo, numAsistentes, diaEntradaDate,
+				diaSalidaDate, cuenta, estado);
+		log.info("Agregada convencion: " + convencion);
+		return convencion;
+	}
+
+	
+	
+	/* ****************************************************************
 	 * 			Métodos de consulta
 	 *****************************************************************/
 	
@@ -834,6 +852,7 @@ public class A12HotelAndes
         log.info ("Limpiando la BD de A12HotelAndes: Listo!");
         return borrrados;
 	}
+
 
 	
 

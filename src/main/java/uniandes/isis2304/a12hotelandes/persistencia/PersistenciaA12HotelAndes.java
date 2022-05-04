@@ -34,6 +34,7 @@ import com.google.gson.JsonObject;
 
 import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.ConsumoServicio;
+import uniandes.isis2304.a12hotelandes.negocio.Convencion;
 import uniandes.isis2304.a12hotelandes.negocio.Habitacion;
 import uniandes.isis2304.a12hotelandes.negocio.Hotel;
 import uniandes.isis2304.a12hotelandes.negocio.LargaEstadia;
@@ -61,6 +62,7 @@ import uniandes.isis2304.a12hotelandes.negocio.TiempoCompartido;
 import uniandes.isis2304.a12hotelandes.negocio.TipoHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.TodoIncluido;
 import uniandes.isis2304.a12hotelandes.negocio.UsuarioSistema;
+import uniandes.isis2304.a12hotelandes.negocio.VOConvencion;
 import uniandes.isis2304.a12hotelandes.negocio.VOPromocionParticular;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaServicio;
@@ -148,6 +150,8 @@ public class PersistenciaA12HotelAndes
 	private SQLProductoTodoIncluido sqlProductoTodoIncluido;
 	private SQLPromocionParticular sqlPromocionParticular;
 	private SQLConsultas sqlConsultas;
+
+	private SQLConvencion sqlConvencion;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -301,6 +305,8 @@ public class PersistenciaA12HotelAndes
 		sqlProductoTodoIncluido = new SQLProductoTodoIncluido(this);
 		sqlPromocionParticular = new SQLPromocionParticular(this);
 		sqlConsultas = new SQLConsultas(this);
+		
+		sqlConvencion = new SQLConvencion(this);
 
 		
 		sqlUtil = new SQLUtil(this);
@@ -399,6 +405,10 @@ public class PersistenciaA12HotelAndes
 	public String darTablaPromocionParticular() {
 		return tablas.get(29);
 	}
+	public String darTablaConvencion() {
+		return tablas.get(30);
+	}
+
 	
 	
 	/**
@@ -2153,6 +2163,46 @@ public class PersistenciaA12HotelAndes
         }
 	}
 	
+	
+	/* ****************************************************************
+	 * 			Métodos de convencion
+	 *****************************************************************/
+	
+	public VOConvencion agregarConvencion(Long idPlanDeConsumo, Integer numAsistentes, Date diaEntradaDate,
+			Date diaSalidaDate, Integer cuenta, String estado) {
+		
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        long idConvencion = nextval();
+        try
+        {
+        	tx.begin();
+            long tuplasInsertadas = sqlConvencion.agregarConvencion(pm, idConvencion, idPlanDeConsumo, numAsistentes, diaEntradaDate,
+            		diaSalidaDate, cuenta, estado);
+            tx.commit();
+
+            log.trace ("Inserción de Convencion al plan de consumo "+idPlanDeConsumo+": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new Convencion(idConvencion, idPlanDeConsumo, numAsistentes, diaEntradaDate,
+            		diaSalidaDate, cuenta, estado);
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	
 	/* ****************************************************************
 	 * 			Métodos de consulta
 	 *****************************************************************/
@@ -2221,6 +2271,9 @@ public class PersistenciaA12HotelAndes
         }
 		
 	}
+
+	
+	
 
 	
 

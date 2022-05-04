@@ -3,3 +3,7 @@ target/classes/META-INF/persistence.xml
 datanucleus.log
 *.log
 .DS_Store
+datanucleus.log
+a12HotelAndes.log
+a12HotelAndes.log
+*.log

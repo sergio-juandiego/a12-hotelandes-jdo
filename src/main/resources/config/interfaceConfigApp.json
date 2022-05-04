@@ -1,7 +1,7 @@
 {
 	"title": "Aplicación transaccional de HotelAndes",
 	"frameH": 400,
-	"frameW": 700,
+	"frameW": 900,
 	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
@@ -231,6 +231,17 @@
 					"event": "agregarPromocionParticular"
 				}
 			]
+		},
+		{
+		  "menuTitle": "Convenciones",
+		  "options":
+		  [
+				{
+					"label": "Agregar Convencion",
+					"event": "agregarConvencion"
+				}
+		  ]
+
 		},
 		{ "menuTitle": "Mantenimiento",
 		  "options":
