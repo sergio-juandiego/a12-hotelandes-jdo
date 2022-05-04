@@ -193,7 +193,9 @@ public class PersistenciaA12HotelAndes
 		tablas.add ("HTA_TODO_INCLUIDO");
 		tablas.add ("HTA_PRODUCTOS_TODO_INCLUIDO");
 		tablas.add ("HTA_PROMOCION_PARTICULAR");
-		tablas.add ("HTA_RESERVA_DE_SERVICIO");
+		tablas.add ("HTA_CONVENCION"); //30
+		tablas.add ("HTA_CONVENCION_SERVICIO"); //31
+		tablas.add ("HTA_CONVENCION_HABITACION"); //32
 }
 
 	/**
@@ -299,7 +301,7 @@ public class PersistenciaA12HotelAndes
 		sqlProductoTodoIncluido = new SQLProductoTodoIncluido(this);
 		sqlPromocionParticular = new SQLPromocionParticular(this);
 		sqlConsultas = new SQLConsultas(this);
-		// TODO Crear todas las clases
+
 		
 		sqlUtil = new SQLUtil(this);
 	}
@@ -307,63 +309,46 @@ public class PersistenciaA12HotelAndes
 	/**
 	 * @return La cadena de caracteres con el nombre del secuenciador de parranderos
 	 */
-	public String darSeqA12HotelAndes ()
-	{
+	public String darSeqA12HotelAndes (){
 		return tablas.get (0);
 	}
-	
-	public String darTablaHotel()
-	{
+	public String darTablaHotel(){
 		return tablas.get (1);
 	}
-
-	public String darTablaCliente() 
-	{
+	public String darTablaCliente(){
 		return tablas.get(2);
 	}
-	
-	public String darTablaTipoHabitacion() 
-	{
+	public String darTablaTipoHabitacion(){
 		return tablas.get(3);
 	}
-	
 	public String darTablaHabitacion() {
 		return tablas.get(4);
 	}
-	
 	public String darTablaRolesDeUsuario() {
 		return tablas.get(5);
 	}
-	
 	public String darTablaUsuarioSistema() {
 		return tablas.get(6);
 	}
-	
 	public String darTablaReservaHabitacion() {
 		return tablas.get(7);
 	}
-	
 	public String darTablaServicio() {
 		return tablas.get(8);
 	}
-
 	public String darTablaReservaServicio() {
 		return tablas.get(9);
 	}
-	
 	public String darTablaServicioPiscina() {
 		return tablas.get(10);
 	}
-	
 	public String darTablaServicioGimnasio() {
 		return tablas.get(11);
 	}
-	
 	public String darTablaServicioInternet() {
 		return tablas.get(12);
 	}
 	public String darTablaServicioBar() {
-		// TODO Auto-generated method stub
 		return tablas.get(13);
 	}
 	public String darTablaServicioRestaurante() {
@@ -375,11 +360,9 @@ public class PersistenciaA12HotelAndes
 	public String darTablaServicioTienda() {
 		return tablas.get(16);
 	}
-	
 	public String darTablaServicioSpa() {
 		return tablas.get(17);
 	}
-	
 	public String darTablaServicioLPE() {
 		return tablas.get(18);
 	}

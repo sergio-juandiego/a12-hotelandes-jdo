@@ -83,6 +83,7 @@ public class SQLCliente {
 	public List<Cliente> darClientes (PersistenceManager pm)
 	{
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCliente ());
+		System.out.println(q.getClass());
 		q.setResultClass(Cliente.class);
 		return (List<Cliente>) q.executeList();
 	}

@@ -51,6 +51,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes;
+import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.VOCliente;
 import uniandes.isis2304.a12hotelandes.negocio.VOConsumoServicio;
 import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
@@ -527,6 +528,23 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
+    }
+    
+    public void darClientes()
+    {
+    	try
+    	{
+    		List<Cliente> tbCambiados = a12HotelAndes.darClientes();
+    		String resultado = "En actualizar ubicacion Cliente\n\n";
+			resultado += tbCambiados + " Cliente actualizados\n";
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
+    		
+    	}
+    	catch (Exception e)
+    	{
+    		e.printStackTrace();
+    	}
     }
     
     

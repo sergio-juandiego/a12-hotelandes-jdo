@@ -185,7 +185,7 @@ public class A12HotelAndes
 	}
 	
 	
-	public List<Cliente> darClientees ()
+	public List<Cliente> darClientes ()
 	{
         log.info ("Listando Clientees");
         List<Cliente> clientees = pp.darClientes ();	
@@ -834,6 +834,8 @@ public class A12HotelAndes
         log.info ("Limpiando la BD de A12HotelAndes: Listo!");
         return borrrados;
 	}
+
+	
 
 
 

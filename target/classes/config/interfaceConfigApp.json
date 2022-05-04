@@ -48,6 +48,10 @@
 				  {
 					  "label": "Cambiar nombre cliente",
 					  "event": "cambiarNombreCliente"
+				  },
+				  {
+					  "label": "Dar Clientes",
+					  "event": "darClientes"
 				  }
 			  ]
 		  },

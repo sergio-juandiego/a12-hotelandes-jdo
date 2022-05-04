@@ -13,3 +13,89 @@ Conexión cerrada
 18:24:31,601 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
 18:24:31,601 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
 18:24:31,620 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+12:03:50,933 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+12:03:50,934 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+12:03:50,977 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+12:04:28,560 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: Grande
+12:04:28,864 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: TipoHabitacion [id=67, nombre=Grande, descripcion=Muy grande]
+12:04:49,337 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: 
+12:04:49,395 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: Habitacion [id=68, costoPorNoche=21839032, tipoHabitacion=67, aprovisionamiento=Dos camas]
+12:05:27,184 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando cliente: Jesus
+12:05:27,249 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando cliente: Cliente [nombre=Jesus, tipoDoc=TI, numDoc=1234]
+12:05:59,712 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: 
+12:05:59,807 (AWT-EventQueue-0) ERROR [uniandes.isis2304.a12hotelandes.persistencia.PersistenciaA12HotelAndes] - Exception : Error executing SQL query "INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaEntrada, diaSalida, completada, cuenta) values (?, ?, ?, ?, ?, ?, ?, ?)".
+ORA-02290: check constraint (ISIS2304A16202210.HTA_RESERVA_COMPLETADA_Y_N) violated
+
+12:05:59,827 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: null
+12:06:31,564 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: 
+12:06:31,621 (AWT-EventQueue-0) ERROR [uniandes.isis2304.a12hotelandes.persistencia.PersistenciaA12HotelAndes] - Exception : Error executing SQL query "INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaEntrada, diaSalida, completada, cuenta) values (?, ?, ?, ?, ?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304A16202210.FK_HTA_RESERVA_HABITACION_HABITACION) violated - parent key not found
+
+12:06:31,636 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: null
+12:09:17,834 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+12:09:17,834 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+12:09:17,874 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+12:09:29,883 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando cliente: Jesus
+12:09:30,152 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando cliente: Cliente [nombre=Jesus, tipoDoc=TI, numDoc=1234]
+12:09:42,200 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: Grande
+12:09:42,279 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: TipoHabitacion [id=1, nombre=Grande, descripcion=Muy grande]
+12:09:56,251 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: 
+12:09:56,311 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: Habitacion [id=2, costoPorNoche=1000, tipoHabitacion=1, aprovisionamiento=Dos camas]
+12:10:20,379 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: 
+12:10:20,478 (AWT-EventQueue-0) ERROR [uniandes.isis2304.a12hotelandes.persistencia.PersistenciaA12HotelAndes] - Exception : Error executing SQL query "INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaEntrada, diaSalida, completada, cuenta) values (?, ?, ?, ?, ?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304A27202210.FK_HTA_RESERVA_HABITACION_HABITACION) violated - parent key not found
+
+12:10:20,488 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: null
+12:10:45,309 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: 
+12:10:45,389 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: ReservaHabitacion [id=4, idHabitacion=2, numDocCliente=1234, tipoDocCliente=TI, diaEntrada=2002-01-01, diaSalida=2002-01-02, completada=N, cuenta=32183]
+12:39:00,674 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+12:39:00,675 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+12:39:00,713 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+12:39:30,271 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: Administrador
+12:39:30,495 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: RolesDeUsuario [id=5, nombre=Administrador]
+12:41:40,845 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: 
+12:41:40,975 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: ReservaHabitacion [id=6, idHabitacion=2, numDocCliente=1234, tipoDocCliente=TI, diaEntrada=2002-02-03, diaSalida=2004-03-05, completada=Y, cuenta=1829122]
+12:42:23,322 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+12:42:23,379 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=7, horaInicio=10, horaFin=13, capacidad=100]
+12:42:41,645 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+12:42:41,684 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: ServicioPiscina [idServicio=7, nombre=CLub Psicina]
+12:43:22,883 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+12:43:22,959 (AWT-EventQueue-0) ERROR [uniandes.isis2304.a12hotelandes.persistencia.PersistenciaA12HotelAndes] - Exception : Error executing SQL query "INSERT INTO HTA_RESERVA_DE_SERVICIO(id,idreserva,idservicio,fechainicio,fechafin) values (?, ?, ?, ?,?)".
+ORA-00904: "ID": invalid identifier
+
+12:43:22,973 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: null
+12:43:57,928 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando cliente: Sergio
+12:43:57,957 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando cliente: Cliente [nombre=Sergio, tipoDoc=CC, numDoc=1001]
+12:45:22,047 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando Producto: 
+12:45:22,117 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando Producto: Producto [idProducto=9, idServicio=7, costo=2000]
+12:45:40,209 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando Consumo de Servicio: 
+12:45:40,264 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando Consumo de Servicio: ConsumoServicio [idFactura=10, idReserva=6, idServicio=7, idProducto=9, cantidad=1]
+12:46:40,882 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Actualizando ReservaHabitacion por id: 6
+12:46:40,909 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Actualizado ReservaHabitacion: 1
+10:04:45,329 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+10:04:45,330 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+10:04:45,388 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+10:05:09,719 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando hotel: Marriott
+10:05:10,235 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando hotel: Hotel [id=21, nombre=Marriott, ubicacion=Bogotá]
+20:49:23,352 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+20:49:23,353 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+20:49:23,420 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+20:49:41,323 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando cliente: Pepe
+20:49:41,763 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando cliente: Cliente [nombre=Pepe, tipoDoc=CC, numDoc=123]
+20:54:09,826 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+20:54:09,828 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+20:54:09,869 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+20:55:37,735 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+20:55:37,736 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+20:55:37,777 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+20:56:35,406 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Listando Clientees
+20:56:35,552 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Listando Clientees: 1 clientees existentes
+20:56:56,143 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando cliente: Pepo
+20:56:56,706 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando cliente: Cliente [nombre=Pepo, tipoDoc=TI, numDoc=456]
+20:57:00,956 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Listando Clientees
+20:57:01,061 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Listando Clientees: 2 clientees existentes
+20:58:33,225 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+20:58:33,226 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+20:58:33,267 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+20:58:40,557 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Listando Clientees
+20:58:40,704 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Listando Clientees: 2 clientees existentes

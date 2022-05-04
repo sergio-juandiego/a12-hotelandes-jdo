@@ -1,3 +1,5 @@
 
 target/classes/META-INF/persistence.xml
 datanucleus.log
+*.log
+.DS_Store
