@@ -202,8 +202,8 @@ public class PersistenciaA12HotelAndes
 		tablas.add ("HTA_PRODUCTOS_TODO_INCLUIDO");
 		tablas.add ("HTA_PROMOCION_PARTICULAR");
 		tablas.add ("HTA_CONVENCION"); //30
-		tablas.add ("HTA_CONVENCION_SERVICIO"); //31
-		tablas.add ("HTA_CONVENCION_HABITACION"); //32
+		tablas.add ("HTA_CONVENCION_HABITACION");
+		tablas.add ("HTA_CONVENCION_SERVICIO");//32
 }
 
 	/**

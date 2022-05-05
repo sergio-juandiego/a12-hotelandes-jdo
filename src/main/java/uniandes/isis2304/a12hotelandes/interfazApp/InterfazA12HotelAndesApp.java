@@ -2213,6 +2213,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     				resultado += "\n";
     				resultado += reserva.toString();
     				VOConvencionHabitacion relacion = a12HotelAndes.adicionarRelacionReservaHabitacion(idConvencion, reserva.getId());
+    				resultado += "\n" + relacion.toString();
     				// TODO agregarlo a la otra tabla.
     			}
     		}

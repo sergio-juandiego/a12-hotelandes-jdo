@@ -69,18 +69,23 @@ class SQLUtil
         return resp;
 	}
 
-	/**
-	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 
-	 * @param pm - El manejador de persistencia
-	 * @return Un arreglo con 7 números que indican el número de tuplas borradas en las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA,
-	 * TIPOBEBIDA, BEBEDOR y BAR, respectivamente
-	 */
+	
 	public long [] limpiarA12HotelAndes (PersistenceManager pm)
 	{
-        Query qHotel = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHotel());
+        
+		Query qHotel = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHotel());
         Query qCliente = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCliente());
-        Query qPlanDeConsumo = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaPlanDeConsumo());
         Query qTipoHabitacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoHabitacion());
+        Query qHabitacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHabitacion());
+        Query qRolesDeUsuario = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaRolesDeUsuario());
+        Query qUsuarioSistema = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuarioSistema());
+        Query qReservaHabitacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReservaHabitacion());
+        Query qServicio = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicio());
+        Query qReservaDeServicio = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaReservaServicio());
+        Query qPlanDeConsumo = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaPlanDeConsumo());
+        
+        
+        
         
         long hotelEliminados = (long) qHotel.executeUnique ();
         long clienteEliminados = (long) qCliente.executeUnique ();
