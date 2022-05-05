@@ -15,6 +15,10 @@ INSERT INTO HTA_CLIENTE (nombre, numdoc,tipodoc) values('Sergio Yepes', 10009852
 
 INSERT INTO HTA_CLIENTE (nombre, numdoc,tipodoc) values ('Paula Hernandez', 1000416291, 'CE');
 
+INSERT INTO HTA_CLIENTE (nombre, numdoc,tipodoc) values ('Alejandra Villamil', 1000438921, 'CC');
+
+INSERT INTO HTA_CLIENTE (nombre, numdoc,tipodoc) values ('Esteban Gonzales', 1000768302, 'CC');
+
 --Tipos de Habitacion
 
 INSERT INTO HTA_TIPO_HABITACION(id, nombre, descripcion) values (4, 'Suite Presidencial','Para 10 personas. 8 habitaciones,7 banos, sala y comedor' );
@@ -29,6 +33,7 @@ INSERT INTO HTA_ROLES_DE_USUARIO(id, nombre) values (9, 'Gerente');
 INSERT INTO HTA_ROLES_DE_USUARIO(id, nombre) values (10, 'Recepcionista');
 INSERT INTO HTA_ROLES_DE_USUARIO(id, nombre) values (11, 'Empleado');
 INSERT INTO HTA_ROLES_DE_USUARIO(id, nombre) values (12, 'Cliente');
+INSERT INTO HTA_ROLES_DE_USUARIO(id, nombre) values (13, 'OrganizadorEventos');
 
 -- Habitaciones 
 
@@ -53,8 +58,10 @@ INSERT INTO HTA_USUARIO_SISTEMA(id, nombre, rol) values (24, 'Nicki Minaj', 11);
 INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (25,13,1000654218,'CC',(DATE'2016-04-12'),(DATE'2016-04-17'),'Y',0);
 INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (26,16,1000985283,'CC',(DATE'2021-11-25'),(DATE'2021-12-03'),'Y',0);
 INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (27,18,1000416291,'CE',(DATE'2020-08-05'),(DATE'2020-08-12'),'N',0);
-INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (65,15,1000985283,'CC',(DATE'2020-12-28'),(DATE'2020-01-04'),'Y',0);
-
+INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (65,15,1000985283,'CC',(DATE'2020-12-28'),(DATE'2021-01-04'),'Y',0);
+INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (66,19,1000768302,'CC',(DATE'2020-12-28'),(DATE'2021-01-04'),'Y',32000000);
+INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (67,14,1000438921,'CC',(DATE'2022-03-23'),(DATE'2022-03-28'),'Y',7000000);
+INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (68,14,1000438921,'CC',(DATE'2022-04-28'),(DATE'2022-05-05'),'Y',8005000);
 
 -- Servicios
 
@@ -168,9 +175,13 @@ INSERT INTO HTA_SALON_CONFERENCIAS(idservicio, idreserva, horas_uso, costo) valu
 
 -- RESERVA SERVICIO
 
-INSERT INTO HTA_RESERVA_DE_SERVICIO(idReserva,idServicio, fechaInicio,fechaFin) values (25, 50, TIMESTAMP'2016-04-13 16:00:00',TIMESTAMP'2016-04-13 17:00:00');
-INSERT INTO HTA_RESERVA_DE_SERVICIO(idReserva,idServicio, fechaInicio,fechaFin) values (65, 40, TIMESTAMP'2020-12-30 16:00:00',TIMESTAMP'2020-12-31 2:00:00');
-INSERT INTO HTA_RESERVA_DE_SERVICIO(idReserva,idServicio, fechaInicio,fechaFin) values (26, 31, TIMESTAMP'2021-12-01 11:00:00',TIMESTAMP'2021-12-01 12:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (101, 25, 50, TIMESTAMP'2016-04-13 16:00:00',TIMESTAMP'2016-04-13 17:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (102, 65, 40, TIMESTAMP'2020-12-30 16:00:00',TIMESTAMP'2020-12-31 2:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (103, 26, 31, TIMESTAMP'2021-12-01 11:00:00',TIMESTAMP'2021-12-01 12:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (104, 26, 31, TIMESTAMP'2022-03-12 11:00:00',TIMESTAMP'2021-03-12 12:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (105, 26, 31, TIMESTAMP'2022-03-12 12:00:00',TIMESTAMP'2021-03-12 13:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (106, 26, 31, TIMESTAMP'2022-03-12 13:00:00',TIMESTAMP'2021-03-12 14:00:00');
+
 
 -- PRODUCTO 
 
@@ -239,6 +250,7 @@ INSERT INTO HTA_PROMOCION_PARTICULAR(idplandeconsumo,descripcion) values ();
 INSERT INTO HTA_PROMOCION_PARTICULAR(idplandeconsumo,descripcion) values ();
 """
 
+--CONVENCIONE
 
-
+INSERT 
 
