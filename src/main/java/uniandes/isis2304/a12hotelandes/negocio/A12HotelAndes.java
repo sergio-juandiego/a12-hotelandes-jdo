@@ -316,6 +316,13 @@ public class A12HotelAndes
 		return voHabitaciones;
 	}
 	
+	public List<Habitacion> darHabitacionesPorTipo(Long tipo) {
+		log.info ("Listando Habitaciones");
+        List<Habitacion> Habitaciones = pp.darHabitacionesPorTipo (tipo);	
+        log.info ("Listando Habitaciones: " + Habitaciones.size() + " Habitaciones existentes");
+        return Habitaciones;
+	}
+	
 	/* ****************************************************************
 	 * 			Métodos para manejar ROLES_DE_USUARIO
 	 *****************************************************************/
@@ -826,7 +833,22 @@ public class A12HotelAndes
 		log.info("Agregada convencion: " + convencion);
 		return convencion;
 	}
-
+	
+	public VOConvencion darConvencionPorId(Long id) {
+		log.info("Sacando convencion: " + id);
+		VOConvencion convencion = pp.darConvencionPorId(id);
+		log.info("Sacada convencion " + id);
+		return convencion;
+	}
+	
+	
+	public VOConvencionHabitacion adicionarRelacionReservaHabitacion(Long idConvencion, Long id) {
+		log.info("Agregando relacion reserva habitacion convencion");
+		VOConvencionHabitacion relacion = pp.agregarConvencionHabitacion(idConvencion, id);
+		log.info("Agregada relacion reserva " + id + " habitacion convencion " + idConvencion);
+		return relacion;
+		
+	}
 	
 	
 	/* ****************************************************************
@@ -852,6 +874,12 @@ public class A12HotelAndes
         log.info ("Limpiando la BD de A12HotelAndes: Listo!");
         return borrrados;
 	}
+
+	
+
+	
+
+	
 
 
 	

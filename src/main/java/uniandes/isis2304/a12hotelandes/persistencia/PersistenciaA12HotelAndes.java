@@ -35,6 +35,7 @@ import com.google.gson.JsonObject;
 import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.ConsumoServicio;
 import uniandes.isis2304.a12hotelandes.negocio.Convencion;
+import uniandes.isis2304.a12hotelandes.negocio.ConvencionHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.Habitacion;
 import uniandes.isis2304.a12hotelandes.negocio.Hotel;
 import uniandes.isis2304.a12hotelandes.negocio.LargaEstadia;
@@ -63,6 +64,7 @@ import uniandes.isis2304.a12hotelandes.negocio.TipoHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.TodoIncluido;
 import uniandes.isis2304.a12hotelandes.negocio.UsuarioSistema;
 import uniandes.isis2304.a12hotelandes.negocio.VOConvencion;
+import uniandes.isis2304.a12hotelandes.negocio.VOConvencionHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOPromocionParticular;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaServicio;
@@ -152,6 +154,8 @@ public class PersistenciaA12HotelAndes
 	private SQLConsultas sqlConsultas;
 
 	private SQLConvencion sqlConvencion;
+
+	private SQLConvencionHabitacion sqlConvencionHabitacion;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -307,6 +311,7 @@ public class PersistenciaA12HotelAndes
 		sqlConsultas = new SQLConsultas(this);
 		
 		sqlConvencion = new SQLConvencion(this);
+		sqlConvencionHabitacion = new SQLConvencionHabitacion(this);
 
 		
 		sqlUtil = new SQLUtil(this);
@@ -408,6 +413,10 @@ public class PersistenciaA12HotelAndes
 	public String darTablaConvencion() {
 		return tablas.get(30);
 	}
+	public String darTablaConvencionHabitacion() {
+		return tablas.get(31);
+	}
+
 
 	
 	
@@ -973,6 +982,11 @@ public class PersistenciaA12HotelAndes
 	{
 		return sqlHabitacion.darHabitacionPorId (pmf.getPersistenceManager(), idHabitacion);
 	}
+	
+	public List<Habitacion> darHabitacionesPorTipo(Long tipo) {
+		return sqlHabitacion.darHabitacionesPorTipo(pmf.getPersistenceManager(), tipo);
+	}
+
 
 	
 	/* ****************************************************************
@@ -2202,6 +2216,66 @@ public class PersistenciaA12HotelAndes
         }
 	}
 	
+	public VOConvencion darConvencionPorId(Long id) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try 
+		{
+			tx.begin();
+			VOConvencion convencion = sqlConvencion.darConvencionPorId(pm, id);
+			tx.commit();
+			
+			log.trace("Se ha sacado la convencion " + id);
+			
+			return convencion;
+		}
+		catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+		
+	}
+	
+	
+	
+	public ConvencionHabitacion agregarConvencionHabitacion(Long idConvencion, Long id) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			Long relacion = sqlConvencionHabitacion.agregarConvencionHabitacion(pm, idConvencion, id);
+			tx.commit();
+			
+			log.trace("Se ha agregado la convencion " + id);
+			
+			return new ConvencionHabitacion(idConvencion, id);
+			
+		}
+		catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
 	
 	/* ****************************************************************
 	 * 			Métodos de consulta
@@ -2272,6 +2346,12 @@ public class PersistenciaA12HotelAndes
 		
 	}
 
+	
+	
+
+	
+
+	
 	
 	
 

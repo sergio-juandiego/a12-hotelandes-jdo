@@ -79,11 +79,13 @@ class SQLUtil
 	{
         Query qHotel = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHotel());
         Query qCliente = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCliente());
+        Query qPlanDeConsumo = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaPlanDeConsumo());
         Query qTipoHabitacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoHabitacion());
         
         long hotelEliminados = (long) qHotel.executeUnique ();
         long clienteEliminados = (long) qCliente.executeUnique ();
+        long planesDeConsumoEliminados = (long) qPlanDeConsumo.executeUnique ();
         long tipoHabitacionEliminados = (long) qTipoHabitacion.executeUnique ();
-        return new long[] {hotelEliminados, clienteEliminados, tipoHabitacionEliminados};
+        return new long[] {hotelEliminados, clienteEliminados, planesDeConsumoEliminados, tipoHabitacionEliminados};
 	}
 }

@@ -29,6 +29,8 @@ import java.lang.reflect.Method;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -52,9 +54,11 @@ import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes;
 import uniandes.isis2304.a12hotelandes.negocio.Cliente;
+import uniandes.isis2304.a12hotelandes.negocio.Habitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOCliente;
 import uniandes.isis2304.a12hotelandes.negocio.VOConsumoServicio;
 import uniandes.isis2304.a12hotelandes.negocio.VOConvencion;
+import uniandes.isis2304.a12hotelandes.negocio.VOConvencionHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOHotel;
 import uniandes.isis2304.a12hotelandes.negocio.VOLargaEstadia;
@@ -2126,7 +2130,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     		
       		if (entradaConca != null && salidaConca != null && strNumAsistentes != null)
       		{
-          		VOConvencion tb = a12HotelAndes.agregarConvencion(idPlanDeConsumo, numAsistentes, diaEntradaDate, diaSalidaDate, 0, "Registrada");
+          		VOConvencion tb = a12HotelAndes.agregarConvencion(idPlanDeConsumo, numAsistentes, diaEntradaDate, diaSalidaDate, 0, "Iniciada");
           		if (tb == null)
           		{
           			throw new Exception ("No se pudo crear una convencion con los parámetros especificados");
@@ -2154,6 +2158,76 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     	//TODO Pasos a seguir:
     	//1. De la lista de tipos de habitacion y cantidad revisar si si se puede hacer la reserva
     	//2. Hacer las reservas individuales correspondientes, a nombre de una misma persona (encargadx de la convención)
+    	
+    	try
+    	{
+    		String idConvencionStr = JOptionPane.showInputDialog (this, "Id convencion?", "Reservar alojamiento convencion", JOptionPane.QUESTION_MESSAGE);
+    		Long idConvencion = Long.parseLong(idConvencionStr);
+    		
+    		String numDocClienteStr = JOptionPane.showInputDialog (this, "Numero documento cliente encargado?", "Reservar alojamiento convencion", JOptionPane.QUESTION_MESSAGE);
+    		Integer numDocCliente = Integer.parseInt(numDocClienteStr);
+    		
+    		String tipoDocCliente = JOptionPane.showInputDialog (this, "Tipo documento cliente encargado?", "Reservar alojamiento convencion", JOptionPane.QUESTION_MESSAGE);
+    		
+    		String strTipos = JOptionPane.showInputDialog (this, "Ingrese los tipos de habitación, separados por comas y sin espacios:", "Reservar alojamiento convencion", JOptionPane.QUESTION_MESSAGE);
+    		String[] tiposStrArr = strTipos.split(",");
+    		
+    		Integer disponibles = 0;
+    		List<Long> idsHabitaciones = new ArrayList();
+    		
+    		int i;
+    		for (i =0; i < tiposStrArr.length; i++)
+    		{
+    			Long tipo = Long.parseLong(tiposStrArr[i]);
+    			List<Habitacion> habitaciones = a12HotelAndes.darHabitacionesPorTipo(tipo);
+    			disponibles += habitaciones.size();
+    			int x;
+    			for(x=0; x<habitaciones.size(); x++)
+    			{
+    				idsHabitaciones.add(habitaciones.get(x).id);
+    			}
+
+    		}
+    		
+    		String necesariosStr = JOptionPane.showInputDialog (this, "Ingrese las habitaciones que necesita:", "Reservar alojamiento convencion", JOptionPane.QUESTION_MESSAGE);
+    		Integer necesarios = Integer.parseInt(necesariosStr);
+    		
+    		if (necesarios > disponibles)
+    		{
+    			throw new Exception ("No hay suficientes habitaciones. \nNecesarias: " + necesarios + "\nDisponibles: " + disponibles);
+    		}
+    		
+    		//Ahora hacer cada reserva: Agregar la reserva en ReservaHabitacion y en la tabla de convencion_habitacion
+    		
+    		VOConvencion convencion = a12HotelAndes.darConvencionPorId(idConvencion);
+    		
+    		String resultado = "Fueron agregadas las siguientes reservas de habitación:\n\n";
+    		
+    		if (numDocCliente != null)
+    		{
+    			int j;
+    			for (j=0; j< necesarios; j++)
+    			{
+    				VOReservaHabitacion reserva = a12HotelAndes.adicionarReservaHabitacion(
+    						idsHabitaciones.get(j), numDocCliente, tipoDocCliente, convencion.getFechaInicio(), convencion.getFechaFin(), "N", 0);
+    				resultado += "\n";
+    				resultado += reserva.toString();
+    				VOConvencionHabitacion relacion = a12HotelAndes.adicionarRelacionReservaHabitacion(idConvencion, reserva.getId());
+    				// TODO agregarlo a la otra tabla.
+    			}
+    		}
+    		resultado += "\n Operación terminada";
+    		panelDatos.actualizarInterfaz(resultado);
+    		
+    		
+    	}
+    	catch (Exception e)
+    	{
+    		String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+    	}
+    	
+    	
     }
     
     public void reservarServiciosConvencion()
@@ -2165,12 +2239,12 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     
     public void cancelarReservasAlojamientoConvencion()
     {
-    	//TODO Hacer un query que bote las reservas de esa persona y quitarlas (También se puede revisando las de la reserva)
+    	//TODO Hacer un query que bote las reservas de la persona encargada y quitarlas (También se puede revisando las de la convencion)
     }
     
     public void cancelarReservasServicioConvencion()
     {
-    	//TODO Hacer un query que bote las reservas de esa persona y quitarlas (También se puede revisando las de la reserva)
+    	//TODO Hacer un query que bote las reservas de la persona encargada y quitarlas (También se puede revisando las de la convencion)
     }
     
     public void registrarFinConvencion()

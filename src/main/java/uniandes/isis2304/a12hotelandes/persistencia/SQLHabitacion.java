@@ -57,4 +57,11 @@ public class SQLHabitacion {
         return (long) q.executeUnique();
 	}
 
+	public List<Habitacion> darHabitacionesPorTipo(PersistenceManager pm, Long tipo) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaHabitacion () + " WHERE TIPOHABITACION = ?");
+		q.setParameters(tipo);
+		q.setResultClass(Habitacion.class);
+		return (List<Habitacion>) q.executeList();
+	}
+
 }

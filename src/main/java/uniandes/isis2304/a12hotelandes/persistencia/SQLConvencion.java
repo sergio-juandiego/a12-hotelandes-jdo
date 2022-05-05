@@ -5,6 +5,10 @@ import java.sql.Date;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.isis2304.a12hotelandes.negocio.Convencion;
+import uniandes.isis2304.a12hotelandes.negocio.Habitacion;
+import uniandes.isis2304.a12hotelandes.negocio.VOConvencion;
+
 public class SQLConvencion {
 	
 	private final static String SQL = PersistenciaA12HotelAndes.SQL;
@@ -23,6 +27,13 @@ public class SQLConvencion {
         q.setParameters(id, idPlanDeConsumo, numAsistentes, diaEntradaDate,
         		diaSalidaDate, cuenta, estado);
         return (long) q.executeUnique();
+	}
+
+	public VOConvencion darConvencionPorId(PersistenceManager pm, Long id) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaConvencion () + " WHERE id = ?");
+		q.setResultClass(Convencion.class);
+		q.setParameters(id);
+		return (Convencion) q.executeUnique();
 	}
 	
 }

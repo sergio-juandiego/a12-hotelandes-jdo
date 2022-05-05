@@ -239,6 +239,10 @@
 				{
 					"label": "Agregar Convencion",
 					"event": "agregarConvencion"
+				},
+				{
+					"label": "Reservar alojamiento",
+					"event": "reservarAlojamientoConvencion"
 				}
 		  ]
 
