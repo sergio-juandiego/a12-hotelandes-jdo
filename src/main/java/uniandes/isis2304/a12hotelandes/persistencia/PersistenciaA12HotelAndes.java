@@ -67,6 +67,7 @@ import uniandes.isis2304.a12hotelandes.negocio.UsuarioSistema;
 import uniandes.isis2304.a12hotelandes.negocio.VOConvencion;
 import uniandes.isis2304.a12hotelandes.negocio.VOConvencionHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOConvencionServicio;
+import uniandes.isis2304.a12hotelandes.negocio.VOHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOPromocionParticular;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaServicio;
@@ -901,7 +902,7 @@ public class PersistenciaA12HotelAndes
 
             log.trace ("Inserción de Habitacion de tipo: " + tipoHabitacion + ": " + tuplasInsertadas + " tuplas insertadas");
 
-            return new Habitacion (idHabitacion,  costoPorNoche,  tipoHabitacion,  aprovisionamiento);
+            return new Habitacion (idHabitacion,  costoPorNoche,  tipoHabitacion,  aprovisionamiento, "N");
         }
         catch (Exception e)
         {
@@ -977,6 +978,33 @@ public class PersistenciaA12HotelAndes
             pm.close();
         }
 	} // TODO cambiar
+	
+	public Long cambiarMantenimientoHabitacion(Long idHabitacion, String estado) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            Long resp = sqlHabitacion.cambiarMantenimientoHabitacion(pm, idHabitacion, estado);
+            tx.commit();
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
 
 	
 	public List<Habitacion> darHabitaciones ()
@@ -2480,6 +2508,7 @@ public class PersistenciaA12HotelAndes
 		
 	}
 
+	
 	
 
 	

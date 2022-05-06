@@ -827,7 +827,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
-    } // TODO cambiar atributos
+    } 
 
 
     /**
@@ -1038,6 +1038,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
        {
        	try 
        	{
+       		// TODO REVISAR SI NO ESTAN EN MANTENIMIENTO
        		String idHabitacionStr = JOptionPane.showInputDialog (this, "ID habitacion?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
        		String numDocClienteStr = JOptionPane.showInputDialog (this, "Numero documento cliente?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
        		String tipoDocCliente = JOptionPane.showInputDialog (this, "Tipo documento cliente? (CC,TI,CE)", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
@@ -1059,9 +1060,24 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
        		String completada = JOptionPane.showInputDialog (this, "La reserva fue completada?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
        		String cuentaStr = JOptionPane.showInputDialog (this, "Cuanto será cargado a la habitacion?", "Adicionar reserva habitacion", JOptionPane.QUESTION_MESSAGE);
        		
-       		if (idHabitacionStr!= null && numDocClienteStr!= null && tipoDocCliente!= null && diaEntradaDate!=null && diaSalidaDate != null && completada != null && cuentaStr != null)
+       		long idHabitacion = Long.valueOf(idHabitacionStr);
+       		VOHabitacion habitacion = a12HotelAndes.darHabitacionPorId(idHabitacion);
+       		System.out.println(habitacion.toString());
+       		
+       		if (habitacion.equals(null)) 
        		{
-       			long idHabitacion = Long.valueOf(idHabitacionStr);
+       			throw new Exception ("Habitacion con id " + idHabitacion + " no se ha encontrado.");
+       		}
+       		
+       		if (habitacion.getMantenimiento() == "Y") 
+       		{
+       			throw new Exception ("Habitacion con id " + idHabitacion + " se encuentra en mantenimiento.");
+       		}
+       		
+       		
+       		if (numDocClienteStr!= null && tipoDocCliente!= null && diaEntradaDate!=null && diaSalidaDate != null && completada != null && cuentaStr != null)
+       		{
+       			
        			int numDocCliente = Integer.valueOf(numDocClienteStr);
        			int cuenta = Integer.valueOf(cuentaStr);
            		VOReservaHabitacion tb = a12HotelAndes.adicionarReservaHabitacion(idHabitacion,numDocCliente,tipoDocCliente,diaEntradaDate,diaSalidaDate,completada,cuenta);
@@ -1164,6 +1180,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
           {
           	try 
           	{
+          		
           		String horaInicioStr= JOptionPane.showInputDialog (this, "Hora de inicio del servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
           		String horaFinStr= JOptionPane.showInputDialog (this, "Hora de finalizacion del servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
           		String capacidadStr = JOptionPane.showInputDialog (this, "Capacidad de servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
@@ -1205,6 +1222,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
           {
           	try 
           	{
+          		// TODO REVISAR SI NO ESTAN EN MANTENIMIENTO
           		String idServicio = JOptionPane.showInputDialog (this, "ID servicio?", "Adicionar reserva servicio", JOptionPane.QUESTION_MESSAGE);
           		String idReserva = JOptionPane.showInputDialog (this, "ID de la reserva de habitacion?", "Adicionar reserva servicio", JOptionPane.QUESTION_MESSAGE);
           		
@@ -2297,7 +2315,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     	//TODO Hacer un query que bote las reservas de la persona encargada y quitarlas (También se puede revisando las de la convencion)
     	try
     	{
-    		String idConvencionStr = JOptionPane.showInputDialog (this, "Id convencion?", "Eliminar alojamiento convencion", JOptionPane.QUESTION_MESSAGE);
+    		String idConvencionStr = JOptionPane.showInputDialog (this, "Id convencion?", "Cancelar alojamiento convencion", JOptionPane.QUESTION_MESSAGE);
     		Long idConvencion = Long.parseLong(idConvencionStr);
     		
     		Long r = a12HotelAndes.eliminarReservasAlojamientoConvencion(idConvencion);
@@ -2320,7 +2338,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     	//TODO Hacer un query que bote las reservas de la persona encargada y quitarlas (También se puede revisando las de la convencion)
     	try
     	{
-    		String idConvencionStr = JOptionPane.showInputDialog (this, "Id convencion?", "Eliminar servicios convencion", JOptionPane.QUESTION_MESSAGE);
+    		String idConvencionStr = JOptionPane.showInputDialog (this, "Id convencion?", "Cancelar servicios convencion", JOptionPane.QUESTION_MESSAGE);
     		Long idConvencion = Long.parseLong(idConvencionStr);
     		
     		Long r = a12HotelAndes.eliminarReservasServicioConvencion(idConvencion);
@@ -2342,7 +2360,7 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     	//TODO Cambiar el atributo de convencion de estado
     	try
     	{
-    		String idConvencionStr = JOptionPane.showInputDialog (this, "Id convencion?", "Cerrar convencion convencion", JOptionPane.QUESTION_MESSAGE);
+    		String idConvencionStr = JOptionPane.showInputDialog (this, "Id convencion?", "Cerrar convencion", JOptionPane.QUESTION_MESSAGE);
     		Long idConvencion = Long.parseLong(idConvencionStr);
     		
     		a12HotelAndes.cambiarEstadoConvencion(idConvencion);
@@ -2364,55 +2382,51 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
 	 * 			Métodos de mantenimiento
 	 *****************************************************************/
     
-    public void registrarMantenimiento()
+    public void registrarMantenimientoHabitacion()
     {
-    	//TODO Sergio
+    	try
+    	{
+    		String idHabitacionStr = JOptionPane.showInputDialog (this, "Id habitacion?", "Registrar mantenimiento habitacion", JOptionPane.QUESTION_MESSAGE);
+    		Long idHabitacion = Long.parseLong(idHabitacionStr);
+    		
+    		long r = a12HotelAndes.cambiarMantenimientoHabitacion(idHabitacion, "Y");
+    		
+    		String resultado = "Se ha cambiado el estado de mantenimiento de la habitacion " + idHabitacion;
+    		panelDatos.actualizarInterfaz(resultado);
+    		
+    	}
+    	catch (Exception e)
+    	{
+    		String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  			e.printStackTrace();
+    	}
     }
     
     public void registrarFinMantenimiento()
     {
-    	//TODO Sergio
+    	try
+    	{
+    		String idHabitacionStr = JOptionPane.showInputDialog (this, "Id habitacion?", "Registrar mantenimiento habitacion", JOptionPane.QUESTION_MESSAGE);
+    		Long idHabitacion = Long.parseLong(idHabitacionStr);
+    		
+    		long r = a12HotelAndes.cambiarMantenimientoHabitacion(idHabitacion, "N");
+    		
+    		String resultado = "Se ha cambiado el estado de mantenimiento de la habitacion " + idHabitacion;
+    		panelDatos.actualizarInterfaz(resultado);
+    		
+    	}
+    	catch (Exception e)
+    	{
+    		String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  			e.printStackTrace();
+    	}
     }
     
+    //TODO falta para servicio
     
-    /* ****************************************************************
-	 * 			Métodos de consulta
-	 *****************************************************************/
-    
-    public void consultarIngresosPorHabitacion()
-    {
-      	try 
-      	{
-      		String idPlanDeConsumoStr = JOptionPane.showInputDialog (this, "id del Plan de Consumo?", "Agregar Promocion Particular", JOptionPane.QUESTION_MESSAGE);
-      		String descripcion = JOptionPane.showInputDialog (this, "Descripcion de la Promocion Particular?", "Agregar Promocion Particular", JOptionPane.QUESTION_MESSAGE);
-      		
-      		
-      		if (idPlanDeConsumoStr != null && descripcion != null )
-      		{
-      			long idPlanDeConsumo = Long.valueOf(idPlanDeConsumoStr);
-          		VOPromocionParticular tb = a12HotelAndes.agregarPromocionParticular(idPlanDeConsumo,descripcion);
-          		if (tb == null)
-          		{
-          			throw new Exception ("No se pudo crear una promocion particular con los parámetros especificados");
-          		}
-          		String resultado = "En agregarPromocionParticular\n\n";
-          		resultado += "PromocionParticular agregado exitosamente: " + tb;
-      			resultado += "\n Operación terminada";
-      			panelDatos.actualizarInterfaz(resultado);
-      		}
-      		else
-      		{
-      			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-      		}
-  		} 
-      	catch (Exception e) 
-      	{
-//      			e.printStackTrace();
-  			String resultado = generarMensajeError(e);
-  			panelDatos.actualizarInterfaz(resultado);
-  		}
-      }
-    
+ 
     
 	/* ****************************************************************
 	 * 			Métodos administrativos

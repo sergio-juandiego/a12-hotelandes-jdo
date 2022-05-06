@@ -9,6 +9,8 @@ public interface VOHabitacion {
 	Long getTipoHabitacion();
 
 	String getAprovisionamiento();
+	
+	String getMantenimiento();
 
 	String toString();
 

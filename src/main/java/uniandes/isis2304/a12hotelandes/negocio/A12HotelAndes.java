@@ -303,7 +303,6 @@ public class A12HotelAndes
         return Habitaciones;
 	}
 
-	
 	public List<VOHabitacion> darVOHabitaciones ()
 	{
 		log.info ("Generando los VO de Habitacions");
@@ -322,6 +321,21 @@ public class A12HotelAndes
         log.info ("Listando Habitaciones: " + Habitaciones.size() + " Habitaciones existentes");
         return Habitaciones;
 	}
+	
+	public Habitacion darHabitacionPorId(long id) {
+		log.info ("Listando Habitaciones");
+        Habitacion habitacion = pp.darHabitacionPorId (id);	
+        log.info ("Habitacion: " + habitacion.getId());
+        return habitacion;
+	}
+	
+	public Long cambiarMantenimientoHabitacion(Long idHabitacion, String estado) {
+		log.info ("Actualizando Habitacion por id: " + idHabitacion);
+        Long resp = pp.cambiarMantenimientoHabitacion(idHabitacion, estado);
+        log.info ("Actualizado Habitacion: " + resp);
+        return resp;
+	}
+	
 	
 	/* ****************************************************************
 	 * 			Métodos para manejar ROLES_DE_USUARIO
@@ -913,5 +927,8 @@ public class A12HotelAndes
         log.info ("Limpiando la BD de A12HotelAndes: Listo!");
         return borrrados;
 	}
+
+	
+
 	
 }

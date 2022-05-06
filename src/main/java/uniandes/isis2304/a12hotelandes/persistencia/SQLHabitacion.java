@@ -20,7 +20,7 @@ public class SQLHabitacion {
 	
 	public long adicionarHabitacion (PersistenceManager pm, long idHabitacion, Integer costoPorNoche, Long tipoHabitacion, String aprovisionamiento) 
 	{
-        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHabitacion () + "(id, costopornoche, tipohabitacion, aprovisionamiento) values (?, ?, ?, ?)");
+        Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaHabitacion () + "(id, costopornoche, tipohabitacion, aprovisionamiento, mantenimiento) values (?, ?, ?, ?, 'N')");
         q.setParameters( idHabitacion,  costoPorNoche, tipoHabitacion,  aprovisionamiento);
         return (long) q.executeUnique();
 	}
@@ -62,6 +62,12 @@ public class SQLHabitacion {
 		q.setParameters(tipo);
 		q.setResultClass(Habitacion.class);
 		return (List<Habitacion>) q.executeList();
+	}
+
+	public long cambiarMantenimientoHabitacion(PersistenceManager pm, Long idHabitacion, String estado) {
+        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaHabitacion () + " SET mantenimiento = ? WHERE id = ?");
+        q.setParameters(estado, idHabitacion);
+        return (long) q.executeUnique();
 	}
 
 }

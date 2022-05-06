@@ -6,6 +6,15 @@ public class Habitacion implements VOHabitacion {
 	public Integer costoPorNoche;
 	public Long tipoHabitacion;
 	public String aprovisionamiento;
+	public String mantenimiento;
+	
+	@Override
+	public String getMantenimiento() {
+		return mantenimiento;
+	}
+	public void setMantenimiento(String mantenimiento) {
+		this.mantenimiento = mantenimiento;
+	}
 	@Override
 	public Long getId() {
 		return id;
@@ -41,21 +50,22 @@ public class Habitacion implements VOHabitacion {
 		this.costoPorNoche = 0;
 		this.tipoHabitacion = 0L;
 		this.aprovisionamiento = "";
+		this.mantenimiento = "";
 	}
 	
-	public Habitacion(Long id, Integer costoPorNoche, Long tipoHabitacion, String aprovisionamiento) {
+	public Habitacion(Long id, Integer costoPorNoche, Long tipoHabitacion, String aprovisionamiento,
+			String mantenimiento) {
 		super();
 		this.id = id;
 		this.costoPorNoche = costoPorNoche;
 		this.tipoHabitacion = tipoHabitacion;
 		this.aprovisionamiento = aprovisionamiento;
+		this.mantenimiento = mantenimiento;
 	}
 	@Override
 	public String toString() {
 		return "Habitacion [id=" + id + ", costoPorNoche=" + costoPorNoche + ", tipoHabitacion=" + tipoHabitacion
-				+ ", aprovisionamiento=" + aprovisionamiento + "]";
+				+ ", aprovisionamiento=" + aprovisionamiento + ", mantenimiento=" + mantenimiento + "]";
 	}
-	
-	
 
 }

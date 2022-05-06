@@ -251,6 +251,14 @@
 				{
 					"label": "Eliminar reservas alojamiento",
 					"event": "cancelarReservasAlojamientoConvencion"
+				},
+				{
+					"label": "Eliminar reservas servicios",
+					"event": "cancelarReservasServicioConvencion"
+				},
+				{
+					"label": "Cambiar estado convencion",
+					"event": "registrarFinConvencion"
 				}
 		  ]
 
