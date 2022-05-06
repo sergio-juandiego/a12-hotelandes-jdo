@@ -28,9 +28,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -2297,16 +2295,68 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     public void cancelarReservasAlojamientoConvencion()
     {
     	//TODO Hacer un query que bote las reservas de la persona encargada y quitarlas (También se puede revisando las de la convencion)
+    	try
+    	{
+    		String idConvencionStr = JOptionPane.showInputDialog (this, "Id convencion?", "Eliminar alojamiento convencion", JOptionPane.QUESTION_MESSAGE);
+    		Long idConvencion = Long.parseLong(idConvencionStr);
+    		
+    		Long r = a12HotelAndes.eliminarReservasAlojamientoConvencion(idConvencion);
+    		
+    		String resultado = "Fueron eliminadas " + r + " reservas de habitacion.";
+    		panelDatos.actualizarInterfaz(resultado);
+    		
+    	}
+    	catch (Exception e)
+    	{
+    		String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  			e.printStackTrace();
+    	}
+    	
     }
     
     public void cancelarReservasServicioConvencion()
     {
     	//TODO Hacer un query que bote las reservas de la persona encargada y quitarlas (También se puede revisando las de la convencion)
+    	try
+    	{
+    		String idConvencionStr = JOptionPane.showInputDialog (this, "Id convencion?", "Eliminar servicios convencion", JOptionPane.QUESTION_MESSAGE);
+    		Long idConvencion = Long.parseLong(idConvencionStr);
+    		
+    		Long r = a12HotelAndes.eliminarReservasServicioConvencion(idConvencion);
+    		
+    		String resultado = "Fueron eliminadas " + r + " reservas de servicios.";
+    		panelDatos.actualizarInterfaz(resultado);
+    		
+    	}
+    	catch (Exception e)
+    	{
+    		String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  			e.printStackTrace();
+    	}
     }
     
     public void registrarFinConvencion()
     {
     	//TODO Cambiar el atributo de convencion de estado
+    	try
+    	{
+    		String idConvencionStr = JOptionPane.showInputDialog (this, "Id convencion?", "Cerrar convencion convencion", JOptionPane.QUESTION_MESSAGE);
+    		Long idConvencion = Long.parseLong(idConvencionStr);
+    		
+    		a12HotelAndes.cambiarEstadoConvencion(idConvencion);
+    		
+    		String resultado = "Se ha cambiado el estado de la convencion " + idConvencion;
+    		panelDatos.actualizarInterfaz(resultado);
+    		
+    	}
+    	catch (Exception e)
+    	{
+    		String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  			e.printStackTrace();
+    	}
     }
     
     

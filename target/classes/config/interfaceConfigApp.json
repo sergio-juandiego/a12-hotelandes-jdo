@@ -247,6 +247,10 @@
 				{
 					"label": "Reservar servicios",
 					"event": "reservarServiciosConvencion"
+				},
+				{
+					"label": "Eliminar reservas alojamiento",
+					"event": "cancelarReservasAlojamientoConvencion"
 				}
 		  ]
 

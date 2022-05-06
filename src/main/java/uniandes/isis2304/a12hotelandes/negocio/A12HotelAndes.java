@@ -864,6 +864,30 @@ public class A12HotelAndes
 		return relacion;
 	}
 	
+	public Long eliminarReservasAlojamientoConvencion(Long id) {
+		
+		log.info("Eliminando reservas de convencion" + id);
+		Long eliminadas = pp.eliminarReservasAlojamientoConvencion(id);
+		log.info("Reservas eliminadas.");
+		return eliminadas;
+	}
+	
+	public Long eliminarReservasServicioConvencion(Long id) {
+		log.info("Eliminando reservas de convencion" + id);
+		Long eliminadas = pp.eliminarReservasServicioConvencion(id);
+		log.info("Reservas eliminadas.");
+		return eliminadas;
+	}
+	
+
+	public Long cambiarEstadoConvencion(Long id) {
+		log.info("Cambiando estado convencion " + id);
+		Long cambio = pp.cambiarEstadoConvencion(id);
+		log.info("Cambiado estado convencion " + id);
+		return cambio;
+	}
+
+
 	
 	/* ****************************************************************
 	 * 			Métodos de consulta

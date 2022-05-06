@@ -23,4 +23,11 @@ public class SQLConvencionServicio {
         return (Long) q.executeUnique();
 	}
 
+
+	public Long eliminarServiciosPorIdConvencion(PersistenceManager pm, Long id) {
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConvencionServicio () + " WHERE IDCONVENCION = ?");
+        q.setParameters(id);
+        return (Long) q.executeUnique();
+	}
+
 }

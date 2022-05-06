@@ -2315,6 +2315,101 @@ public class PersistenciaA12HotelAndes
         }
 	}
 	
+	public Long eliminarReservasAlojamientoConvencion(Long id) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			
+			Long eliminar = sqlConvencionHabitacion.eliminarHabitacionesPorIdConvencion(pm,id);
+			
+			tx.commit();
+			
+			log.trace("Se han eliminado las habitaciones de la convencion " + id);
+			
+			return eliminar;
+		}
+		catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+		
+	}
+	
+	public Long eliminarReservasServicioConvencion(Long id) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			
+			Long eliminar = sqlConvencionServicio.eliminarServiciosPorIdConvencion(pm,id);
+			
+			tx.commit();
+			
+			log.trace("Se han eliminado los servicios de la convencion " + id);
+			
+			return eliminar;
+		}
+		catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public Long cambiarEstadoConvencion(Long id) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			
+			Long cambio = sqlConvencion.cambiarEstadoConvencion(pm,id);
+			
+			tx.commit();
+			
+			log.trace("Se ha cambiado el estado de la convencion " + id);
+			
+			return cambio;
+		}
+		catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+
+	
 	/* ****************************************************************
 	 * 			Métodos de consulta
 	 *****************************************************************/
@@ -2385,4 +2480,7 @@ public class PersistenciaA12HotelAndes
 		
 	}
 
+	
+
+	
  }

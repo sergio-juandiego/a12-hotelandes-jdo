@@ -35,5 +35,11 @@ public class SQLConvencion {
 		q.setParameters(id);
 		return (Convencion) q.executeUnique();
 	}
+
+	public Long cambiarEstadoConvencion(PersistenceManager pm, Long id) {
+		Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaConvencion () + " SET estado = 'Cerrada' WHERE ID = ?");
+		q.setParameters(id);
+		return (Long) q.executeUnique();
+	}
 	
 }
