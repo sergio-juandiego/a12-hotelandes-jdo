@@ -36,6 +36,7 @@ import uniandes.isis2304.a12hotelandes.negocio.Cliente;
 import uniandes.isis2304.a12hotelandes.negocio.ConsumoServicio;
 import uniandes.isis2304.a12hotelandes.negocio.Convencion;
 import uniandes.isis2304.a12hotelandes.negocio.ConvencionHabitacion;
+import uniandes.isis2304.a12hotelandes.negocio.ConvencionServicio;
 import uniandes.isis2304.a12hotelandes.negocio.Habitacion;
 import uniandes.isis2304.a12hotelandes.negocio.Hotel;
 import uniandes.isis2304.a12hotelandes.negocio.LargaEstadia;
@@ -65,6 +66,7 @@ import uniandes.isis2304.a12hotelandes.negocio.TodoIncluido;
 import uniandes.isis2304.a12hotelandes.negocio.UsuarioSistema;
 import uniandes.isis2304.a12hotelandes.negocio.VOConvencion;
 import uniandes.isis2304.a12hotelandes.negocio.VOConvencionHabitacion;
+import uniandes.isis2304.a12hotelandes.negocio.VOConvencionServicio;
 import uniandes.isis2304.a12hotelandes.negocio.VOPromocionParticular;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaHabitacion;
 import uniandes.isis2304.a12hotelandes.negocio.VOReservaServicio;
@@ -156,6 +158,8 @@ public class PersistenciaA12HotelAndes
 	private SQLConvencion sqlConvencion;
 
 	private SQLConvencionHabitacion sqlConvencionHabitacion;
+
+	private SQLConvencionServicio sqlConvencionServicio;
 	
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
@@ -309,9 +313,9 @@ public class PersistenciaA12HotelAndes
 		sqlProductoTodoIncluido = new SQLProductoTodoIncluido(this);
 		sqlPromocionParticular = new SQLPromocionParticular(this);
 		sqlConsultas = new SQLConsultas(this);
-		
 		sqlConvencion = new SQLConvencion(this);
 		sqlConvencionHabitacion = new SQLConvencionHabitacion(this);
+		sqlConvencionServicio = new SQLConvencionServicio(this);
 
 		
 		sqlUtil = new SQLUtil(this);
@@ -415,6 +419,9 @@ public class PersistenciaA12HotelAndes
 	}
 	public String darTablaConvencionHabitacion() {
 		return tablas.get(31);
+	}
+	public String darTablaConvencionServicio() {
+		return tablas.get(32);
 	}
 
 
@@ -2248,17 +2255,48 @@ public class PersistenciaA12HotelAndes
 	
 	
 	
-	public ConvencionHabitacion agregarConvencionHabitacion(Long idConvencion, Long id) {
+	public VOConvencionHabitacion agregarConvencionHabitacion(Long idConvencion, Long id) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
+			@SuppressWarnings("unused")
 			Long relacion = sqlConvencionHabitacion.agregarConvencionHabitacion(pm, idConvencion, id);
 			tx.commit();
 			
 			log.trace("Se ha agregado la convencion " + id);
 			
 			return new ConvencionHabitacion(idConvencion, id);
+			
+		}
+		catch (Exception e)
+        {
+        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	public VOConvencionServicio agregarConvencionServicio(Long idConvencion, Long id) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			@SuppressWarnings("unused")
+			Long relacion = sqlConvencionServicio.agregarConvencionServicio(pm, idConvencion, id);
+			tx.commit();
+			
+			log.trace("Se ha agregado la convencion " + id);
+			
+			return new ConvencionServicio(idConvencion, id);
 			
 		}
 		catch (Exception e)
@@ -2288,7 +2326,8 @@ public class PersistenciaA12HotelAndes
         {
         	tx.begin();
         	//Cambiar long
-            long respuesta = sqlConsultas.consultarIngresos(pm, inicio, fin);
+            @SuppressWarnings("unused")
+			long respuesta = sqlConsultas.consultarIngresos(pm, inicio, fin);
             tx.commit();
 
             log.trace ("Consultando ingresos por habitacion entre " + inicio +" y "+fin);
@@ -2345,24 +2384,5 @@ public class PersistenciaA12HotelAndes
         }
 		
 	}
-
-	
-	
-
-	
-
-	
-	
-	
-
-	
-
-	
-
-	
-	
-
-	
-	
 
  }

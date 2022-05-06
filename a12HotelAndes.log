@@ -424,3 +424,111 @@ ORA-00904: "IDRESERVAHABITACION": invalid identifier
 18:05:09,084 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: ReservaHabitacion [id=16, idHabitacion=3, numDocCliente=123, tipoDocCliente=CC, diaEntrada=2002-01-01, diaSalida=2002-01-02, completada=N, cuenta=0]
 18:05:09,085 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando relacion reserva habitacion convencion
 18:05:09,159 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregada relacion reserva 16 habitacion convencion 7
+18:17:35,601 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:17:35,602 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:17:35,638 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:18:37,502 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:18:37,503 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:18:37,543 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:19:24,121 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:19:24,122 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:19:24,162 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:19:40,480 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:19:40,631 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: null
+18:21:10,138 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:21:10,795 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=17, horaInicio=10, horaFin=21, capacidad=1000]
+18:21:34,737 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:21:34,738 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:21:34,781 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:22:06,192 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:22:06,192 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:22:06,233 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:22:18,745 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:22:18,895 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=17, horaInicio=10, horaFin=21, capacidad=1000]
+18:36:13,927 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:36:13,928 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:36:13,972 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:36:56,953 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:36:57,462 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=18, horaInicio=8, horaFin=10, capacidad=100]
+18:37:13,100 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:37:13,264 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=19, horaInicio=6, horaFin=9, capacidad=20]
+18:37:50,990 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:37:51,072 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=18, horaInicio=8, horaFin=10, capacidad=100]
+18:37:51,075 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:37:51,147 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=19, horaInicio=6, horaFin=9, capacidad=20]
+18:37:51,148 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Sacando convencion: 7
+18:37:51,248 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Sacada convencion 7
+18:37:51,248 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: PLACEHOLDER CONVENCION
+18:37:51,388 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: TipoHabitacion [id=20, nombre=PLACEHOLDER CONVENCION, descripcion=NO ESTÁ ASOCIADO A NINGÚN CLIENTE]
+18:37:51,388 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: 
+18:37:51,551 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: Habitacion [id=21, costoPorNoche=0, tipoHabitacion=20, aprovisionamiento=PLACEHOLDER CONVENCION]
+18:37:51,551 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: 
+18:37:51,770 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: ReservaHabitacion [id=22, idHabitacion=21, numDocCliente=123, tipoDocCliente=CC, diaEntrada=2002-01-01, diaSalida=2002-01-02, completada=N, cuenta=0]
+18:37:51,771 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:37:51,927 (AWT-EventQueue-0) ERROR [uniandes.isis2304.a12hotelandes.persistencia.PersistenciaA12HotelAndes] - Exception : Error executing SQL query "INSERT INTO HTA_RESERVA_DE_SERVICIO(id,idreserva,idservicio,fechainicio,fechafin) values (?, ?, ?, ?,?)".
+ORA-00904: "IDRESERVA": invalid identifier
+
+18:37:51,961 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: null
+18:39:13,299 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:39:13,300 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:39:13,339 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:39:32,990 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:39:33,132 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=18, horaInicio=8, horaFin=10, capacidad=100]
+18:39:33,133 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:39:33,211 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=19, horaInicio=6, horaFin=9, capacidad=20]
+18:39:33,211 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Sacando convencion: 7
+18:39:33,599 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Sacada convencion 7
+18:39:33,599 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: PLACEHOLDER CONVENCION
+18:39:33,730 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: TipoHabitacion [id=24, nombre=PLACEHOLDER CONVENCION, descripcion=NO ESTÁ ASOCIADO A NINGÚN CLIENTE]
+18:39:33,730 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: 
+18:39:33,865 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: Habitacion [id=25, costoPorNoche=0, tipoHabitacion=24, aprovisionamiento=PLACEHOLDER CONVENCION]
+18:39:33,865 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: 
+18:39:34,043 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: ReservaHabitacion [id=26, idHabitacion=25, numDocCliente=123, tipoDocCliente=CC, diaEntrada=2002-01-01, diaSalida=2002-01-02, completada=N, cuenta=0]
+18:39:34,043 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:39:34,196 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: ReservaServicio [id=27, idServicio=18, horaInicio=2000-01-01 01:00:00.0, horaFin=2000-01-01 01:00:00.0]
+18:39:34,197 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+18:39:34,336 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: ReservaServicio [id=28, idServicio=19, horaInicio=2000-01-01 01:00:00.0, horaFin=2000-01-01 01:00:00.0]
+19:04:26,481 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+19:04:26,482 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+19:04:26,523 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+19:05:00,628 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+19:05:00,769 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=18, horaInicio=8, horaFin=10, capacidad=100]
+19:05:00,769 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+19:05:00,846 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=19, horaInicio=6, horaFin=9, capacidad=20]
+19:05:00,846 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Sacando convencion: 7
+19:05:01,262 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Sacada convencion 7
+19:05:01,262 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: PLACEHOLDER CONVENCION
+19:05:01,432 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: TipoHabitacion [id=29, nombre=PLACEHOLDER CONVENCION, descripcion=NO ESTÁ ASOCIADO A NINGÚN CLIENTE]
+19:05:01,432 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: 
+19:05:01,592 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: Habitacion [id=30, costoPorNoche=0, tipoHabitacion=29, aprovisionamiento=PLACEHOLDER CONVENCION]
+19:05:01,592 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: 
+19:05:01,758 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: ReservaHabitacion [id=31, idHabitacion=30, numDocCliente=123, tipoDocCliente=CC, diaEntrada=2002-01-01, diaSalida=2002-01-02, completada=N, cuenta=0]
+19:05:01,758 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+19:05:01,930 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: ReservaServicio [id=32, idServicio=18, horaInicio=2000-01-01 01:00:00.0, horaFin=2000-01-01 01:00:00.0]
+19:05:01,930 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando relacion reserva servicio convencion
+19:05:01,936 (AWT-EventQueue-0) ERROR [uniandes.isis2304.a12hotelandes.persistencia.PersistenciaA12HotelAndes] - Exception : Cannot invoke "uniandes.isis2304.a12hotelandes.persistencia.SQLConvencionServicio.agregarConvencionServicio(javax.jdo.PersistenceManager, java.lang.Long, java.lang.Long)" because "this.sqlConvencionServicio" is null
+
+19:05:01,939 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregada relacion reserva 32 servicio convencion 7
+19:06:08,007 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+19:06:08,007 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se aplica configuración indicada en el archivo de configuración
+19:06:08,049 (main) INFO  [uniandes.isis2304.a12hotelandes.interfazApp.InterfazA12HotelAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+19:06:23,379 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+19:06:23,528 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=18, horaInicio=8, horaFin=10, capacidad=100]
+19:06:23,528 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+19:06:23,583 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: Servicio [id=19, horaInicio=6, horaFin=9, capacidad=20]
+19:06:23,584 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Sacando convencion: 7
+19:06:24,011 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Sacada convencion 7
+19:06:24,011 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: PLACEHOLDER CONVENCION
+19:06:24,162 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando tipoHabitacion: TipoHabitacion [id=33, nombre=PLACEHOLDER CONVENCION, descripcion=NO ESTÁ ASOCIADO A NINGÚN CLIENTE]
+19:06:24,162 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: 
+19:06:24,315 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Habitacion: Habitacion [id=34, costoPorNoche=0, tipoHabitacion=33, aprovisionamiento=PLACEHOLDER CONVENCION]
+19:06:24,316 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: 
+19:06:24,480 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando ReservaHabitacion: ReservaHabitacion [id=35, idHabitacion=34, numDocCliente=123, tipoDocCliente=CC, diaEntrada=2002-01-01, diaSalida=2002-01-02, completada=N, cuenta=0]
+19:06:24,480 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+19:06:24,629 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: ReservaServicio [id=36, idServicio=18, horaInicio=2000-01-01 01:00:00.0, horaFin=2000-01-01 01:00:00.0]
+19:06:24,629 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando relacion reserva servicio convencion
+19:06:24,715 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregada relacion reserva 36 servicio convencion 7
+19:06:24,715 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: 
+19:06:24,879 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Adicionando Servicio: ReservaServicio [id=37, idServicio=19, horaInicio=2000-01-01 01:00:00.0, horaFin=2000-01-01 01:00:00.0]
+19:06:24,880 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregando relacion reserva servicio convencion
+19:06:24,970 (AWT-EventQueue-0) INFO  [uniandes.isis2304.a12hotelandes.negocio.A12HotelAndes] - Agregada relacion reserva 37 servicio convencion 7

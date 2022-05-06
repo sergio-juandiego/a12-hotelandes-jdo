@@ -493,6 +493,13 @@ public class A12HotelAndes
         return Servicio;
 	}
 	
+	public VOServicio darServicioPorId(Long id) {
+		log.info ("Adicionando Servicio: ");
+        VOServicio Servicio = pp.darServicioPorId (id);
+        log.info ("Adicionando Servicio: " + Servicio);
+        return Servicio;
+	}
+	
 	
 	/* ****************************************************************
 	 * 			Métodos para manejar RESERVA SERVICIO
@@ -850,6 +857,13 @@ public class A12HotelAndes
 		
 	}
 	
+	public VOConvencionServicio adicionarRelacionReservaServicio(Long idConvencion, Long id) {
+		log.info("Agregando relacion reserva servicio convencion");
+		VOConvencionServicio relacion = pp.agregarConvencionServicio(idConvencion, id);
+		log.info("Agregada relacion reserva " + id + " servicio convencion " + idConvencion);
+		return relacion;
+	}
+	
 	
 	/* ****************************************************************
 	 * 			Métodos de consulta
@@ -857,6 +871,7 @@ public class A12HotelAndes
 	
 	public String consultarIngresos(Date inicio, Date fin) {
 		log.info ("Consultando ingresos por servicios en cada habitacion");
+		@SuppressWarnings("unused")
 		String respuesta = pp.consultarIngresos(inicio,fin);
 		return "";
 	}
@@ -874,20 +889,5 @@ public class A12HotelAndes
         log.info ("Limpiando la BD de A12HotelAndes: Listo!");
         return borrrados;
 	}
-
-	
-
-	
-
-	
-
-
-	
-
-
-
-
-	
-
 	
 }
