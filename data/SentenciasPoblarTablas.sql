@@ -63,45 +63,61 @@ INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodocclien
 INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (67,14,1000438921,'CC',(DATE'2022-03-23'),(DATE'2022-03-28'),'Y',7000000);
 INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (68,14,1000438921,'CC',(DATE'2022-04-28'),(DATE'2022-05-05'),'Y',8005000);
 
+-- Tipos de Servicio
+
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (1,'Piscina');
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (2,'Gimnasio');
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (3,'Internet');
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (4,'Bar');
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (5,'Restaurante');
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (6,'Supermercado');
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (7,'Tienda');
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (8,'Spa');
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (9,'Lavado, Planchado, Embolado');
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (10,'Préstamo de Utensilios');
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (11,'Salón de Reuniones');
+INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (12,'Salón de Conferencias');
+
+
 -- Servicios
 
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (28,10,20,50);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (29,10,20,20);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (30,10,20,45);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (31,10,22,20);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (32,10,22,15);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (33,10,22,40);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (34,0,23,0);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (35,0,23,0);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (36,0,23,0);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (37,17,2,120);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (38,14,23,50);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (39,21,5,200);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (40,10,22,70);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (41,10,23,80);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (42,10,22,50);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (43,10,0,200);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (44,10,0,150);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (45,10,0,130);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (46,10,20,30);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (47,10,19,15);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (48,10,9,20);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (49,10,20,10);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (50,10,20,10);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (51,10,20,10);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (52,10,17,0);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (53,10,17,0);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (54,10,17,0);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (55,10,18,0);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (56,10,18,0);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (57,10,18,0);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (58,7,0,12);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (59,7,0,12);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (60,7,0,12);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (61,6,18,200);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (62,6,18,3);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (63,6,18,400);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad) values (64,10,20,20);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (28,10,20,50,1);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (29,10,20,20,1);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (30,10,20,45,1);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (31,10,22,20,2);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (32,10,22,15,2);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (33,10,22,40,2);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (34,0,23,0,3);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (35,0,23,0,3);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (36,0,23,0,3);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (37,17,2,120,4);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (38,14,23,50,4);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (39,21,5,200,4);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (40,10,22,70,5);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (41,10,23,80,5);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (42,10,22,50,5);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (43,10,0,200,6);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (44,10,0,150,6);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (45,10,0,130,6);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (46,10,20,30,7);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (47,10,19,15,7);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (48,10,9,20,7);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (49,10,20,10,8);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (50,10,20,10,8);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (51,10,20,10,8);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (52,10,17,0,9);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (53,10,17,0,9);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (54,10,17,0,9);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (55,10,18,0,10);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (56,10,18,0,10);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (57,10,18,0,10);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (58,7,0,12,11);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (59,7,0,12,11);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (60,7,0,12,11);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (61,6,18,200,12);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (62,6,18,3,12);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (63,6,18,400,12);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (64,10,20,20,1);
 
 -- Servicio Piscina
 
