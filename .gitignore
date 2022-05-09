@@ -10,3 +10,4 @@ a12HotelAndes.log
 *.log
 a12HotelAndes.log
 datanucleus.log
+src/main/resources/META-INF/persistence.xml

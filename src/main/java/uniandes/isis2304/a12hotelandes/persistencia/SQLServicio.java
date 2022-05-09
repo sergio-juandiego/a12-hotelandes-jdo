@@ -16,10 +16,10 @@ public class SQLServicio {
 		this.pp = pp;
 	}
 	
-	public long adicionarServicio(PersistenceManager pm, Long id, Integer horaInicio, Integer horaFin, Integer capacidad)
+	public long adicionarServicio(PersistenceManager pm, Long id, Integer horaInicio, Integer horaFin, Integer capacidad, Long tipoServicio)
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicio () + "(id, horainicio, horafin, capacidad) values (?, ?, ?, ?)");
-        q.setParameters(id, horaInicio, horaFin, capacidad);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicio () + "(id, horainicio, horafin, capacidad, tiposervicio) values (?, ?, ?, ?, ?)");
+        q.setParameters(id, horaInicio, horaFin, capacidad, tipoServicio);
         return (long) q.executeUnique();
 	}
 	

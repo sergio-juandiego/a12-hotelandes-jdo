@@ -84,6 +84,7 @@ import uniandes.isis2304.a12hotelandes.negocio.VOServicioSupermercado;
 import uniandes.isis2304.a12hotelandes.negocio.VOServicioTienda;
 import uniandes.isis2304.a12hotelandes.negocio.VOTiempoCompartido;
 import uniandes.isis2304.a12hotelandes.negocio.VOTipoHabitacion;
+import uniandes.isis2304.a12hotelandes.negocio.VOTipoServicio;
 import uniandes.isis2304.a12hotelandes.negocio.VOTodoIncluido;
 import uniandes.isis2304.a12hotelandes.negocio.VOUsuarioSistema;
 
@@ -1172,6 +1173,39 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
        /* ****************************************************************
       	 * 			Adicion de servicios
       	 *****************************************************************/
+       
+       public void adicionarTipoServicio( )
+       {
+       	try 
+       	{
+       		String nombreTipoServicio = JOptionPane.showInputDialog (this, "Nombre del tipo servicio?", "Adicionar tipo Servicio", JOptionPane.QUESTION_MESSAGE);
+ 
+       		
+       		if (nombreTipoServicio!= null)
+       		{
+           		VOTipoServicio tb = a12HotelAndes.adicionarTipoServicio(nombreTipoServicio);
+           		if (tb == null)
+           		{
+           			throw new Exception ("No se pudo crear un tipo de servicio con nombre: " + nombreTipoServicio);
+           		}
+           		String resultado = "En adicionarTipoHabitacion\n\n";
+           		resultado += "Tipo de habitacion adicionado exitosamente: " + tb;
+       			resultado += "\n Operación terminada";
+       			panelDatos.actualizarInterfaz(resultado);
+       		}
+       		else
+       		{
+       			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+       		}
+   		} 
+       	catch (Exception e) 
+       	{
+//   			e.printStackTrace();
+   			String resultado = generarMensajeError(e);
+   			panelDatos.actualizarInterfaz(resultado);
+   		}
+       }
+       
           /**
            * Adiciona un tipo habitacion con la información dada por el usuario
            * Se crea una nueva tupla de tipoBebida en la base de datos, si un tipo habitacion con ese nombre no existía
@@ -1184,14 +1218,15 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
           		String horaInicioStr= JOptionPane.showInputDialog (this, "Hora de inicio del servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
           		String horaFinStr= JOptionPane.showInputDialog (this, "Hora de finalizacion del servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
           		String capacidadStr = JOptionPane.showInputDialog (this, "Capacidad de servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+          		String tipoSerStr = JOptionPane.showInputDialog (this, "ingrese el id del tipo de servicio", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
           		
-          		
-          		if (horaInicioStr!= null && horaFinStr !=null && capacidadStr!= null )
+          		if (horaInicioStr!= null && horaFinStr !=null && capacidadStr!= null && tipoSerStr != null)
           		{
           			int horaInicio = Integer.valueOf(horaInicioStr);
           			int horaFin = Integer.valueOf(horaFinStr);
           			Integer capacidad = Integer.parseInt(capacidadStr);
-              		VOServicio tb = a12HotelAndes.adicionarServicio(horaInicio, horaFin, capacidad);
+          			Long tipoSer = Long.valueOf(tipoSerStr);
+              		VOServicio tb = a12HotelAndes.adicionarServicio(horaInicio, horaFin, capacidad, tipoSer);
               		if (tb == null)
               		{
               			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");

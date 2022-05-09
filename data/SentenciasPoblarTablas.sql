@@ -62,6 +62,9 @@ INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodocclien
 INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (66,19,1000768302,'CC',(DATE'2020-12-28'),(DATE'2021-01-04'),'Y',32000000);
 INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (67,14,1000438921,'CC',(DATE'2022-03-23'),(DATE'2022-03-28'),'Y',7000000);
 INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (68,14,1000438921,'CC',(DATE'2022-04-28'),(DATE'2022-05-05'),'Y',8005000);
+INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (69,17,1000654218,'CC',(DATE'2022-01-06'),(DATE'2022-01-25'),'Y',3000000);
+INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (70,13,1000416291,'CC',(DATE'2022-01-06'),(DATE'2022-01-07'),'Y',3000000);
+INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (71,13,1000416291,'CC',(DATE'2022-01-06'),(DATE'2022-01-07'),'Y',3000000);
 
 -- Tipos de Servicio
 
@@ -218,55 +221,4 @@ INSERT INTO HTA_CONSUMO_SERVICIO(idfactura,idreserva,idservicio,idproducto,canti
 INSERT INTO HTA_CONSUMO_SERVICIO(idfactura,idreserva,idservicio,idproducto,cantidad) values (104,26,55,71,2);
 INSERT INTO HTA_CONSUMO_SERVICIO(idfactura,idreserva,idservicio,idproducto,cantidad) values (105,65,43,69,10);
 
-"""
--- PLAN DE CONSUMO
-
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (72,);
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (73,);
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (74,);
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (75,);
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (76,);
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (77,);
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (78,);
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (79,);
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (80,);
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (81,);
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (82,);
-INSERT INTO HTA_PLAN_DE_CONSUMO(id,tipo) values (83,);
-
-
--- PLAN LARGA ESTADIA
-
-INSERT INTO HTA_LARGA_ESTADIA(idplandeconsumo,descuento,idhotel,tiempoestadia) values ();
-INSERT INTO HTA_LARGA_ESTADIA(idplandeconsumo,descuento,idhotel,tiempoestadia) values ();
-INSERT INTO HTA_LARGA_ESTADIA(idplandeconsumo,descuento,idhotel,tiempoestadia) values ();
-
--- PLAN TIEMPO COMPARTIDO
-
-INSERT INTO HTA_TIEMPO_COMPARTIDO(idplandeconsumo,idservicioasociado) values ();
-INSERT INTO HTA_TIEMPO_COMPARTIDO(idplandeconsumo,idservicioasociado) values ();
-INSERT INTO HTA_TIEMPO_COMPARTIDO(idplandeconsumo,idservicioasociado) values ();
-
--- PLAN TODO INCLUIDO
-
-INSERT INTO HTA_TODO_INCLUIDO(idplandeconsumo,idservicioasociado,idreserva,costofijototal) values ();
-INSERT INTO HTA_TODO_INCLUIDO(idplandeconsumo,idservicioasociado,idreserva,costofijototal) values ();
-INSERT INTO HTA_TODO_INCLUIDO(idplandeconsumo,idservicioasociado,idreserva,costofijototal) values ();
-
--- PRODUCTO TODO INCLUIDO
-
-INSERT INTO HTA_PRODUCTOS_TODO_INCLUIDO(idplandeconsumo,idproductoasociado,descuento) values ();
-INSERT INTO HTA_PRODUCTOS_TODO_INCLUIDO(idplandeconsumo,idproductoasociado,descuento) values ();
-INSERT INTO HTA_PRODUCTOS_TODO_INCLUIDO(idplandeconsumo,idproductoasociado,descuento) values ();
-
--- PROMOCION PARTICULAR
-
-INSERT INTO HTA_PROMOCION_PARTICULAR(idplandeconsumo,descripcion) values ();
-INSERT INTO HTA_PROMOCION_PARTICULAR(idplandeconsumo,descripcion) values ();
-INSERT INTO HTA_PROMOCION_PARTICULAR(idplandeconsumo,descripcion) values ();
-"""
-
---CONVENCIONE
-
-INSERT 
 

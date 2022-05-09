@@ -137,6 +137,10 @@
 			"options":
 			[
 				{
+					"label":"Agregar Tipo Servicio",
+					"event":"adicionarTipoServicio"
+				},
+				{
 					"label":"Agregar Servicio Padre",
 					"event":"adicionarServicio"
 				},

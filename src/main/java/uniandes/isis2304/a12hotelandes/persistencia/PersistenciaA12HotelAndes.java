@@ -62,6 +62,7 @@ import uniandes.isis2304.a12hotelandes.negocio.ServicioSupermercado;
 import uniandes.isis2304.a12hotelandes.negocio.ServicioTienda;
 import uniandes.isis2304.a12hotelandes.negocio.TiempoCompartido;
 import uniandes.isis2304.a12hotelandes.negocio.TipoHabitacion;
+import uniandes.isis2304.a12hotelandes.negocio.TipoServicio;
 import uniandes.isis2304.a12hotelandes.negocio.TodoIncluido;
 import uniandes.isis2304.a12hotelandes.negocio.UsuarioSistema;
 import uniandes.isis2304.a12hotelandes.negocio.VOConvencion;
@@ -162,6 +163,7 @@ public class PersistenciaA12HotelAndes
 
 	private SQLConvencionServicio sqlConvencionServicio;
 	
+	private SQLTipoServicio sqlTipoServicio;
 	/* ****************************************************************
 	 * 			Métodos del MANEJADOR DE PERSISTENCIA
 	 *****************************************************************/
@@ -209,6 +211,7 @@ public class PersistenciaA12HotelAndes
 		tablas.add ("HTA_CONVENCION"); //30
 		tablas.add ("HTA_CONVENCION_HABITACION");
 		tablas.add ("HTA_CONVENCION_SERVICIO");//32
+		tablas.add ("HTA_TIPO_SERVICIO");
 }
 
 	/**
@@ -317,6 +320,7 @@ public class PersistenciaA12HotelAndes
 		sqlConvencion = new SQLConvencion(this);
 		sqlConvencionHabitacion = new SQLConvencionHabitacion(this);
 		sqlConvencionServicio = new SQLConvencionServicio(this);
+		sqlTipoServicio = new SQLTipoServicio(this);
 
 		
 		sqlUtil = new SQLUtil(this);
@@ -424,7 +428,9 @@ public class PersistenciaA12HotelAndes
 	public String darTablaConvencionServicio() {
 		return tablas.get(32);
 	}
-
+	public String darTablaTipoServicio() {
+		return tablas.get(33);
+	}
 
 	
 	
@@ -1380,15 +1386,45 @@ public class PersistenciaA12HotelAndes
 	 * 			Métodos para manejar los Servicios
 	 *****************************************************************/
 	
+	public TipoServicio adicionarTipoServicio(String nombre) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+        	tx.begin();
+            long idTipoServicio = nextval(); 
+            long tuplasInsertadas = sqlTipoServicio.adicionarTipoServicio(pm, idTipoServicio, nombre);
+            tx.commit();
 
-	public VOServicio adicionarServicio (Integer horaInicio,Integer horaFin, Integer capacidad)  {
+            log.trace ("Inserción de TipoHabitacion: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+            return new TipoServicio (idTipoServicio, nombre);
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+	}
+	
+	
+	public VOServicio adicionarServicio (Integer horaInicio,Integer horaFin, Integer capacidad, Long tipoSer)  {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
         	tx.begin();
         	long idServicio = nextval();
-            long tuplasInsertadas = sqlServicio.adicionarServicio(pm,  idServicio,horaInicio,horaFin,  capacidad);
+            long tuplasInsertadas = sqlServicio.adicionarServicio(pm,  idServicio,horaInicio,horaFin,  capacidad, tipoSer);
             tx.commit();
 
             log.trace ("Inserción de Servicio: " + idServicio + ": " + tuplasInsertadas + " tuplas insertadas");
