@@ -500,9 +500,9 @@ public class A12HotelAndes
 	/* ****************************************************************
 	 * 			Métodos para manejar SERVICIO
 	 *****************************************************************/
-	public VOServicio adicionarServicio(Integer horaInicio, Integer horaFin, Integer capacidad, Long tipoSer) {
+	public VOServicio adicionarServicio(Integer horaInicio, Integer horaFin, Integer capacidad, String mantenimiento, Long tipoSer) {
 		log.info ("Adicionando Servicio: ");
-        VOServicio Servicio = pp.adicionarServicio (horaInicio, horaFin, capacidad, tipoSer);
+        VOServicio Servicio = pp.adicionarServicio (horaInicio, horaFin, capacidad, mantenimiento, tipoSer);
         log.info ("Adicionando Servicio: " + Servicio);
         return Servicio;
 	}
@@ -521,6 +521,12 @@ public class A12HotelAndes
         return Servicio;
 	}
 	
+	public Long cambiarMantenimientoServicio(Long idServicio, String estado) {
+		log.info ("Actualizando Servicio por id: " + idServicio);
+        Long resp = pp.cambiarMantenimientoServicio(idServicio, estado);
+        log.info ("Actualizado Servicio: " + resp);
+        return resp;
+	}
 	
 	/* ****************************************************************
 	 * 			Métodos para manejar RESERVA SERVICIO

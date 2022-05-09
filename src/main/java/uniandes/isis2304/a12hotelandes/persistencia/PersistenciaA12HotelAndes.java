@@ -1417,14 +1417,14 @@ public class PersistenciaA12HotelAndes
 	}
 	
 	
-	public VOServicio adicionarServicio (Integer horaInicio,Integer horaFin, Integer capacidad, Long tipoSer)  {
+	public VOServicio adicionarServicio (Integer horaInicio,Integer horaFin, Integer capacidad, String mantenimiento, Long tipoSer)  {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
         	tx.begin();
         	long idServicio = nextval();
-            long tuplasInsertadas = sqlServicio.adicionarServicio(pm,  idServicio,horaInicio,horaFin,  capacidad, tipoSer);
+            long tuplasInsertadas = sqlServicio.adicionarServicio(pm,  idServicio,horaInicio,horaFin,  capacidad, mantenimiento, tipoSer);
             tx.commit();
 
             log.trace ("Inserción de Servicio: " + idServicio + ": " + tuplasInsertadas + " tuplas insertadas");
@@ -1450,6 +1450,32 @@ public class PersistenciaA12HotelAndes
 	public VOServicio darServicioPorId (long idServicio)
 	{
 		return sqlServicio.darServicioPorId (pmf.getPersistenceManager(), idServicio);
+	}
+	
+	public Long cambiarMantenimientoServicio(Long idServicio, String estado) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            Long resp = sqlServicio.cambiarMantenimientoServicio(pm, idServicio, estado);
+            tx.commit();
+            return resp;
+        }
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
 	}
 	
 	public ServicioPiscina adicionarServicioPiscina(Long idServicio, String nombre) {

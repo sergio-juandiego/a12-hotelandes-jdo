@@ -16,10 +16,10 @@ public class SQLServicio {
 		this.pp = pp;
 	}
 	
-	public long adicionarServicio(PersistenceManager pm, Long id, Integer horaInicio, Integer horaFin, Integer capacidad, Long tipoServicio)
+	public long adicionarServicio(PersistenceManager pm, Long id, Integer horaInicio, Integer horaFin, Integer capacidad, String mantenimiento, Long tipoServicio)
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicio () + "(id, horainicio, horafin, capacidad, tiposervicio) values (?, ?, ?, ?, ?)");
-        q.setParameters(id, horaInicio, horaFin, capacidad, tipoServicio);
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaServicio () + "(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (?, ?, ?, ?, ?, ?)");
+        q.setParameters(id, horaInicio, horaFin, capacidad, mantenimiento, tipoServicio);
         return (long) q.executeUnique();
 	}
 	
@@ -29,5 +29,11 @@ public class SQLServicio {
 		q.setResultClass(Servicio.class);
 		q.setParameters(idServicio);
 		return (VOServicio) q.executeUnique();
+	}
+	
+	public long cambiarMantenimientoServicio(PersistenceManager pm, Long idServicio, String estado) {
+        Query q = pm.newQuery(SQL, "UPDATE " + pp.darTablaServicio () + " SET mantenimiento = ? WHERE id = ?");
+        q.setParameters(estado, idServicio);
+        return (long) q.executeUnique();
 	}
 }

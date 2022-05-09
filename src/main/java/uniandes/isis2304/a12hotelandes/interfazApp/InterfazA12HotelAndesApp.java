@@ -1219,14 +1219,16 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
           		String horaFinStr= JOptionPane.showInputDialog (this, "Hora de finalizacion del servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
           		String capacidadStr = JOptionPane.showInputDialog (this, "Capacidad de servicio?", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
           		String tipoSerStr = JOptionPane.showInputDialog (this, "ingrese el id del tipo de servicio", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
+          		String mantenimiento = JOptionPane.showInputDialog (this, "el servicio se encuentra en mantenimiento? (Y,N)", "Adicionar servicio", JOptionPane.QUESTION_MESSAGE);
           		
-          		if (horaInicioStr!= null && horaFinStr !=null && capacidadStr!= null && tipoSerStr != null)
+          		
+          		if (horaInicioStr!= null && horaFinStr !=null && capacidadStr!= null && tipoSerStr != null && mantenimiento != null)
           		{
           			int horaInicio = Integer.valueOf(horaInicioStr);
           			int horaFin = Integer.valueOf(horaFinStr);
           			Integer capacidad = Integer.parseInt(capacidadStr);
           			Long tipoSer = Long.valueOf(tipoSerStr);
-              		VOServicio tb = a12HotelAndes.adicionarServicio(horaInicio, horaFin, capacidad, tipoSer);
+              		VOServicio tb = a12HotelAndes.adicionarServicio(horaInicio, horaFin, capacidad, mantenimiento, tipoSer);
               		if (tb == null)
               		{
               			throw new Exception ("No se pudo crear un servicio con los parámetros especificados");
@@ -2461,7 +2463,47 @@ public class InterfazA12HotelAndesApp extends JFrame implements ActionListener
     
     //TODO falta para servicio
     
- 
+    public void registrarMantenimientoServicio()
+    {
+    	try
+    	{
+    		String idServicioStr = JOptionPane.showInputDialog (this, "Id servicio?", "Registrar mantenimiento servicio", JOptionPane.QUESTION_MESSAGE);
+    		Long idServicio = Long.parseLong(idServicioStr);
+    		
+    		long r = a12HotelAndes.cambiarMantenimientoHabitacion(idServicio, "Y");
+    		
+    		String resultado = "Se ha cambiado el estado de mantenimiento de la habitacion " + idServicio;
+    		panelDatos.actualizarInterfaz(resultado);
+    		
+    	}
+    	catch (Exception e)
+    	{
+    		String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  			e.printStackTrace();
+    	}
+    }
+    
+    public void registrarFinMantenimientoServicio()
+    {
+    	try
+    	{
+    		String idservicioStr = JOptionPane.showInputDialog (this, "Id servicio?", "Registrar mantenimiento servicio", JOptionPane.QUESTION_MESSAGE);
+    		Long idservicio = Long.parseLong(idservicioStr);
+    		
+    		long r = a12HotelAndes.cambiarMantenimientoServicio(idservicio, "N");
+    		
+    		String resultado = "Se ha cambiado el estado de mantenimiento de la servicio " + idservicio;
+    		panelDatos.actualizarInterfaz(resultado);
+    		
+    	}
+    	catch (Exception e)
+    	{
+    		String resultado = generarMensajeError(e);
+  			panelDatos.actualizarInterfaz(resultado);
+  			e.printStackTrace();
+    	}
+    }
     
 	/* ****************************************************************
 	 * 			Métodos administrativos
