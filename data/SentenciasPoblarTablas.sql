@@ -63,8 +63,8 @@ INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodocclien
 INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (67,14,1000438921,'CC',(DATE'2022-03-23'),(DATE'2022-03-28'),'Y',7000000);
 INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (68,14,1000438921,'CC',(DATE'2022-04-28'),(DATE'2022-05-05'),'Y',8005000);
 INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (69,17,1000654218,'CC',(DATE'2022-01-06'),(DATE'2022-01-25'),'Y',3000000);
-INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (70,13,1000416291,'CC',(DATE'2022-01-06'),(DATE'2022-01-07'),'Y',3000000);
-INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (71,13,1000416291,'CC',(DATE'2022-01-06'),(DATE'2022-01-07'),'Y',3000000);
+INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (70,13,1000416291,'CE',(DATE'2022-01-06'),(DATE'2022-01-07'),'Y',3000000);
+INSERT INTO HTA_RESERVA_HABITACION(id, idhabitacion, numdoccliente, tipodoccliente, diaentrada, diasalida, completada, cuenta) values (71,13,1000416291,'CE',(DATE'2022-01-06'),(DATE'2022-01-07'),'Y',3000000);
 
 -- Tipos de Servicio
 
@@ -84,43 +84,43 @@ INSERT INTO HTA_TIPO_SERVICIO(id,nombre) values (12,'Salón de Conferencias');
 
 -- Servicios
 
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (28,10,20,50,1);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (29,10,20,20,1);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (30,10,20,45,1);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (31,10,22,20,2);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (32,10,22,15,2);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (33,10,22,40,2);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (34,0,23,0,3);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (35,0,23,0,3);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (36,0,23,0,3);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (37,17,2,120,4);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (38,14,23,50,4);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (39,21,5,200,4);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (40,10,22,70,5);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (41,10,23,80,5);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (42,10,22,50,5);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (43,10,0,200,6);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (44,10,0,150,6);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (45,10,0,130,6);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (46,10,20,30,7);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (47,10,19,15,7);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (48,10,9,20,7);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (49,10,20,10,8);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (50,10,20,10,8);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (51,10,20,10,8);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (52,10,17,0,9);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (53,10,17,0,9);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (54,10,17,0,9);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (55,10,18,0,10);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (56,10,18,0,10);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (57,10,18,0,10);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (58,7,0,12,11);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (59,7,0,12,11);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (60,7,0,12,11);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (61,6,18,200,12);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (62,6,18,3,12);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (63,6,18,400,12);
-INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, tiposervicio) values (64,10,20,20,1);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (28,10,20,50,'N',1);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (29,10,20,20,'N',1);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (30,10,20,45,'N',1);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (31,10,22,20,'N',2);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (32,10,22,15,'N',2);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (33,10,22,40,'N',2);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (34,0,23,0,'N',3);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (35,0,23,0,'N',3);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (36,0,23,0,'N',3);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (37,17,2,120,'N',4);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (38,14,23,50,'N',4);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (39,21,5,200,'N',4);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (40,10,22,70,'N',5);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (41,10,23,80,'N',5);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (42,10,22,50,'N',5);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (43,10,0,200,'N',6);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (44,10,0,150,'N',6);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (45,10,0,130,'N',6);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (46,10,20,30,'N',7);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (47,10,19,15,'N',7);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (48,10,9,20,'N',7);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (49,10,20,10,'N',8);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (50,10,20,10,'N',8);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (51,10,20,10,'N',8);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (52,10,17,0,'N',9);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (53,10,17,0,'N',9);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (54,10,17,0,'N',9);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (55,10,18,0,'N',10);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (56,10,18,0,'N',10);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (57,10,18,0,'N',10);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (58,7,0,12,'N',11);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (59,7,0,12,'N',11);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (60,7,0,12,'N',11);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (61,6,18,200,'N',12);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (62,6,18,3,'N',12);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (63,6,18,400,'N',12);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (64,10,20,20,'N',1);
 
 -- Servicio Piscina
 
@@ -197,10 +197,20 @@ INSERT INTO HTA_SALON_CONFERENCIAS(idservicio, idreserva, horas_uso, costo) valu
 INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (101, 25, 50, TIMESTAMP'2016-04-13 16:00:00',TIMESTAMP'2016-04-13 17:00:00');
 INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (102, 65, 40, TIMESTAMP'2020-12-30 16:00:00',TIMESTAMP'2020-12-31 2:00:00');
 INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (103, 26, 31, TIMESTAMP'2021-12-01 11:00:00',TIMESTAMP'2021-12-01 12:00:00');
-INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (104, 26, 31, TIMESTAMP'2022-03-12 11:00:00',TIMESTAMP'2021-03-12 12:00:00');
-INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (105, 26, 31, TIMESTAMP'2022-03-12 12:00:00',TIMESTAMP'2021-03-12 13:00:00');
-INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (106, 26, 31, TIMESTAMP'2022-03-12 13:00:00',TIMESTAMP'2021-03-12 14:00:00');
-
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (104, 26, 31, TIMESTAMP'2022-03-12 11:00:00',TIMESTAMP'2022-03-12 12:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (105, 26, 31, TIMESTAMP'2022-03-12 12:00:00',TIMESTAMP'2022-03-12 13:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (106, 26, 31, TIMESTAMP'2022-03-12 13:00:00',TIMESTAMP'2022-03-12 14:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (107, 26, 31, TIMESTAMP'2022-03-12 13:00:00',TIMESTAMP'2022-03-12 14:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (108, 26, 31, TIMESTAMP'2022-04-12 13:00:00',TIMESTAMP'2022-04-12 14:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (109, 26, 31, TIMESTAMP'2022-04-12 13:00:00',TIMESTAMP'2022-04-12 14:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (110, 26, 31, TIMESTAMP'2022-04-12 13:00:00',TIMESTAMP'2022-04-12 14:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (111, 26, 31, TIMESTAMP'2022-04-12 13:00:00',TIMESTAMP'2022-04-12 14:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (112, 26, 31, TIMESTAMP'2021-12-05 13:00:00',TIMESTAMP'2021-12-05 14:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (113, 26, 31, TIMESTAMP'2021-12-05 13:00:00',TIMESTAMP'2021-12-05 14:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (114, 26, 31, TIMESTAMP'2021-12-05 13:00:00',TIMESTAMP'2021-12-05 14:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (115, 26, 31, TIMESTAMP'2021-10-05 13:00:00',TIMESTAMP'2021-10-05 14:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (116, 26, 31, TIMESTAMP'2022-02-12 13:00:00',TIMESTAMP'2022-02-12 14:00:00');
+INSERT INTO HTA_RESERVA_DE_SERVICIO(id, idReservaHabitacion,idServicio, fechaInicio,fechaFin) values (117, 26, 31, TIMESTAMP'2022-01-12 13:00:00',TIMESTAMP'2022-01-12 14:00:00');
 
 -- PRODUCTO 
 
