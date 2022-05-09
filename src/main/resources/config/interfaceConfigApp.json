@@ -97,6 +97,14 @@
 					{
 						"label": "Completar reserva por ID",
 						"event": "cambiarCompletadaReservaHabitacion"
+					},
+					{
+						"label": "Empezar estado de mantenimiento",
+						"event": "registrarMantenimientoHabitacion"
+					},
+					{
+						"label": "Finalizar estado de mantenimiento",
+						"event": "registrarFinMantenimiento"
 					}
 				]
 			},
@@ -203,6 +211,14 @@
 				{
 					"label":"Agregar Consumo de Servicio",
 					"event":"agregarConsumoServicio"
+				},
+				{
+					"label": "Empezar estado de mantenimiento",
+					"event": "registrarMantenimientoServicio"
+				},
+				{
+					"label": "Finalizar estado de mantenimiento",
+					"event": "registrarFinMantenimientoServicio"
 				}
 			
 			]
