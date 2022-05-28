@@ -28,19 +28,123 @@ insert into HTA_TIPO_SERVICIO (id, nombre) values (20, 'Préstamo de Utensilios'
 insert into HTA_TIPO_SERVICIO (id, nombre) values (21, 'Salón de Reuniones');
 insert into HTA_TIPO_SERVICIO (id, nombre) values (22, 'Salón de Conferencias');
 
---HTA_SERVICIO
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (23, 6, 17, 100, 'N', 11);
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (24, 5, 17, 100, 'N', 12);
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (25, 0, 23, 100, 'N', 13);
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (26, 17, 23, 100, 'N', 14);
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (27, 6, 20, 100, 'N', 15);
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (28, 6, 20, 100, 'N', 16);
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (29, 0, 23, 100, 'N', 17);
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (30, 6, 17, 100, 'N', 18);
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (31, 6, 16, 100, 'N', 19);
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (32, 0, 23, 100, 'N', 20);
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (33, 6, 17, 100, 'N', 21);
-insert into HTA_SERVICIO (id, horainicio, horafin, capacidad, mantenimiento, tipoServicio) values (34, 6, 17, 100, 'N', 22);
+
+-- Servicios
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (28,10,20,50,'N',11);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (29,10,20,20,'N',11);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (30,10,20,45,'N',11);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (31,10,22,20,'N',12);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (32,10,22,15,'N',12);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (33,10,22,40,'N',12);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (34,0,23,0,'N',13);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (35,0,23,0,'N',13);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (36,0,23,0,'N',13);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (37,17,2,120,'N',14);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (38,14,23,50,'N',14);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (39,21,5,200,'N',14);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (40,10,22,70,'N',15);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (41,10,23,80,'N',15);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (42,10,22,50,'N',15);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (43,10,0,200,'N',16);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (44,10,0,150,'N',16);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (45,10,0,130,'N',16);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (46,10,20,30,'N',17);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (47,10,19,15,'N',17);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (48,10,9,20,'N',17);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (49,10,20,10,'N',18);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (50,10,20,10,'N',18);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (51,10,20,10,'N',18);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (52,10,17,0,'N',19);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (53,10,17,0,'N',19);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (54,10,17,0,'N',19);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (55,10,18,0,'N',20);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (56,10,18,0,'N',20);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (57,10,18,0,'N',20);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (58,7,0,12,'N',21);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (59,7,0,12,'N',21);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (60,7,0,12,'N',21);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (61,6,18,200,'N',22);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (62,6,18,3,'N',22);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (63,6,18,400,'N',22);
+INSERT INTO HTA_SERVICIO(id, horainicio, horafin, capacidad, mantenimiento, tiposervicio) values (64,10,20,20,'N',11);
+
+-- Servicio Piscina
+
+INSERT INTO HTA_SERVICIO_PISCINA(idservicio, nombre) values (28, 'Piscina Hard Rock');
+INSERT INTO HTA_SERVICIO_PISCINA(idservicio, nombre) values (29, 'Lago Azul');
+INSERT INTO HTA_SERVICIO_PISCINA(idservicio, nombre) values (30, 'Piscina Playa');
+
+-- Servicio Gimnasio
+
+INSERT INTO HTA_SERVICIO_GIMNASIO(idservicio, nombre) values (31, 'Gimnasio BodyTech');
+INSERT INTO HTA_SERVICIO_GIMNASIO(idservicio, nombre) values (32, 'HardBody');
+INSERT INTO HTA_SERVICIO_GIMNASIO(idservicio, nombre) values (33, 'Planet Fitness');
+
+--Servicio Internet
+
+INSERT INTO HTA_SERVICIO_INTERNET(idservicio, idreserva, numerodiasuso, costo) values (34, 25, 1,50);
+INSERT INTO HTA_SERVICIO_INTERNET(idservicio, idreserva, numerodiasuso, costo) values (35, 26, 6,50);
+INSERT INTO HTA_SERVICIO_INTERNET(idservicio, idreserva, numerodiasuso, costo) values (36, 27, 4,50);
+
+-- Servicio Bar 
+
+INSERT INTO HTA_SERVICIO_BAR(idservicio, nombre) values (37, 'Hard Rock');
+INSERT INTO HTA_SERVICIO_BAR(idservicio, nombre) values (38, 'Cantina del desamor');
+INSERT INTO HTA_SERVICIO_BAR(idservicio, nombre) values (39, 'Farra pa los locos');
+
+-- Servicio Restaurante
+
+INSERT INTO HTA_SERVICIO_RESTAURANTE(idservicio, nombre, estilo) values (40,'Wok','Oriental');
+INSERT INTO HTA_SERVICIO_RESTAURANTE(idservicio, nombre, estilo) values (41,'Don Jediondo','Colombiana');
+INSERT INTO HTA_SERVICIO_RESTAURANTE(idservicio, nombre, estilo) values (42,'Archies','Italiana');
+
+-- Servicio Supermercado
+
+INSERT INTO HTA_SERVICIO_SUPERMERCADO(idServicio,nombre) values (43,'Maritos Market');
+INSERT INTO HTA_SERVICIO_SUPERMERCADO(idServicio,nombre) values (44,'Carulla');
+INSERT INTO HTA_SERVICIO_SUPERMERCADO(idServicio,nombre) values (45,'Carrefour');
+
+-- Servicio Tienda
+
+INSERT INTO HTA_SERVICIO_TIENDA(idServicio, nombre, tipoDeTienda) values (46,'Ralph Polo Luaren','Ropa');
+INSERT INTO HTA_SERVICIO_TIENDA(idServicio, nombre, tipoDeTienda) values (47,'Sephora','Boutique');
+INSERT INTO HTA_SERVICIO_TIENDA(idServicio, nombre, tipoDeTienda) values (48,'Mi Colombia Bella','Artesanias');
+
+INSERT INTO HTA_PRODUCTO(idproducto,idservicio,costo) values (66,37,20);
+INSERT INTO HTA_PRODUCTO(idproducto,idservicio,costo) values (67,40,35);
+INSERT INTO HTA_PRODUCTO(idproducto,idservicio,costo) values (68,46,40);
+INSERT INTO HTA_PRODUCTO(idproducto,idservicio,costo) values (69,43,5);
+INSERT INTO HTA_PRODUCTO(idproducto,idservicio,costo) values (70,49,100);
+INSERT INTO HTA_PRODUCTO(idproducto,idservicio,costo) values (71,55,0);
+
+-- Servicio SPA
+
+INSERT INTO HTA_SERVICIO_SPA(idServicio,nombre) values (49,'Relajacion Maxima');
+INSERT INTO HTA_SERVICIO_SPA(idServicio,nombre) values (50,'Final Feliz');
+INSERT INTO HTA_SERVICIO_SPA(idServicio,nombre) values (51,'Rocas del Oriente');
+
+-- -- Servicio LPE
+-- INSERT INTO HTA_SERVICIO_LAVADO_PLANCHADO_EMBOLADO(idServicio, idReserva, tipoPrenda, numeroPrendas) values (52, 65, 'Algodon', 3);
+-- INSERT INTO HTA_SERVICIO_LAVADO_PLANCHADO_EMBOLADO(idServicio, idReserva, tipoPrenda, numeroPrendas) values (53, 65, 'Seda', 1);
+-- INSERT INTO HTA_SERVICIO_LAVADO_PLANCHADO_EMBOLADO(idServicio, idReserva, tipoPrenda, numeroPrendas) values (54, 26, 'Lana', 4);
+
+-- -- SERVICIO PRESTAMO DE UTENSILIOS
+
+-- INSERT INTO HTA_PRESTAMO_UTENSILIOS(idservicio, idreserva, recargoPorMalUso) values (55, 25, 0);
+-- INSERT INTO HTA_PRESTAMO_UTENSILIOS(idservicio, idreserva, recargoPorMalUso) values (56, 26, 200);
+-- INSERT INTO HTA_PRESTAMO_UTENSILIOS(idservicio, idreserva, recargoPorMalUso) values (57, 65, 0);
+
+-- -- SERVICIO SALON REUNIONES
+
+-- INSERT INTO HTA_SALON_REUNIONES(idservicio, idreserva, horas_uso, costobase, costo_adicional) values (58, 25, 3,300,300);
+-- INSERT INTO HTA_SALON_REUNIONES(idservicio, idreserva, horas_uso, costobase, costo_adicional) values (59, 25, 1,200,0);
+-- INSERT INTO HTA_SALON_REUNIONES(idservicio, idreserva, horas_uso, costobase, costo_adicional) values (60, 26, 6,400,1000);
+
+-- -- SERVICIO SALON CONFERENCIAS
+-- INSERT INTO HTA_SALON_CONFERENCIAS(idservicio, idreserva, horas_uso, costo) values (61, 27,7,500);
+-- INSERT INTO HTA_SALON_CONFERENCIAS(idservicio, idreserva, horas_uso, costo) values (62, 25,12,700);
+-- INSERT INTO HTA_SALON_CONFERENCIAS(idservicio, idreserva, horas_uso, costo) values (63, 26,2,1000);
+
 
 -- HTA_PLAN_DE_CONSUMO
 insert into HTA_PLAN_DE_CONSUMO (id, tipo) values (35, 'LargaEstadía');
@@ -49,6 +153,13 @@ insert into HTA_PLAN_DE_CONSUMO (id, tipo) values (37, 'TodoIncluido');
 insert into HTA_PLAN_DE_CONSUMO (id, tipo) values (38, 'ProductosTodoIncluido');
 insert into HTA_PLAN_DE_CONSUMO (id, tipo) values (39, 'PromociónParticular');
 insert into HTA_PLAN_DE_CONSUMO (id, tipo) values (40, 'Convención');
+
+-- HTA_USUARIO_SISTEMA
+INSERT INTO HTA_USUARIO_SISTEMA(id, nombre, rol) values (1, 'Juan Yepes', 6);
+INSERT INTO HTA_USUARIO_SISTEMA(id, nombre, rol) values (2, 'Sergio Pardo', 7);
+INSERT INTO HTA_USUARIO_SISTEMA(id, nombre, rol) values (3, 'Juan Rulfo', 8);
+INSERT INTO HTA_USUARIO_SISTEMA(id, nombre, rol) values (4, 'Pedro Paramo', 9);
+INSERT INTO HTA_USUARIO_SISTEMA(id, nombre, rol) values (5, 'Nicki Minaj', 10);
 
 
 -- HTA_CLIENTE
